@@ -1,0 +1,3 @@
+PYOSLC_APP=wsgi:app
+PYOSLC_ENV=development
+PYOSLC_DEBUG=True
