@@ -11,5 +11,6 @@ REQSTORE = [
     Requirement("3", "Capability to paging", "..."),
     Requirement("4", "Capability to select page", "..."),
     Requirement("5", "Capability to specify page size", "..."),
+    Requirement("fasdlfjsdalfij30492384092", "Capability to list buckets", "..."),
     # and so on ...
 ]
