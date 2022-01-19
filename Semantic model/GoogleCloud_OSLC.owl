@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://localhost:5001/GCP_OSLC#"
+     xml:base="http://localhost:5001/GCP_OSLC"
+     xmlns:ns="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:oslc="http://open-services.net/ns/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="http://localhost:5001/GCP_OSLC">
+        <owl:versionIRI rdf:resource="http://localhost:5001/GCP_OSLC/01"/>
+        <owl:imports rdf:resource="http://open-services.net/ns/core#"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://open-services.net/ns/core#creationFactory -->
+
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#creationFactory"/>
+    
+
+
+    <!-- http://open-services.net/ns/core#details -->
+
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#details"/>
+    
+
+
+    <!-- http://open-services.net/ns/core#domain -->
+
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#domain"/>
+    
+
+
+    <!-- http://open-services.net/ns/core#queryCapability -->
+
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#queryCapability"/>
+    
+
+
+    <!-- http://open-services.net/ns/core#serviceProvider -->
+
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#serviceProvider"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/ComputationService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/ComputationService">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/core#ServiceProvider"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/ContainerService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/ContainerService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/ComputationService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/DataStorageService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/DataStorageService">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/core#ServiceProvider"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/DatabaseService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/DatabaseService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/DataStorageService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/FilesystemService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/FilesystemService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/DataStorageService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/VirtualMachineService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/VirtualMachineService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/ComputationService"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/CloudStorage -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC/CloudStorage">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC/FilesystemService"/>
+        <terms:description>Storage provided by Google Cloud</terms:description>
+        <terms:title>Google Cloud Storage</terms:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/CloudStorageService -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC/CloudStorageService">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#Service"/>
+        <oslc:creationFactory></oslc:creationFactory>
+        <oslc:domain rdf:resource="http://open-services.net/ns/core"/>
+        <oslc:queryCapability></oslc:queryCapability>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/ComputeEngine -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC/ComputeEngine">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC/VirtualMachineService"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/GoogleCloud -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC/GoogleCloud">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#ServiceProviderCatalog"/>
+        <oslc:domain rdf:resource="http://open-services.net/ns/core/am#"/>
+        <oslc:domain rdf:resource="http://open-services.net/ns/perfmon#"/>
+        <oslc:domain rdf:resource="http://open-services.net/ns/rm#"/>
+        <oslc:serviceProvider rdf:resource="http://localhost:5001/GCP_OSLC/ComputeEngine"/>
+        <oslc:serviceProvider rdf:resource="http://localhost:5001/GCP_OSLC/KubernetesEngine"/>
+        <terms:description>Google Cloud Platform Catalog</terms:description>
+        <terms:title rdf:resource="http://localhost:5001/GCP_OSLC/CloudStorage"/>
+        <terms:title>Google Cloud Catalog</terms:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/KubernetesEngine -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC/KubernetesEngine">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC/ContainerService"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

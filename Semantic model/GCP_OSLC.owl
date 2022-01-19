@@ -1,547 +1,762 @@
-@prefix : <http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#> .
-@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix ldp: <http://www.w3.org/ns/ldp#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix oslc: <http://open-services.net/ns/core#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix vann: <http://purl.org/vocab/vann/> .
-@prefix oslc_rm: <http://open-services.net/ns/rm#> .
-@base <http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC> .
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#"
+     xml:base="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC"
+     xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:ldp="http://www.w3.org/ns/ldp#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:oslc="http://open-services.net/ns/core#"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:oslc_rm="http://open-services.net/ns/rm#">
+    <owl:Ontology rdf:about="http://localhost:5001/GCP_OSLC">
+        <owl:versionIRI rdf:resource="http://localhost:5001/GCP_OSLC/0.1"/>
+        <owl:imports rdf:resource="http://open-services.net/ns/core#"/>
+    </owl:Ontology>
+    
 
-<http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC> rdf:type owl:Ontology ;
-                                                                               owl:versionIRI <http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC/0.1> ;
-                                                                               owl:imports <http://open-services.net/ns/am#> ,
-                                                                                           <http://open-services.net/ns/asset#> ,
-                                                                                           <http://open-services.net/ns/auto#> ,
-                                                                                           <http://open-services.net/ns/cm#> ,
-                                                                                           <http://open-services.net/ns/config#> ,
-                                                                                           oslc: ,
-                                                                                           <http://open-services.net/ns/perfmon#> ,
-                                                                                           <http://open-services.net/ns/qm#> ,
-                                                                                           oslc_rm: ,
-                                                                                           foaf: .
 
-#################################################################
-#    Annotation properties
-#################################################################
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-###  http://open-services.net/ns/core#One-or-many
-oslc:One-or-many rdf:type owl:AnnotationProperty .
+    
 
 
-###  http://open-services.net/ns/core#allowedValue
-oslc:allowedValue rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#One-or-many -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#One-or-many"/>
+    
 
-###  http://open-services.net/ns/core#allowedValues
-oslc:allowedValues rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#allowedValue -->
 
-###  http://open-services.net/ns/core#authorizationURI
-oslc:authorizationURI rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#allowedValue"/>
+    
 
 
-###  http://open-services.net/ns/core#creationDialog
-oslc:creationDialog rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#allowedValues -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#allowedValues"/>
+    
 
-###  http://open-services.net/ns/core#creationFactory
-oslc:creationFactory rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#authorizationURI -->
 
-###  http://open-services.net/ns/core#defaultValue
-oslc:defaultValue rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#authorizationURI"/>
+    
 
 
-###  http://open-services.net/ns/core#describes
-oslc:describes rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#creationDialog -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#creationDialog"/>
+    
 
-###  http://open-services.net/ns/core#details
-oslc:details rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#creationFactory -->
 
-###  http://open-services.net/ns/core#dialog
-oslc:dialog rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#creationFactory"/>
+    
 
 
-###  http://open-services.net/ns/core#domain
-oslc:domain rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#defaultValue -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#defaultValue"/>
+    
 
-###  http://open-services.net/ns/core#hidden
-oslc:hidden rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#describes -->
 
-###  http://open-services.net/ns/core#hintHeight
-oslc:hintHeight rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#describes"/>
+    
 
 
-###  http://open-services.net/ns/core#hintWidth
-oslc:hintWidth rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#details -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#details"/>
+    
 
-###  http://open-services.net/ns/core#icon
-oslc:icon rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#dialog -->
 
-###  http://open-services.net/ns/core#label
-oslc:label rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#dialog"/>
+    
 
 
-###  http://open-services.net/ns/core#name
-oslc:name rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#domain -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#domain"/>
+    
 
-###  http://open-services.net/ns/core#oauthAccessTokenURI
-oslc:oauthAccessTokenURI rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#hidden -->
 
-###  http://open-services.net/ns/core#oauthConfiguration
-oslc:oauthConfiguration rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#hidden"/>
+    
 
 
-###  http://open-services.net/ns/core#oauthRequestTokenURI
-oslc:oauthRequestTokenURI rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#hintHeight -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#hintHeight"/>
+    
 
-###  http://open-services.net/ns/core#occurs
-oslc:occurs rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#hintWidth -->
 
-###  http://open-services.net/ns/core#prefixDefinition
-oslc:prefixDefinition rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#hintWidth"/>
+    
 
 
-###  http://open-services.net/ns/core#property
-oslc:property rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#icon -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#icon"/>
+    
 
-###  http://open-services.net/ns/core#propertyDefinition
-oslc:propertyDefinition rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#label -->
 
-###  http://open-services.net/ns/core#publisher
-oslc:publisher rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#label"/>
+    
 
 
-###  http://open-services.net/ns/core#queryBase
-oslc:queryBase rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#name -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#name"/>
+    
 
-###  http://open-services.net/ns/core#queryCapability
-oslc:queryCapability rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#oauthAccessTokenURI -->
 
-###  http://open-services.net/ns/core#queryable
-oslc:queryable rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#oauthAccessTokenURI"/>
+    
 
 
-###  http://open-services.net/ns/core#resourceShape
-oslc:resourceShape rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#oauthConfiguration -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#oauthConfiguration"/>
+    
 
-###  http://open-services.net/ns/core#resourceType
-oslc:resourceType rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#oauthRequestTokenURI -->
 
-###  http://open-services.net/ns/core#service
-oslc:service rdf:type owl:AnnotationProperty .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#oauthRequestTokenURI"/>
+    
 
 
-###  http://open-services.net/ns/core#usage
-oslc:usage rdf:type owl:AnnotationProperty .
+    <!-- http://open-services.net/ns/core#occurs -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#occurs"/>
+    
 
-###  http://purl.org/dc/terms/identifier
-<http://purl.org/dc/terms/identifier> rdf:type owl:AnnotationProperty .
 
+    <!-- http://open-services.net/ns/core#prefixDefinition -->
 
-#################################################################
-#    Classes
-#################################################################
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#prefixDefinition"/>
+    
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#ComputationService
-:ComputationService rdf:type owl:Class ;
-                    rdfs:subClassOf oslc:Service .
 
+    <!-- http://open-services.net/ns/core#property -->
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#ContainerService
-:ContainerService rdf:type owl:Class ;
-                  rdfs:subClassOf :ComputationService .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#property"/>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#DataStorageService
-:DataStorageService rdf:type owl:Class ;
-                    rdfs:subClassOf oslc:Service .
+    <!-- http://open-services.net/ns/core#propertyDefinition -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#propertyDefinition"/>
+    
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#DatabaseService
-:DatabaseService rdf:type owl:Class ;
-                 rdfs:subClassOf :DataStorageService .
 
+    <!-- http://open-services.net/ns/core#publisher -->
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#DebuggingService
-:DebuggingService rdf:type owl:Class ;
-                  rdfs:subClassOf :OperationService .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#publisher"/>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#ErrorReportingService
-:ErrorReportingService rdf:type owl:Class ;
-                       rdfs:subClassOf :OperationService .
+    <!-- http://open-services.net/ns/core#queryBase -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#queryBase"/>
+    
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#FilesystemService
-:FilesystemService rdf:type owl:Class ;
-                   rdfs:subClassOf :DataStorageService .
 
+    <!-- http://open-services.net/ns/core#queryCapability -->
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#LoggingService
-:LoggingService rdf:type owl:Class ;
-                rdfs:subClassOf :OperationService .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#queryCapability"/>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#MonitoringService
-:MonitoringService rdf:type owl:Class ;
-                   rdfs:subClassOf :OperationService .
+    <!-- http://open-services.net/ns/core#queryable -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#queryable"/>
+    
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#NetworkService
-:NetworkService rdf:type owl:Class ;
-                rdfs:subClassOf oslc:Service .
 
+    <!-- http://open-services.net/ns/core#resourceShape -->
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#OperationService
-:OperationService rdf:type owl:Class ;
-                  rdfs:subClassOf oslc:Service .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#resourceShape"/>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#ServerlessService
-:ServerlessService rdf:type owl:Class ;
-                   rdfs:subClassOf oslc:Service .
+    <!-- http://open-services.net/ns/core#resourceType -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#resourceType"/>
+    
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#VirtualMachineService
-:VirtualMachineService rdf:type owl:Class ;
-                       rdfs:subClassOf :ComputationService .
 
+    <!-- http://open-services.net/ns/core#service -->
 
-#################################################################
-#    Individuals
-#################################################################
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#service"/>
+    
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BigTable
-:BigTable rdf:type owl:NamedIndividual ,
-                   :DatabaseService .
 
+    <!-- http://open-services.net/ns/core#serviceProviderCatalog -->
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BucketLocation
-:BucketLocation rdf:type owl:NamedIndividual ,
-                         oslc:ResourceShape ;
-                oslc:describes :FilesystemService ;
-                oslc:hidden "false"^^xsd:boolean ;
-                oslc:property :BucketLocationProperty ;
-                <http://purl.org/dc/terms/description> "Location where it is stored the Google Cloud Storage bucket" ;
-                <http://purl.org/dc/terms/title> "Google Cloud Storage Bucket location" .
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#serviceProviderCatalog"/>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BucketLocationAllowedValues
-:BucketLocationAllowedValues rdf:type owl:NamedIndividual ,
-                                      oslc:AllowedValues ;
-                             oslc:allowedValue "ASIA" ,
-                                               "ASIA-EAST1" ,
-                                               "ASIA-EAST2" ,
-                                               "ASIA-NORTHEAST1" ,
-                                               "ASIA-NORTHEAST2" ,
-                                               "ASIA-NORTHEAST3" ,
-                                               "ASIA-SOUTH1" ,
-                                               "ASIA-SOUTH2" ,
-                                               "ASIA-SOUTHEAST1" ,
-                                               "ASIA-SOUTHEAST2" ,
-                                               "ASIA1" ,
-                                               "AUSTRALIA-SOUTHEAST1" ,
-                                               "AUSTRALIA-SOUTHEAST2" ,
-                                               "EU" ,
-                                               "EUR4" ,
-                                               "EUROPE-CENTRAL2" ,
-                                               "EUROPE-NORTH1" ,
-                                               "EUROPE-WEST1" ,
-                                               "EUROPE-WEST2" ,
-                                               "EUROPE-WEST3" ,
-                                               "EUROPE-WEST4" ,
-                                               "EUROPE-WEST6" ,
-                                               "NAM4" ,
-                                               "NORTHAMERICA-NORTHEAST1" ,
-                                               "NORTHAMERICA-NORTHEAST2" ,
-                                               "SOUTHAMERICA-EAST1" ,
-                                               "SOUTHAMERICA-WEST1" ,
-                                               "US" ,
-                                               "US-CENTRAL1" ,
-                                               "US-EAST1" ,
-                                               "US-EAST4" ,
-                                               "US-WEST1" ,
-                                               "US-WEST2" ,
-                                               "US-WEST3" ,
-                                               "US-WEST4" .
+    <!-- http://open-services.net/ns/core#usage -->
 
+    <owl:AnnotationProperty rdf:about="http://open-services.net/ns/core#usage"/>
+    
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BucketLocationProperty
-:BucketLocationProperty rdf:type owl:NamedIndividual ,
-                                 oslc:Property ;
-                        oslc:allowedValues :BucketLocationAllowedValues ;
-                        oslc:name "Bucket location Properties" ;
-                        oslc:occurs oslc:One-or-many ;
-                        oslc:propertyDefinition :BucketLocationProperty ,
-                                                "true"^^xsd:boolean ;
-                        <http://purl.org/dc/terms/description> """<div>
+
+    <!-- http://purl.org/dc/terms/identifier -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/identifier"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#ComputationService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#ComputationService">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/core#Service"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#ContainerService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#ContainerService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#ComputationService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#DataStorageService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#DataStorageService">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/core#Service"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#DatabaseService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#DatabaseService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#DataStorageService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#DebuggingService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#DebuggingService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#OperationService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#ErrorReportingService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#ErrorReportingService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#OperationService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#FilesystemService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#FilesystemService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#DataStorageService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#LoggingService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#LoggingService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#OperationService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#MonitoringService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#MonitoringService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#OperationService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#NetworkService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#NetworkService">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/core#Service"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#OperationService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#OperationService">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/core#Service"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#ServerlessService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#ServerlessService">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/core#Service"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#VirtualMachineService -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#VirtualMachineService">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#ComputationService"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#BigTable -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#BigTable">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC#DatabaseService"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#BucketLocationAllowedValues -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#BucketLocationAllowedValues">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#AllowedValues"/>
+        <oslc:allowedValue>ASIA</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-EAST1</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-EAST2</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-NORTHEAST1</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-NORTHEAST2</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-NORTHEAST3</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-SOUTH1</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-SOUTH2</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-SOUTHEAST1</oslc:allowedValue>
+        <oslc:allowedValue>ASIA-SOUTHEAST2</oslc:allowedValue>
+        <oslc:allowedValue>ASIA1</oslc:allowedValue>
+        <oslc:allowedValue>AUSTRALIA-SOUTHEAST1</oslc:allowedValue>
+        <oslc:allowedValue>AUSTRALIA-SOUTHEAST2</oslc:allowedValue>
+        <oslc:allowedValue>EU</oslc:allowedValue>
+        <oslc:allowedValue>EUR4</oslc:allowedValue>
+        <oslc:allowedValue>EUROPE-CENTRAL2</oslc:allowedValue>
+        <oslc:allowedValue>EUROPE-NORTH1</oslc:allowedValue>
+        <oslc:allowedValue>EUROPE-WEST1</oslc:allowedValue>
+        <oslc:allowedValue>EUROPE-WEST2</oslc:allowedValue>
+        <oslc:allowedValue>EUROPE-WEST3</oslc:allowedValue>
+        <oslc:allowedValue>EUROPE-WEST4</oslc:allowedValue>
+        <oslc:allowedValue>EUROPE-WEST6</oslc:allowedValue>
+        <oslc:allowedValue>NAM4</oslc:allowedValue>
+        <oslc:allowedValue>NORTHAMERICA-NORTHEAST1</oslc:allowedValue>
+        <oslc:allowedValue>NORTHAMERICA-NORTHEAST2</oslc:allowedValue>
+        <oslc:allowedValue>SOUTHAMERICA-EAST1</oslc:allowedValue>
+        <oslc:allowedValue>SOUTHAMERICA-WEST1</oslc:allowedValue>
+        <oslc:allowedValue>US</oslc:allowedValue>
+        <oslc:allowedValue>US-CENTRAL1</oslc:allowedValue>
+        <oslc:allowedValue>US-EAST1</oslc:allowedValue>
+        <oslc:allowedValue>US-EAST4</oslc:allowedValue>
+        <oslc:allowedValue>US-WEST1</oslc:allowedValue>
+        <oslc:allowedValue>US-WEST2</oslc:allowedValue>
+        <oslc:allowedValue>US-WEST3</oslc:allowedValue>
+        <oslc:allowedValue>US-WEST4</oslc:allowedValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#BucketLocationProperty -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#BucketLocationProperty">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#Property"/>
+        <oslc:allowedValues rdf:resource="http://localhost:5001/GCP_OSLC#BucketLocationAllowedValues"/>
+        <oslc:name>Bucket location Properties</oslc:name>
+        <oslc:occurs rdf:resource="http://open-services.net/ns/core#One-or-many"/>
+        <oslc:propertyDefinition rdf:resource="http://localhost:5001/GCP_OSLC#BucketLocationProperty"/>
+        <oslc:propertyDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</oslc:propertyDefinition>
+        <terms:description rdf:parseType="Literal"><div>
 Bucket location Properties
-</div>"""^^rdf:XMLLiteral ;
-                        <http://purl.org/dc/terms/title> """<div>
+</div></terms:description>
+        <terms:title rdf:parseType="Literal"><div>
 Bucket location Properties
-</div>"""^^rdf:XMLLiteral .
+</div></terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BucketName
-:BucketName rdf:type owl:NamedIndividual ,
-                     oslc:ResourceShape ;
-            oslc:describes :FilesystemService ;
-            oslc:hidden "false"^^xsd:boolean ;
-            oslc:property :BucketNameProperty ;
-            <http://purl.org/dc/terms/description> "Name for the Google Cloud Storage Bucket" ;
-            <http://purl.org/dc/terms/title> "Google Cloud Storage bucket name" .
+    <!-- http://localhost:5001/GCP_OSLC#BucketNameAllowedValues -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#BucketNameAllowedValues">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#AllowedValues"/>
+        <oslc:allowedValue>Bucket names cannot be represented as an IP address in dotted-decimal notation (for example, 192.168.5.4)</oslc:allowedValue>
+        <oslc:allowedValue>Bucket names cannot begin with the &quot;goog&quot; prefix</oslc:allowedValue>
+        <oslc:allowedValue>Bucket names cannot contain &quot;google&quot; or close misspellings, such as &quot;g00gle&quot;</oslc:allowedValue>
+        <oslc:allowedValue>Bucket names must contain 3-63 characters. Names containing dots can contain up to 222 characters, but each dot-separated component can be no longer than 63 characters.</oslc:allowedValue>
+        <oslc:allowedValue>Bucket names must contain only lowercase letters, numbers, dashes (-), underscores (_), and dots (.). Spaces are not allowed</oslc:allowedValue>
+        <oslc:allowedValue>Bucket names must start and end with a number or letter</oslc:allowedValue>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BucketNameAllowedValues
-:BucketNameAllowedValues rdf:type owl:NamedIndividual ,
-                                  oslc:AllowedValues ;
-                         oslc:allowedValue "Bucket names cannot be represented as an IP address in dotted-decimal notation (for example, 192.168.5.4)" ,
-                                           "Bucket names cannot begin with the \"goog\" prefix" ,
-                                           "Bucket names cannot contain \"google\" or close misspellings, such as \"g00gle\"" ,
-                                           "Bucket names must contain 3-63 characters. Names containing dots can contain up to 222 characters, but each dot-separated component can be no longer than 63 characters." ,
-                                           "Bucket names must contain only lowercase letters, numbers, dashes (-), underscores (_), and dots (.). Spaces are not allowed" ,
-                                           "Bucket names must start and end with a number or letter" .
+    <!-- http://localhost:5001/GCP_OSLC#BucketNameProperty -->
 
-
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BucketNameProperty
-:BucketNameProperty rdf:type owl:NamedIndividual ,
-                             oslc:Property ;
-                    oslc:allowedValues :BucketNameAllowedValues ;
-                    oslc:name "Bucket name Properties" ;
-                    oslc:occurs oslc:One-or-many ;
-                    oslc:propertyDefinition :BucketNameProperty ,
-                                            "true"^^xsd:boolean ;
-                    <http://purl.org/dc/terms/description> """<div>
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#BucketNameProperty">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#Property"/>
+        <oslc:allowedValues rdf:resource="http://localhost:5001/GCP_OSLC#BucketNameAllowedValues"/>
+        <oslc:name>Bucket name Properties</oslc:name>
+        <oslc:occurs rdf:resource="http://open-services.net/ns/core#One-or-many"/>
+        <oslc:propertyDefinition rdf:resource="http://localhost:5001/GCP_OSLC#BucketNameProperty"/>
+        <oslc:propertyDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</oslc:propertyDefinition>
+        <terms:description rdf:parseType="Literal"><div>
 Bucket name Properties
-</div>"""^^rdf:XMLLiteral ;
-                    <http://purl.org/dc/terms/title> """<div>
+</div></terms:description>
+        <terms:title rdf:parseType="Literal"><div>
 Bucket name Properties
-</div>"""^^rdf:XMLLiteral .
+</div></terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#CloudSQL
-:CloudSQL rdf:type owl:NamedIndividual ,
-                   :DatabaseService .
+    <!-- http://localhost:5001/GCP_OSLC#CloudSQL -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#CloudSQL">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC#DatabaseService"/>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#CloudSpanner
-:CloudSpanner rdf:type owl:NamedIndividual ,
-                       :DatabaseService .
+    <!-- http://localhost:5001/GCP_OSLC#CloudSpanner -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#CloudSpanner">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC#DatabaseService"/>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#CloudStorage
-:CloudStorage rdf:type owl:NamedIndividual ,
-                       :FilesystemService ;
-              oslc:creationDialog :CreationBucketDialog ;
-              oslc:domain "" ;
-              oslc:queryCapability "" ;
-              <http://purl.org/dc/terms/description> "A filesystem service of Google Cloud Platform" ;
-              <http://purl.org/dc/terms/title> "Google Cloud Storage service" .
+    <!-- http://localhost:5001/GCP_OSLC#CloudStorage -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#CloudStorage">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC#FilesystemService"/>
+        <oslc:creationDialog rdf:resource="http://localhost:5001/GCP_OSLC#CreationBucketDialog"/>
+        <oslc:domain></oslc:domain>
+        <oslc:queryCapability rdf:resource="http://localhost:5001/GCP_OSLC#CloudStorageQueryCapability"/>
+        <terms:description>A filesystem service of Google Cloud Platform</terms:description>
+        <terms:title>Google Cloud Storage service</terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#CloudStorageQueryCapability
-:CloudStorageQueryCapability rdf:type owl:NamedIndividual ,
-                                      oslc:QueryCapability ;
-                             oslc:label "Cloud Storage Query Capability" ;
-                             oslc:queryBase "" ;
-                             oslc:resourceShape "" ;
-                             oslc:resourceType "" ;
-                             oslc:usage "" ;
-                             <http://purl.org/dc/terms/title> """<title>
-Query Capability for Cloud Storage Service
-</title>""" .
+    <!-- http://localhost:5001/GCP_OSLC#CloudStorageQueryCapability -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#CloudStorageQueryCapability">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#QueryCapability"/>
+        <oslc:label>Cloud Storage Query Capability</oslc:label>
+        <oslc:queryBase></oslc:queryBase>
+        <oslc:resourceShape></oslc:resourceShape>
+        <oslc:resourceType></oslc:resourceType>
+        <oslc:usage></oslc:usage>
+        <terms:title>Query Capability for Cloud Storage Service</terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#CreationBucketDialog
-:CreationBucketDialog rdf:type owl:NamedIndividual ,
-                               oslc:Dialog ;
-                      oslc:dialog :CreationBucketDialog ;
-                      oslc:hintHeight "800px" ;
-                      oslc:hintWidth "700px" ;
-                      oslc:label "Creation Bucket Dialog service" ;
-                      oslc:resourceShape :BucketLocation ,
-                                         :BucketName ,
-                                         :StorageClass ;
-                      oslc:resourceType :FilesystemService ;
-                      oslc:usage "" ;
-                      <http://purl.org/dc/terms/title> """<title>
+    <!-- http://localhost:5001/GCP_OSLC#CreationBucketDialog -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#CreationBucketDialog">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#Dialog"/>
+        <oslc:dialog rdf:resource="http://localhost:5001/GCP_OSLC#CreationBucketDialog"/>
+        <oslc:hintHeight>800px</oslc:hintHeight>
+        <oslc:hintWidth>700px</oslc:hintWidth>
+        <oslc:label>Creation Bucket Dialog service</oslc:label>
+        <oslc:resourceShape rdf:resource="http://localhost:5001/GCP_OSLC#StorageClass"/>
+        <oslc:resourceType rdf:resource="http://localhost:5001/GCP_OSLC#FilesystemService"/>
+        <oslc:usage></oslc:usage>
+        <terms:title rdf:parseType="Literal"><title>
 Creation Dialog for Bucket creation
-</title>"""^^rdf:XMLLiteral .
+</title></terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#CreationKubernetesEngineDialog
-:CreationKubernetesEngineDialog rdf:type owl:NamedIndividual ,
-                                         oslc:Dialog ;
-                                oslc:dialog "" ;
-                                oslc:hintHeight "" ;
-                                oslc:hintWidth "" ;
-                                oslc:label "" ;
-                                oslc:resourceShape "" ;
-                                oslc:resourceType :ContainerService ;
-                                oslc:usage "" ;
-                                <http://purl.org/dc/terms/title> """<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<title>
+    <!-- http://localhost:5001/GCP_OSLC#CreationKubernetesEngineDialog -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#CreationKubernetesEngineDialog">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#Dialog"/>
+        <oslc:dialog></oslc:dialog>
+        <oslc:hintHeight></oslc:hintHeight>
+        <oslc:hintWidth></oslc:hintWidth>
+        <oslc:label></oslc:label>
+        <oslc:resourceShape></oslc:resourceShape>
+        <oslc:resourceType rdf:resource="http://localhost:5001/GCP_OSLC#ContainerService"/>
+        <oslc:usage></oslc:usage>
+        <terms:title>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;title&gt;
 Creation Dialog for Kubernetes Cluster creation
-</title>""" .
+&lt;/title&gt;</terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#Datastore
-:Datastore rdf:type owl:NamedIndividual ,
-                    :DatabaseService .
+    <!-- http://localhost:5001/GCP_OSLC#Datastore -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#Datastore">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC#DatabaseService"/>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#Firestore
-:Firestore rdf:type owl:NamedIndividual ,
-                    :DatabaseService .
+    <!-- http://localhost:5001/GCP_OSLC#Firestore -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#Firestore">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC#DatabaseService"/>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#GCPAuthConfiguration
-:GCPAuthConfiguration rdf:type owl:NamedIndividual ,
-                               oslc:OAuthConfiguration ;
-                      oslc:authorizationURI "" ;
-                      oslc:oauthAccessTokenURI "ya29.a0ARrdaM8BTYlpEMAkbytmBcqmdzGdDu72Z38GAVye0BIySxBcOJ45Kf-brpnGGaCA43NYszEu2ouJ27-PPuTU7joIEuytZS1cl6cv0e7o-VG5l3CYcktsAJXOuopNZCpxOrUbexz3h-pW6qwiJfOWnEPIImwf" ;
-                      oslc:oauthRequestTokenURI "" .
+    <!-- http://localhost:5001/GCP_OSLC#GCPAuthConfiguration -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#GCPAuthConfiguration">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#OAuthConfiguration"/>
+        <oslc:authorizationURI></oslc:authorizationURI>
+        <oslc:oauthAccessTokenURI>ya29.a0ARrdaM8BTYlpEMAkbytmBcqmdzGdDu72Z38GAVye0BIySxBcOJ45Kf-brpnGGaCA43NYszEu2ouJ27-PPuTU7joIEuytZS1cl6cv0e7o-VG5l3CYcktsAJXOuopNZCpxOrUbexz3h-pW6qwiJfOWnEPIImwf</oslc:oauthAccessTokenURI>
+        <oslc:oauthRequestTokenURI></oslc:oauthRequestTokenURI>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#GoogleCloudPlatform
-:GoogleCloudPlatform rdf:type owl:NamedIndividual ,
-                              oslc:ServiceProvider ;
-                     oslc:details <https://cloud.google.com/> ;
-                     oslc:oauthConfiguration :GCPAuthConfiguration ;
-                     oslc:prefixDefinition "" ;
-                     oslc:service :BigTable ,
-                                  :CloudSQL ,
-                                  :CloudSpanner ,
-                                  :CloudStorage ,
-                                  :Datastore ,
-                                  :GoogleComputeEngine ,
-                                  :GoogleKubernetesEngine ;
-                     <http://purl.org/dc/terms/description> "Service Provider for Google Cloud Platform service" ;
-                     <http://purl.org/dc/terms/title> "Google Cloud Platform Service Provider" .
+    <!-- http://localhost:5001/GCP_OSLC#GoogleCloudPlatform -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#GoogleCloudPlatform">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#ServiceProvider"/>
+        <oslc:details rdf:resource="https://cloud.google.com/"/>
+        <oslc:oauthConfiguration rdf:resource="http://localhost:5001/GCP_OSLC#GCPAuthConfiguration"/>
+        <oslc:service rdf:resource="http://localhost:5001/GCP_OSLC#BigTable"/>
+        <oslc:service rdf:resource="http://localhost:5001/GCP_OSLC#CloudSQL"/>
+        <oslc:service rdf:resource="http://localhost:5001/GCP_OSLC#CloudSpanner"/>
+        <oslc:service rdf:resource="http://localhost:5001/GCP_OSLC#CloudStorage"/>
+        <oslc:service rdf:resource="http://localhost:5001/GCP_OSLC#Datastore"/>
+        <oslc:service rdf:resource="http://localhost:5001/GCP_OSLC#GoogleComputeEngine"/>
+        <oslc:service rdf:resource="http://localhost:5001/GCP_OSLC#GoogleKubernetesEngine"/>
+        <terms:description>Service Provider for Google Cloud Platform service</terms:description>
+        <terms:title>Google Cloud Platform Service Provider</terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#GoogleComputeEngine
-:GoogleComputeEngine rdf:type owl:NamedIndividual ,
-                              :VirtualMachineService .
+    <!-- http://localhost:5001/GCP_OSLC#GoogleComputeEngine -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#GoogleComputeEngine">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC#VirtualMachineService"/>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#GoogleKubernetesEngine
-:GoogleKubernetesEngine rdf:type owl:NamedIndividual ,
-                                 :ContainerService ;
-                        <http://purl.org/dc/terms/title> "Google Kubernetes Engine service" .
+    <!-- http://localhost:5001/GCP_OSLC#GoogleKubernetesEngine -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#GoogleKubernetesEngine">
+        <rdf:type rdf:resource="http://localhost:5001/GCP_OSLC#ContainerService"/>
+        <terms:title>Google Kubernetes Engine service</terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#ProjectID
-:ProjectID rdf:type owl:NamedIndividual ,
-                    oslc:ResourceShape ;
-           oslc:describes oslc:Service ;
-           oslc:hidden "false"^^xsd:boolean ;
-           oslc:property oslc:Property ;
-           <http://purl.org/dc/terms/description> """<div>
+    <!-- http://localhost:5001/GCP_OSLC#ProjectID -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#ProjectID">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+        <oslc:describes rdf:resource="http://open-services.net/ns/core#Service"/>
+        <oslc:hidden rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</oslc:hidden>
+        <oslc:property rdf:resource="http://open-services.net/ns/core#Property"/>
+        <terms:description>&lt;div&gt;
 Google Cloud Project ID
-</div>""" ;
-           <http://purl.org/dc/terms/title> """<div>
+&lt;/div&gt;</terms:description>
+        <terms:title>&lt;div&gt;
 Google Cloud Project ID
-</div>""" .
+&lt;/div&gt;</terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#ProjectIDAllowedValues
-:ProjectIDAllowedValues rdf:type owl:NamedIndividual ,
-                                 oslc:AllowedValues ;
-                        oslc:allowedValue "Can only contain lowercase letters, numbers, and hyphens" ,
-                                          "Cannot be in use or previously used; this includes deleted projects" ,
-                                          "Cannot contain restricted strings, such as google and ssl" ,
-                                          "Cannot end with a hyphen" ,
-                                          "Must be 6 to 30 characters in length" ,
-                                          "Must start with a letter" .
+    <!-- http://localhost:5001/GCP_OSLC#ProjectIDAllowedValues -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#ProjectIDAllowedValues">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#AllowedValues"/>
+        <oslc:allowedValue>Can only contain lowercase letters, numbers, and hyphens</oslc:allowedValue>
+        <oslc:allowedValue>Cannot be in use or previously used; this includes deleted projects</oslc:allowedValue>
+        <oslc:allowedValue>Cannot contain restricted strings, such as google and ssl</oslc:allowedValue>
+        <oslc:allowedValue>Cannot end with a hyphen</oslc:allowedValue>
+        <oslc:allowedValue>Must be 6 to 30 characters in length</oslc:allowedValue>
+        <oslc:allowedValue>Must start with a letter</oslc:allowedValue>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#ProjectIDProperty
-:ProjectIDProperty rdf:type owl:NamedIndividual ,
-                            oslc:Property ;
-                   oslc:allowedValues :ProjectIDAllowedValues ;
-                   oslc:defaultValue <https://cloudresourcemanager.googleapis.com/v3/projects> ;
-                   oslc:name "Project ID Property" ;
-                   oslc:occurs oslc:One-or-many ;
-                   oslc:propertyDefinition :ProjectIDProperty ,
-                                           "true"^^xsd:boolean ;
-                   <http://purl.org/dc/terms/description> """<div>
+    <!-- http://localhost:5001/GCP_OSLC#ProjectIDProperty -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#ProjectIDProperty">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#Property"/>
+        <oslc:allowedValues rdf:resource="http://localhost:5001/GCP_OSLC#ProjectIDAllowedValues"/>
+        <oslc:defaultValue rdf:resource="https://cloudresourcemanager.googleapis.com/v3/projects"/>
+        <oslc:name>Project ID Property</oslc:name>
+        <oslc:occurs rdf:resource="http://open-services.net/ns/core#One-or-many"/>
+        <oslc:propertyDefinition rdf:resource="http://localhost:5001/GCP_OSLC#ProjectIDProperty"/>
+        <oslc:propertyDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</oslc:propertyDefinition>
+        <terms:description rdf:parseType="Literal"><div>
 Project ID Properties
-</div>"""^^rdf:XMLLiteral ;
-                   <http://purl.org/dc/terms/title> """<div>
+</div></terms:description>
+        <terms:title rdf:parseType="Literal"><div>
 Project ID Properties
-</div>"""^^rdf:XMLLiteral .
+</div></terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#SmartDevopsOSLC
-:SmartDevopsOSLC rdf:type owl:NamedIndividual ,
-                          oslc:Publisher ;
-                 oslc:icon "unknown" ;
-                 oslc:label "OSLC Smart Devops" ;
-                 <http://purl.org/dc/terms/identifier> "unknown" ;
-                 <http://purl.org/dc/terms/title> """<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<title>
+    <!-- http://localhost:5001/GCP_OSLC#SmartDevopsOSLC -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#SmartDevopsOSLC">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#Publisher"/>
+        <oslc:icon>unknown</oslc:icon>
+        <oslc:label>OSLC Smart Devops</oslc:label>
+        <terms:identifier>unknown</terms:identifier>
+        <terms:title rdf:parseType="Literal"><title>
   Smart Devops OSLC implementation software
-</title>"""^^rdf:XMLLiteral .
+</title></terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#StorageClass
-:StorageClass rdf:type owl:NamedIndividual ,
-                       oslc:ResourceShape ;
-              oslc:describes :FilesystemService ;
-              oslc:hidden "false"^^xsd:boolean ;
-              oslc:property :BucketNameProperty ;
-              <http://purl.org/dc/terms/description> "Storage Class for Google Cloud Storage Service" ;
-              <http://purl.org/dc/terms/title> "Google Cloud Storage Class" .
+    <!-- http://localhost:5001/GCP_OSLC#StorageClass -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#StorageClass">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+        <oslc:describes rdf:resource="http://localhost:5001/GCP_OSLC#FilesystemService"/>
+        <oslc:hidden rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</oslc:hidden>
+        <oslc:property rdf:resource="http://localhost:5001/GCP_OSLC#BucketNameProperty"/>
+        <terms:description>Storage Class for Google Cloud Storage Service</terms:description>
+        <terms:title>Google Cloud Storage Class</terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#StorageClassAllowedValues
-:StorageClassAllowedValues rdf:type owl:NamedIndividual ,
-                                    oslc:AllowedValues ;
-                           oslc:allowedValue "ARCHIVE" ,
-                                             "COLDLINE" ,
-                                             "NEARLINE" ,
-                                             "STANDARD" .
+    <!-- http://localhost:5001/GCP_OSLC#StorageClassAllowedValues -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#StorageClassAllowedValues">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#AllowedValues"/>
+        <oslc:allowedValue>ARCHIVE</oslc:allowedValue>
+        <oslc:allowedValue>COLDLINE</oslc:allowedValue>
+        <oslc:allowedValue>NEARLINE</oslc:allowedValue>
+        <oslc:allowedValue>STANDARD</oslc:allowedValue>
+    </owl:NamedIndividual>
+    
 
 
-###  http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#StorageClassProperty
-:StorageClassProperty rdf:type owl:NamedIndividual ,
-                               oslc:Property ;
-                      oslc:allowedValues :StorageClassAllowedValues ;
-                      oslc:name "Storage Class Properties" ;
-                      oslc:occurs oslc:One-or-many ;
-                      oslc:propertyDefinition :StorageClassProperty ,
-                                              "true"^^xsd:boolean ;
-                      <http://purl.org/dc/terms/description> """<div>
+    <!-- http://localhost:5001/GCP_OSLC#StorageClassProperty -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC#StorageClassProperty">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#Property"/>
+        <oslc:allowedValues rdf:resource="http://localhost:5001/GCP_OSLC#StorageClassAllowedValues"/>
+        <oslc:name>Storage Class Properties</oslc:name>
+        <oslc:occurs rdf:resource="http://open-services.net/ns/core#One-or-many"/>
+        <oslc:propertyDefinition rdf:resource="http://localhost:5001/GCP_OSLC#StorageClassProperty"/>
+        <oslc:propertyDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</oslc:propertyDefinition>
+        <terms:description rdf:parseType="Literal"><div>
 Storage Class Properties
-</div>"""^^rdf:XMLLiteral ;
-                      <http://purl.org/dc/terms/title> """<div>
+</div></terms:description>
+        <terms:title rdf:parseType="Literal"><div>
 Storage Class Properties
-</div>"""^^rdf:XMLLiteral .
+</div></terms:title>
+    </owl:NamedIndividual>
+    
 
 
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+    <!-- http://localhost:5001/GCP_OSLC/GoogleCloudCatalog -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:5001/GCP_OSLC/GoogleCloudCatalog">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#ServiceProviderCatalog"/>
+        <oslc:domain rdf:resource="http://open-services.net/ns/core/am#"/>
+        <oslc:serviceProviderCatalog rdf:resource="http://localhost:5001/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#GoogleCloudPlatform"/>
+        <terms:description>Google Cloud Platform Catalog</terms:description>
+        <terms:title>Cloud Service Provider</terms:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://open-services.net/ns/core#BucketResourceShape -->
+
+    <owl:NamedIndividual rdf:about="http://open-services.net/ns/core#BucketResourceShape">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+        <oslc:describes rdf:resource="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#FilesystemService"/>
+        <oslc:hidden rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</oslc:hidden>
+        <oslc:property rdf:resource="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BucketLocationProperty"/>
+        <oslc:property rdf:resource="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#BucketNameProperty"/>
+        <oslc:property rdf:resource="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#ProjectIDProperty"/>
+        <oslc:property rdf:resource="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#StorageClassProperty"/>
+        <terms:description>Resource Shape for Google Cloud Storage Bucket</terms:description>
+        <terms:title>Google Cloud Storage Resource Shape</terms:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://open-services.net/ns/core#CloudProviderCatalog -->
+
+    <owl:NamedIndividual rdf:about="http://open-services.net/ns/core#CloudProviderCatalog">
+        <rdf:type rdf:resource="http://open-services.net/ns/core#ServiceProviderCatalog"/>
+        <oslc:domain rdf:resource="http://open-services.net/ns/core/am#"/>
+        <oslc:serviceProviderCatalog rdf:resource="http://localhost:5001/alejandrovargasperez/ontologies/2021/10/GCP_OSLC#GoogleCloudPlatform"/>
+        <terms:description>Catalog for Cloud Service Provider</terms:description>
+        <terms:title>Cloud Service Provider</terms:title>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
