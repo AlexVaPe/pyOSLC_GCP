@@ -1,0 +1,24 @@
+@prefix oslc: <http://open-service.net/ns/core#>.
+<http://example.com/service/serviceProviders/1> a oslc:ServiceProvider;
+    oslc:service
+        [a oslc:Service;
+            oslc:domain <http://open-services.net/ns/cm#>;
+            oslc:creationFactory
+                [a oslc:CreationFactory;
+                    oslc:creation <http://example.com/service/serviceProviders/1/contents>];
+            oslc:queryCapability
+                [a oslc:QueryCapability;
+                    oslc:queryBase <http://example.com/service/serviceProviders/1/contents>]
+        ].
+
+<http://example.com/service/serviceProviders/2> a oslc:ServiceProvider;
+    oslc:service
+        [a oslc:Service;
+            oslc:domain <http://open-services.net/ns/cm#>;
+            oslc:creationFactory
+                [a oslc:CreationFactory;
+                    oslc:creation <http://example.com/service/serviceProviders/2/contents>];
+            oslc:queryCapability
+                [a oslc:QueryCapability;
+                    oslc:queryBase <http://example.com/service/serviceProviders/2/contents>]
+        ].

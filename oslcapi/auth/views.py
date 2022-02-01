@@ -7,10 +7,9 @@ from flask_jwt_extended import (
     get_jwt,
 )
 
-from oslcapi.models import User
-from oslcapi.extensions import pwd_context, jwt, apispec
 from oslcapi.auth.helpers import revoke_token, is_token_revoked, add_token_to_database
-
+from oslcapi.extensions import pwd_context, jwt, apispec
+from oslcapi.models import User
 
 blueprint = Blueprint("auth", __name__, url_prefix="/auth")
 

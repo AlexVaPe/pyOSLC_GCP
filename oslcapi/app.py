@@ -1,11 +1,11 @@
 from flask import Flask
-from oslcapi.extensions import apispec
-from oslcapi import auth
-"""from oslcapi import api
 
+from oslcapi import api
+from oslcapi import auth
+from oslcapi.extensions import apispec
 from oslcapi.extensions import db
 from oslcapi.extensions import jwt
-from oslcapi.extensions import migrate"""
+from oslcapi.extensions import migrate
 
 
 def create_app(testing=False):
@@ -16,11 +16,19 @@ def create_app(testing=False):
     if testing is True:
         app.config["TESTING"] = True
 
-    #configure_extensions(app)
+    configure_extensions(app)
     configure_apispec(app)
-    #register_blueprints(app)
+    register_blueprints(app)
 
     return app
+
+
+def configure_extensions(app):
+    """configure flask extensions"""
+    db.init_app(app)
+    jwt.init_app(app)
+    migrate.init_app(app, db)
+
 
 def configure_apispec(app):
     """Configure APISpec for swagger support"""
@@ -39,6 +47,7 @@ def configure_apispec(app):
             }
         },
     )
+
 
 def register_blueprints(app):
     """register all blueprints for application"""

@@ -1,8 +1,8 @@
-from flask import jsonify, render_template, Blueprint
 from apispec import APISpec
 from apispec.exceptions import APISpecError
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec_webframeworks.flask import FlaskPlugin
+from flask import jsonify, render_template, Blueprint
 
 
 class FlaskRestfulPlugin(FlaskPlugin):
@@ -38,7 +38,7 @@ class APISpecExt:
             self.init_app(app, **kwargs)
 
     def init_app(self, app, **kwargs):
-        app.config.setdefault("APISPEC_TITLE", "github_oslc_adapter")
+        app.config.setdefault("APISPEC_TITLE", "googleCloud_oslc_adapter")
         app.config.setdefault("APISPEC_VERSION", "1.0.0")
         app.config.setdefault("OPENAPI_VERSION", "3.0.2")
         app.config.setdefault("SWAGGER_JSON_URL", "/swagger.json")

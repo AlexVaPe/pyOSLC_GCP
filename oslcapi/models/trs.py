@@ -1,7 +1,8 @@
-from rdflib import Graph, Namespace, URIRef, Literal, BNode
-from rdflib.namespace import DCTERMS, RDF
-from datetime import datetime
 import logging
+from datetime import datetime
+
+from rdflib import Graph, Namespace, URIRef, Literal, BNode
+from rdflib.namespace import RDF
 
 log = logging.getLogger('tester.sub')
 
@@ -14,7 +15,7 @@ base_url = 'http://localhost:5001'
 class TRSStore:
     def __init__(self):
         self.rdf = Graph()
-        self.uri = URIRef(base_url+'/service/trackedResourceSet')
+        self.uri = URIRef(base_url + '/service/trackedResourceSet')
 
         self.change_logs = []
         self.change_events = []
@@ -30,7 +31,6 @@ class TRSStore:
 
         self.rdf.add((self.uri, TRS.base, self.base.uri))
 
-
     def initialize_trs(self, catalog):
         for service_provider in catalog.service_providers:
             for resource in service_provider.oslc_resources:
@@ -42,9 +42,9 @@ class TRSStore:
         # order = len(self.change_logs)*3 + len(self.change_logs[len(self.change_logs)-1].change_events)
         order = len(self.change_events) + 1
         for change_log in self.change_logs:
-            order += len(change_log.change_events) 
+            order += len(change_log.change_events)
 
-        change_event_uri = URIRef('urn:cm1.example.com:'+datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))
+        change_event_uri = URIRef('urn:cm1.example.com:' + datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))
 
         self.rdf.add((self.change_log, TRS.change, change_event_uri))
         self.rdf.add((change_event_uri, RDF.type, TRS[action]))
@@ -71,19 +71,18 @@ class TRSStore:
                     if n == 1:
                         self.rdf.add((self.change_log, TRS.previous, new_change_log.uri))
                     else:
-                        self.change_logs[n-2].previous(new_change_log)
-                        
+                        self.change_logs[n - 2].previous(new_change_log)
 
                     self.change_logs.append(new_change_log)
 
-                change_event_uri = self.change_logs[n-1].add_change_event(change_event_uri, graph)
+                change_event_uri = self.change_logs[n - 1].add_change_event(change_event_uri, graph)
                 n += 1
 
 
 class TRSBase:
     def __init__(self):
         self.rdf = Graph()
-        self.uri = URIRef(base_url+'/service/baseResources')
+        self.uri = URIRef(base_url + '/service/baseResources')
 
         self.rdf.add((self.uri, RDF.type, LDP.DirectContainer))
         self.rdf.add((self.uri, LDP.hasMemberRelation, LDP.member))
@@ -93,7 +92,7 @@ class TRSBase:
 class ChangeLog:
     def __init__(self, n):
         self.rdf = Graph()
-        self.uri = URIRef(base_url+'/service/changeLog/'+str(n))
+        self.uri = URIRef(base_url + '/service/changeLog/' + str(n))
 
         self.change_events = []
 
@@ -115,12 +114,11 @@ class ChangeLog:
             for triple in self.rdf.triples((change_event_uri, None, None)):
                 self.rdf.remove(triple)
                 graph.add(triple)
-            
+
             return change_event_uri
-        
+
         else:
             return None
-
 
     def previous(self, previous):
         self.rdf.add((self.uri, TRS.previous, previous.uri))
