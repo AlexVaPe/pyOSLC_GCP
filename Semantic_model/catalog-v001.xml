@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://open-services.net/ns/core#" uri="http://open-services.net/ns/core#"/>
     <uri id="Imports Wizard Entry" name="http://open-services.net/ns/core#" uri="http://open-services.net/ns/core"/>
     <uri id="Imports Wizard Entry" name="http://open-services.net/ns/core#" uri="core_OSLC.owl"/>
     <uri id="Imports Wizard Entry" name="http://open-services.net/ns/core#" uri="https://docs.oasis-open-projects.org/oslc-op/core/v3.0/ps01/core-vocab.ttl"/>

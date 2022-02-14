@@ -1,4 +1,5 @@
-from oslcapi.models import OSLCStore, TRSStore
+from oslcapi.models.oslc import OSLCStore
+from oslcapi.models.trs import TRSStore
 
 trs = TRSStore()
-store = OSLCStore(trs)
+my_store = OSLCStore(trs)
