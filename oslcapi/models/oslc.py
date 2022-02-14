@@ -13,7 +13,7 @@ OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
 #path_to_owl = "../Semantic_model/GoogleCloud_OSLC.owl"
 rdf = Graph()
 #rdf.parse(path_to_owl, format='xml')
-rdf.parse("https://raw.githubusercontent.com/AlexVaPe/pyOSLC_GCP/main/Semantic_model/GoogleCloud_OSLC.owlos", format='xml')
+rdf.parse("https://raw.githubusercontent.com/AlexVaPe/pyOSLC_GCP/main/Semantic_model/GoogleCloud_OSLC.owl", format='xml')
 
 base_url = 'http://localhost:5001/GCP_OSLC'
 
