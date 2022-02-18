@@ -9,7 +9,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from passlib.context import CryptContext
 
-from oslcapi.commons.apispec import APISpecExt
+from oslcapi.commons.my_apispec import APISpecExt
 
 db = SQLAlchemy()
 jwt = JWTManager()

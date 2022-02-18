@@ -1,26 +1,26 @@
 from flask import Blueprint, current_app, jsonify
 from flask_restful import Api
 from marshmallow import ValidationError
-
+from oslcapi.extensions import apispec
 from oslcapi.api.resources import *
 from oslcapi.api.schemas import UserSchema
-from oslcapi.extensions import apispec
+
 
 blueprint = Blueprint("api", __name__, url_prefix="/service")
 api = Api(blueprint)
 
-'''
 
-    ENDPOINTS DEFINITION
+api.add_resource(UserResource, "/users/<int:user_id>", endpoint="user_by_id")
+api.add_resource(UserList, "/users", endpoint="users")
 
-'''
 
-# Service Providers Endpoints
 api.add_resource(ServiceProvider, "/serviceProviders/<int:service_provider_id>", endpoint="service_provider_by_id")
 api.add_resource(ServiceProviderCatalog, "/serviceProviders/catalog")
 
-api.add_resource(OSLCResource, "/serviceProviders/<int:service_provider_id>/oslc/resource/<int:oslc_resource_id>", endpoint="oslc_resource_by_service_provider_and_id")
-api.add_resource(OSLCResourceList, "/serviceProviders/<int:service_provider_id>/oslc/resource/", endpoint="oslc_resource_by_service_provider")
+api.add_resource(OSLCResource, "/serviceProviders/<int:service_provider_id>/Directory/<int:oslc_resource_id>"
+                 , endpoint="oslc_resource_by_service_provider_and_id")
+api.add_resource(OSLCResourceList, "/serviceProviders/<int:service_provider_id>/Directory"
+                 , endpoint="oslc_resource_by_service_provider")
 
 api.add_resource(TrackedResourceSet, "/trackedResourceSet")
 api.add_resource(TRSBase, "/baseResources")

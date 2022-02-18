@@ -6,8 +6,7 @@ from rdflib import Graph, URIRef, Literal, Namespace, RDF
 OSLC = Namespace('http://open-services.net/ns/core#')
 
 # Get GCP Credentials
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = \
-    '/Users/alejandrovargasperez/GCP Credentials/rock-sentinel-333408-7a09dab643b4.json'
+#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/code/oslcapi/rock-sentinel-333408-7a09dab643b4.json'
 base_url = 'http://localhost:5001/GCP_OSLC'
 
 

@@ -10,17 +10,15 @@ OSLC = Namespace('http://open-services.net/ns/core#')
 OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
 
 # Import GCP Semantic Model
-#path_to_owl = "../Semantic_model/GoogleCloud_OSLC.owl"
-rdf = Graph()
-#rdf.parse(path_to_owl, format='xml')
-rdf.parse("https://raw.githubusercontent.com/AlexVaPe/pyOSLC_GCP/main/Semantic_model/GoogleCloud_OSLC.owl", format='xml')
+my_rdf = Graph()
+my_rdf.parse("https://raw.githubusercontent.com/AlexVaPe/pyOSLC_GCP/main/Semantic_model/GoogleCloud_OSLC.owl", format='xml')
 
-base_url = 'http://localhost:5001/GCP_OSLC'
+base_url = 'http://localhost:5001/'
 
 
 class OSLCStore:
     def __init__(self, trs):
-        self.catalog = ServiceProviderCatalog()
+        self.catalog = ServiceProviderCatalog(my_rdf)
         self.initialize_oslc()
 
         self.trs = trs
@@ -30,7 +28,7 @@ class OSLCStore:
         # Filesystem Service Provider
         cloudStorage = FilesystemService('CloudStorage', 'Google Cloud Storage',
                                          'Filesystem Service of Google Cloud')
-        filesystem_service_provider = ServiceProvider(cloudStorage, len(self.catalog.service_providers) + 1)
+        filesystem_service_provider = ServiceProvider(cloudStorage, len(self.catalog.service_providers) + 1, my_rdf)
         self.catalog.add(filesystem_service_provider)
 
         for directory in list_buckets():
@@ -39,7 +37,7 @@ class OSLCStore:
         log.warning('OSLC store loaded')
 
     def add_resource(self, service_provider, element):
-        resource = OSLCResource(service_provider, element, len(service_provider.oslc_resources) + 1)
+        resource = OSLCResource(service_provider, element, len(service_provider.oslc_resources) + 1, my_rdf)
         service_provider.oslc_resources.append(resource)
         return resource
 
@@ -59,18 +57,21 @@ class OSLCStore:
 
 
 class ServiceProviderCatalog:
-    def __init__(self):
+    def __init__(self, my_rdf):
         self.uri = URIRef(base_url + '/service/serviceProviders/catalog')
-
         self.service_providers = []
+        self.rdf = Graph()
 
         # Google Cloud Platform Catalog
-        rdf.add((self.uri, DCTERMS.title, Literal('Google Cloud Catalog')))
-        rdf.add((self.uri, DCTERMS.description, Literal('Google Cloud Platform Catalog')))
-        rdf.add((self.uri, RDF.type, OSLC.ServiceProviderCatalog))
+        self.rdf.add((self.uri, DCTERMS.title, Literal('Google Cloud Catalog')))
+        self.rdf.add((self.uri, DCTERMS.description, Literal('Google Cloud Platform Catalog')))
+        self.rdf.add((self.uri, RDF.type, OSLC.ServiceProviderCatalog))
+        my_rdf += self.rdf.triples((None, None, None))
+
+        #self.rdf = rdf.triples((None, RDF.type, OSLC.ServiceProviderCatalog))
 
     def add(self, service_provider):
-        rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
+        self.rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
         self.service_providers.append(service_provider)
 
 
@@ -82,42 +83,43 @@ class ServiceProviderCatalog:
 
 
 class ServiceProvider:
-    def __init__(self, module, id):
-        self.rdf = rdf
+    def __init__(self, module, id, imported_rdf):
+        self.rdf = Graph()
         self.id = id
         self.uri = URIRef(base_url + '/service/serviceProviders/' + str(self.id))
         self.module = module
 
         self.oslc_resources = []
 
-        rdf.add((self.uri, RDF.type, OSLC.ServiceProvider))
+        self.rdf.add((self.uri, RDF.type, OSLC.ServiceProvider))
 
         match module.id:
             case "CloudStorage":
                 service = BNode()
 
-                rdf.add((self.uri, OSLC.service, service))
-                rdf.add((service, RDF.type, OSLC.Service))
+                self.rdf.add((self.uri, OSLC.service, service))
+                self.rdf.add((service, RDF.type, OSLC.Service))
                 # rdf.add((service, OSLC.domain, URIRef('http://open-services.net/ns/am#')))
 
                 creationFactory = BNode()
 
-                rdf.add((service, OSLC.creationFactory, creationFactory))
-                rdf.add((creationFactory, RDF.type, OSLC.CreationFactory))
-                rdf.add((creationFactory, OSLC.resourceType, OSLC_CloudProvider.Directory))
-                rdf.add((creationFactory, OSLC.label, Literal('Creation Factory')))
+                self.rdf.add((service, OSLC.creationFactory, creationFactory))
+                self.rdf.add((creationFactory, RDF.type, OSLC.CreationFactory))
+                self.rdf.add((creationFactory, OSLC.resourceType, OSLC_CloudProvider.Directory))
+                self.rdf.add((creationFactory, OSLC.label, Literal('Creation Factory')))
 
-                rdf.add((creationFactory, OSLC.creation,
+                self.rdf.add((creationFactory, OSLC.creation,
                          URIRef(base_url + '/service/serviceProviders/' + str(self.id) + '/directory')))
 
                 queryCapability = BNode()
 
-                rdf.add((service, OSLC.queryCapability, queryCapability))
-                rdf.add((queryCapability, RDF.type, OSLC.QueryCapability))
-                rdf.add((queryCapability, OSLC.resourceType, OSLC_CloudProvider.Directory))
-                rdf.add((queryCapability, OSLC.label, Literal('Query Capability')))
-                rdf.add((queryCapability, OSLC.queryBase,
+                self.rdf.add((service, OSLC.queryCapability, queryCapability))
+                self.rdf.add((queryCapability, RDF.type, OSLC.QueryCapability))
+                self.rdf.add((queryCapability, OSLC.resourceType, OSLC_CloudProvider.Directory))
+                self.rdf.add((queryCapability, OSLC.label, Literal('Query Capability')))
+                self.rdf.add((queryCapability, OSLC.queryBase,
                          URIRef(base_url + '/service/serviceProviders/' + str(self.id) + '/directory')))
+                imported_rdf += self.rdf.triples((None, None, None))
 
                 module_to_service_provider(module, self)
 
@@ -137,15 +139,17 @@ class FilesystemService:
 
 
 class OSLCResource:
-    def __init__(self, service_provider, element, id):
-        self.rdf = rdf
+    def __init__(self, service_provider, element, id, imported_rdf):
+        self.rdf = Graph()
         self.id = id
 
         match service_provider.module.id:
             case 'CloudStorage':
                 self.uri = URIRef(
-                    base_url + '/service/serviceProviders/' + str(service_provider.module.id) + '/oslc/resource/' + str(element.id))
-                rdf.add((self.uri, RDF.type, OSLC_CloudProvider.Directory))
-        rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
+                    base_url + '/service/serviceProviders/' + str(service_provider.module.id) + '/Directory/'
+                    + str(element.id))
+                self.rdf.add((self.uri, RDF.type, OSLC_CloudProvider.Directory))
+        self.rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
+        imported_rdf += self.rdf.triples((None, None, None))
 
         directory_to_oslc_resource(element, self)

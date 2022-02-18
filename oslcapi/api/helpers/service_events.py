@@ -1,6 +1,5 @@
 import logging
 import os
-
 from rdflib import Namespace, Literal
 from rdflib.namespace import DCTERMS
 
@@ -11,8 +10,7 @@ log = logging.getLogger('tester.sub')
 OSLC = Namespace('http://open-services.net/ns/core#')
 
 # Get GCP Credentials
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = \
-    '/Users/alejandrovargasperez/GCP Credentials/rock-sentinel-333408-7a09dab643b4.json'
+#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/code/oslcapi/rock-sentinel-333408-7a09dab643b4.json'
 
 def generate_creation_event(payload, store):
     log.warning('Creation event generated')

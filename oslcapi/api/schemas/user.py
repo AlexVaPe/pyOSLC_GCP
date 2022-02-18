@@ -1,5 +1,5 @@
 from oslcapi.extensions import ma, db
-from oslcapi.models import User
+from oslcapi.models.user import User
 
 
 class UserSchema(ma.SQLAlchemyAutoSchema):

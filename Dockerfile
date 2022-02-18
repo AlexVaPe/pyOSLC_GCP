@@ -11,7 +11,7 @@ FROM python:3.10
 RUN mkdir /code
 WORKDIR /code
 
-COPY requirements.txt setup.py tox.ini ./
+COPY requirements.txt setup.py tox.ini gcp_credentials.json ./
 RUN pip install -U pip
 RUN pip install -r requirements.txt
 RUN pip install -e .

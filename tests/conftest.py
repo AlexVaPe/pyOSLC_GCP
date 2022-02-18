@@ -1,5 +1,4 @@
 import json
-
 import pytest
 from dotenv import load_dotenv
 from pytest_factoryboy import register

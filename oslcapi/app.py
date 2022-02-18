@@ -1,11 +1,10 @@
 from flask import Flask
-
 from oslcapi import api
 from oslcapi import auth
-from oslcapi.extensions import apispec
 from oslcapi.extensions import db
 from oslcapi.extensions import jwt
 from oslcapi.extensions import migrate
+from oslcapi.extensions import apispec
 
 
 def create_app(testing=False):

@@ -5,7 +5,7 @@ from flask_restful import Resource
 from oslcapi.api.schemas import UserSchema
 from oslcapi.commons.pagination import paginate
 from oslcapi.extensions import db
-from oslcapi.models import User
+from oslcapi.models.user import User
 
 
 class UserResource(Resource):

@@ -1,12 +1,11 @@
 import logging
-
 from flask import request
 from flask_rdf.flask import returns_rdf
 from flask_restful import Resource
 from rdflib import Graph
 
 from oslcapi.api.helpers.service_actions import create_resource, update_resource, delete_resource
-from oslcapi.store import store
+from oslcapi.store import my_store
 
 log = logging.getLogger('tester.sub')
 
@@ -14,7 +13,7 @@ log = logging.getLogger('tester.sub')
 class OSLCResource(Resource):
     @returns_rdf
     def get(self, service_provider_id, oslc_resource_id):
-        for service_provider in store.catalog.service_providers:
+        for service_provider in my_store.catalog.service_providers:
             if service_provider.id == service_provider_id:
                 for resource in service_provider.oslc_resources:
                     if resource.id == oslc_resource_id:
@@ -26,11 +25,11 @@ class OSLCResource(Resource):
         graph = Graph()
         graph.parse(data=request.data, format=request.headers['Content-type'])
 
-        for service_provider in store.catalog.service_providers:
+        for service_provider in my_store.catalog.service_providers:
             if service_provider_id == service_provider.id:
                 for resource in service_provider.oslc_resources:
                     if resource.id == oslc_resource_id:
-                        return update_resource(service_provider, resource, graph, store)
+                        return update_resource(service_provider, resource, graph, my_store)
 
         return Graph()
 
@@ -43,7 +42,7 @@ class OSLCResourceList(Resource):
     @returns_rdf
     def get(self, service_provider_id):
         g = Graph()
-        for service_provider in store.catalog.service_providers:
+        for service_provider in my_store.catalog.service_providers:
             if service_provider.id == service_provider_id:
                 for resource in service_provider.oslc_resources:
                     g += resource.rdf
@@ -54,8 +53,8 @@ class OSLCResourceList(Resource):
         graph = Graph()
         graph.parse(data=request.data, format=request.headers['Content-type'])
 
-        for service_provider in store.catalog.service_providers:
+        for service_provider in my_store.catalog.service_providers:
             if service_provider_id == service_provider.id:
-                return create_resource(service_provider, graph, store)
+                return create_resource(service_provider, graph, my_store)
 
         return Graph()

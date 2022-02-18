@@ -10,8 +10,10 @@ services:
       - ./.flaskenv
     environment:
       - DATABASE_URI=sqlite:////db/oslcapi.db
+      - GOOGLE_APPLICATION_CREDENTIALS=/code/gcp/gcp_credentials.json
     volumes:
       - ./oslcapi:/code/oslcapi
       - ./db/:/db/
+      - ./gcp_credentials.json:/code/gcp/gcp_credentials.json
     ports:
       - "5001:5000"

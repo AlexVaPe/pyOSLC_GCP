@@ -6,10 +6,6 @@ from rdflib import Literal, Namespace, DCTERMS
 OSLC = Namespace('http://open-services.net/ns/core#')
 OSLC_CM = Namespace('http://open-services.net/ns/cm#')
 
-# Get GCP Credentials
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = \
-    '/Users/alejandrovargasperez/GCP Credentials/rock-sentinel-333408-7a09dab643b4.json'
-
 '''
 
     CLOUD STORAGE FUNCTIONS
