@@ -17,10 +17,17 @@ api.add_resource(UserList, "/users", endpoint="users")
 api.add_resource(ServiceProvider, "/serviceProviders/<int:service_provider_id>", endpoint="service_provider_by_id")
 api.add_resource(ServiceProviderCatalog, "/serviceProviders/catalog")
 
-api.add_resource(OSLCResource, "/serviceProviders/<int:service_provider_id>/Directory/<int:oslc_resource_id>"
-                 , endpoint="oslc_resource_by_service_provider_and_id")
-api.add_resource(OSLCResourceList, "/serviceProviders/<int:service_provider_id>/Directory"
-                 , endpoint="oslc_resource_by_service_provider")
+# Directory Endpoints
+api.add_resource(Directory_OSLCResource, "/serviceProviders/<int:service_provider_id>/directory/<int:oslc_resource_id>"
+                 , endpoint="directory_oslc_resource_by_service_provider_and_id")
+api.add_resource(Directory_OSLCResourceList, "/serviceProviders/<int:service_provider_id>/directory"
+                 , endpoint="directory_oslc_resource_by_service_provider")
+
+# VM Endpoints
+api.add_resource(VM_OSLCResource, "/serviceProviders/<int:service_provider_id>/instance/<int:oslc_resource_id>"
+                 , endpoint="vm_oslc_resource_by_service_provider_and_id")
+api.add_resource(VM_OSLCResourceList, "/serviceProviders/<int:service_provider_id>/instance"
+                 , endpoint="vm_oslc_resource_by_service_provider")
 
 api.add_resource(TrackedResourceSet, "/trackedResourceSet")
 api.add_resource(TRSBase, "/baseResources")

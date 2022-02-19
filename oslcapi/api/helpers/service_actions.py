@@ -5,9 +5,7 @@ from rdflib import Graph, URIRef, Literal, Namespace, RDF
 
 OSLC = Namespace('http://open-services.net/ns/core#')
 
-# Get GCP Credentials
-#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/code/oslcapi/rock-sentinel-333408-7a09dab643b4.json'
-base_url = 'http://localhost:5001/GCP_OSLC'
+base_url = 'http://localhost:5001'
 
 
 def create_resource(service_provider, graph, store):
@@ -24,51 +22,28 @@ def create_resource(service_provider, graph, store):
         }
     """
 
-    query_type = """
-
-                    PREFIX on: <http://localhost:5001/GCP_OSLC/>
-
-                    SELECT ?type
-
-                    WHERE {
-                        ?s rdf:type ?type .
-                    }
-
-                """
-
-    # Check Service Provider
-    provider_type = None
-    for r in service_provider.rdf.query(query_type):
-        if r["type"] == URIRef(base_url + '/FilesystemService'):
-            provider_type = 'Cloud Storage'
-        elif r["type"] == URIRef(base_url + '/VirtualMachineService'):
-            provider_type = 'Compute Engine'
-        elif r["type"] == URIRef(base_url + '/ContainerService'):
-            provider_type = 'Kubernetes Engine'
-
-
     '''
     
         CLOUD STORAGE RESOURCE CREATION
     
     '''
 
-    if provider_type == 'Cloud Storage':
-        for name, location, storage_class in graph.query(query_bucket):
+    match service_provider.module.description:
+        case 'FilesystemService':
+            for name, location, storage_class in graph.query(query_bucket):
+                # It would be better if we check the bucket properties defined on BucketResourceShape
+                storage_client = storage.Client()
 
-            # It would be better if we check the bucket properties defined on BucketResourceShape
-            storage_client = storage.Client()
+                bucket = storage_client.bucket(name)
+                bucket.storage_class = storage_class
+                new_bucket = storage_client.create_bucket(bucket, location=location)
 
-            bucket = storage_client.bucket(name)
-            bucket.storage_class = storage_class
-            new_bucket = storage_client.create_bucket(bucket, location=location)
+                resource = store.add_resource(service_provider, new_bucket)
 
-            resource = store.add_resource(service_provider, new_bucket)
+            for p, o in graph.predicate_objects(None):
+                resource.rdf.add((resource.uri, p, o))
 
-        for p, o in graph.predicate_objects(None):
-            resource.rdf.add((resource.uri, p, o))
-
-        return new_bucket
+    return new_bucket
 
 
 

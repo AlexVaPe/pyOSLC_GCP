@@ -220,6 +220,14 @@
     
 
 
+    <!-- http://localhost:5001/GCP_OSLC/Instance -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/Instance">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/VirtualMachineService"/>
+    </owl:Class>
+    
+
+
     <!-- http://localhost:5001/GCP_OSLC/NonRDBMS -->
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/NonRDBMS">
