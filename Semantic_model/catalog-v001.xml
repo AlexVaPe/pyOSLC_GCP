@@ -9,8 +9,8 @@
     <uri id="Imports Wizard Entry" name="http://open-services.net/ns/core#" uri="http://open-services.net/ns/core#"/>
     <uri id="Imports Wizard Entry" name="http://open-services.net/ns/core#" uri="http://open-services.net/ns/core"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1645259025659" name="duplicate:http://localhost:5001/GCP_OSLC" uri="GoogleCloud_OSLC.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1645259025659" name="duplicate:http://localhost:5001/GCP_OSLC" uri="GoogleCloud_OSLC_backup.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1645259025659" name="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC" uri="GCP_OSLC.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1645447899036" name="duplicate:http://localhost:5001/GCP_OSLC" uri="GoogleCloud_OSLC.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1645447899036" name="duplicate:http://localhost:5001/GCP_OSLC" uri="GoogleCloud_OSLC_backup.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1645447899036" name="http://www.semanticweb.org/alejandrovargasperez/ontologies/2021/10/GCP_OSLC" uri="GCP_OSLC.owl"/>
     </group>
 </catalog>

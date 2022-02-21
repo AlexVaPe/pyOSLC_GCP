@@ -29,6 +29,7 @@ api.add_resource(VM_OSLCResource, "/serviceProviders/<int:service_provider_id>/i
 api.add_resource(VM_OSLCResourceList, "/serviceProviders/<int:service_provider_id>/instance"
                  , endpoint="vm_oslc_resource_by_service_provider")
 
+# TRS Endpoints
 api.add_resource(TrackedResourceSet, "/trackedResourceSet")
 api.add_resource(TRSBase, "/baseResources")
 api.add_resource(TRSChangeLog, "/changeLog/<int:change_log_id>", endpoint="change_log_by_id")
