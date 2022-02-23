@@ -29,6 +29,12 @@ api.add_resource(VM_OSLCResource, "/serviceProviders/<int:service_provider_id>/i
 api.add_resource(VM_OSLCResourceList, "/serviceProviders/<int:service_provider_id>/instance"
                  , endpoint="vm_oslc_resource_by_service_provider")
 
+# Cluster Endpoints
+api.add_resource(Cluster_OSLCResource, "/serviceProviders/<int:service_provider_id>/cluster/<int:oslc_resource_id>"
+                 , endpoint="cluster_oslc_resource_by_service_provider_and_id")
+api.add_resource(Cluster_OSLCResourceList, "/serviceProviders/<int:service_provider_id>/cluster"
+                 , endpoint="cluster_oslc_resource_by_service_provider")
+
 # TRS Endpoints
 api.add_resource(TrackedResourceSet, "/trackedResourceSet")
 api.add_resource(TRSBase, "/baseResources")

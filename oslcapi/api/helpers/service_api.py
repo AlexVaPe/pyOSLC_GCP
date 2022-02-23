@@ -5,9 +5,11 @@ from google.cloud import storage
 import google.cloud.compute_v1 as compute_v1
 from google.cloud.compute_v1 import Instance
 from google.cloud.storage import Bucket
+import googleapiclient.discovery
 
 OSLC = Namespace('http://open-services.net/ns/core#')
 OSLC_CM = Namespace('http://open-services.net/ns/cm#')
+OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
 
 '''
 
@@ -51,23 +53,67 @@ def list_instances(
             all_instances[zone] = response.instances
     return all_instances
 
+'''
+
+    KUBERNETES ENGINE FUNCTIONS
+
+'''
+
+def list_clusters(project_id):
+    """Lists all clusters and associated node pools."""
+    service = googleapiclient.discovery.build('container', 'v1')
+    clusters_resource = service.projects().zones().clusters()
+    # All zones
+    zone = '-'
+
+    return clusters_resource.list(projectId=project_id, zone=zone).execute()
+
+'''
+
+    RESOURCE -> OLSC MAPPING
+
+'''
+
 # Module -> ServiceProvider
 def module_to_service_provider(module, service_provider):
-    service_provider.rdf.add((service_provider.uri, DCTERMS.identifier, Literal(module.id)))
-    service_provider.rdf.add((service_provider.uri, DCTERMS.title, Literal(module.title)))
-    service_provider.rdf.add((service_provider.uri, DCTERMS.description, Literal(module.description)))
-
+    match module.description:
+        case "FilesystemService":
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.filesystemServiceId, Literal(module.id)))
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.filesystemServiceTitle,
+                                      Literal(module.title)))
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.filesystemServiceDescription,
+                                      Literal(module.description)))
+        case "VirtualMachineService":
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.virtualMachineServiceId, Literal(module.id)))
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.virtualMachineServiceTitle,
+                                      Literal(module.title)))
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.virtualMachineServiceDescription,
+                                      Literal(module.description)))
+        case "ContainerService":
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.containerServiceId,
+                                      Literal(module.id)))
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.containerServiceTitle,
+                                      Literal(module.title)))
+            service_provider.rdf.add((service_provider.uri, OSLC_CloudProvider.containerServiceDescription,
+                                      Literal(module.description)))
 
 # Resource -> OSLC Resource
 def directory_to_oslc_resource(element, resource):
     if isinstance(element, Bucket):
-        resource.rdf.add((resource.uri, DCTERMS.identifier, Literal(element.id)))
-        resource.rdf.add((resource.uri, DCTERMS.title, Literal(element.name)))
-        resource.rdf.add((resource.uri, DCTERMS.spatial, Literal(element.location)))
-        resource.rdf.add((resource.uri, DCTERMS.created, Literal(element.time_created)))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.directoryId, Literal(element.id)))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.directoryName, Literal(element.name)))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.directoryLocation, Literal(element.location)))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.timeCreated, Literal(element.time_created)))
         resource.rdf.add((resource.uri, OSLC.details, Literal(element.self_link)))
     if isinstance(element, Instance):
-        resource.rdf.add((resource.uri, DCTERMS.identifier, Literal(element.name)))
-        resource.rdf.add((resource.uri, DCTERMS.spatial, Literal(element.zone)))
-        resource.rdf.add((resource.uri, DCTERMS.created, Literal(element.creation_timestamp)))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.instanceName, Literal(element.name)))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.instanceZone, Literal(element.zone)))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.instanceCreationTimestamp,
+                          Literal(element.creation_timestamp)))
         resource.rdf.add((resource.uri, OSLC.details, Literal(element.status)))
+    if isinstance(element, dict):
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterName, Literal(element['name'])))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterStatus, Literal(element['status'])))
+        resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterMasterVersion,
+                          Literal(element['currentMasterVersion'])))
+        resource.rdf.add((resource.uri, OSLC.details, Literal(element['status'])))

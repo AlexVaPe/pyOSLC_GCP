@@ -107,3 +107,51 @@ class VM_OSLCResourceList(Resource):
                 return create_resource(service_provider, graph, my_store)
 
         return Graph()
+
+class Cluster_OSLCResource(Resource):
+    @returns_rdf
+    def get(self, service_provider_id, oslc_resource_id):
+        for service_provider in my_store.catalog.service_providers:
+            if service_provider.id == service_provider_id:
+                for resource in service_provider.oslc_resources:
+                    if resource.id == oslc_resource_id:
+                        return resource.rdf
+        return Graph()
+
+    @returns_rdf
+    def put(self, service_provider_id, oslc_resource_id):
+        graph = Graph()
+        graph.parse(data=request.data, format=request.headers['Content-type'])
+
+        for service_provider in my_store.catalog.service_providers:
+            if service_provider_id == service_provider.id:
+                for resource in service_provider.oslc_resources:
+                    if resource.id == oslc_resource_id:
+                        return update_resource(service_provider, resource, graph, my_store)
+
+        return Graph()
+
+    @returns_rdf
+    def delete(self, service_provider_id, oslc_resource_id):
+        return delete_resource(request.url)
+
+class Cluster_OSLCResourceList(Resource):
+    @returns_rdf
+    def get(self, service_provider_id):
+        g = Graph()
+        for service_provider in my_store.catalog.service_providers:
+            if service_provider.id == service_provider_id:
+                for resource in service_provider.oslc_resources:
+                    g += resource.rdf
+        return g
+
+    @returns_rdf
+    def post(self, service_provider_id):
+        graph = Graph()
+        graph.parse(data=request.data, format=request.headers['Content-type'])
+
+        for service_provider in my_store.catalog.service_providers:
+            if service_provider_id == service_provider.id:
+                return create_resource(service_provider, graph, my_store)
+
+        return Graph()

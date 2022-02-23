@@ -2,7 +2,8 @@ import logging
 from rdflib import Graph, Namespace, URIRef, Literal, BNode
 from rdflib.namespace import DCTERMS, RDF
 
-from oslcapi.api.helpers import module_to_service_provider, directory_to_oslc_resource, list_buckets, list_instances
+from oslcapi.api.helpers import module_to_service_provider, directory_to_oslc_resource, list_buckets, list_instances,\
+    list_clusters
 
 log = logging.getLogger('tester.sub')
 
@@ -47,6 +48,7 @@ class OSLCStore:
         Computation Service - VM Service
         
         '''
+
         computeEngine = VirtualMachineService('ComputeEngine', 'Google Compute Engine', 'VirtualMachineService')
         vm_service_provider = ServiceProvider(computeEngine, len(self.catalog.service_providers) + 1, my_rdf)
         self.catalog.add(vm_service_provider)
@@ -57,6 +59,24 @@ class OSLCStore:
         for zone in list_instances(PROJECT_ID):
             for instance in all_instances[zone]:
                 self.add_resource(vm_service_provider, instance)
+
+        '''
+
+        Container Service - Kubernetes Service
+
+        '''
+
+        kubernetesEngine = ContainerService('GoogleCloudKubernetesEngine', 'Google Cloud Kubernetes Engine',
+                                            'ContainerService')
+        computation_service_provider = ServiceProvider(kubernetesEngine, len(self.catalog.service_providers) + 1, my_rdf)
+        self.catalog.add(computation_service_provider)
+
+        # We obtain all clusters
+        clusters_response = list_clusters(PROJECT_ID)
+
+        for cluster in clusters_response.get('clusters', []):
+            self.add_resource(computation_service_provider, cluster)
+
 
         log.warning('OSLC store loaded')
 
@@ -148,6 +168,7 @@ class ServiceProvider:
 
             module_to_service_provider(module, self)
 
+        # VirtualMachine Service Provider
         if isinstance(module, VirtualMachineService):
             self.rdf.add((self.uri, RDF.type, OSLC_CloudProvider.VirtualMachineService))
 
@@ -178,6 +199,37 @@ class ServiceProvider:
 
             module_to_service_provider(module, self)
 
+        # Container Service Provider
+        if isinstance(module, ContainerService):
+            self.rdf.add((self.uri, RDF.type, OSLC_CloudProvider.ContainerService))
+
+            service = BNode()
+
+            self.rdf.add((self.uri, OSLC.service, service))
+            self.rdf.add((service, RDF.type, OSLC.Service))
+
+            creationFactory = BNode()
+
+            self.rdf.add((service, OSLC.creationFactory, creationFactory))
+            self.rdf.add((creationFactory, RDF.type, OSLC.CreationFactory))
+            self.rdf.add((creationFactory, OSLC.resourceType, OSLC_CloudProvider.Cluster))
+            self.rdf.add((creationFactory, OSLC.label, Literal('Creation Factory')))
+
+            self.rdf.add((creationFactory, OSLC.creation,
+                          URIRef(base_url + '/service/serviceProviders/' + str(self.id) + '/cluster')))
+
+            queryCapability = BNode()
+
+            self.rdf.add((service, OSLC.queryCapability, queryCapability))
+            self.rdf.add((queryCapability, RDF.type, OSLC.QueryCapability))
+            self.rdf.add((queryCapability, OSLC.resourceType, OSLC_CloudProvider.Cluster))
+            self.rdf.add((queryCapability, OSLC.label, Literal('Query Capability')))
+            self.rdf.add((queryCapability, OSLC.queryBase,
+                          URIRef(base_url + '/service/serviceProviders/' + str(self.id) + '/cluster')))
+            imported_rdf += self.rdf.triples((None, None, None))
+
+            module_to_service_provider(module, self)
+
 
 class FilesystemService:
     def __init__(self, id, title, description):
@@ -192,6 +244,11 @@ class VirtualMachineService:
         self.title = title
         self.description = description
 
+class ContainerService:
+    def __init__(self, id, title, description):
+        self.id = id
+        self.title = title
+        self.description = description
 
 '''
 
@@ -204,7 +261,7 @@ class OSLCResource:
     def __init__(self, service_provider, element, id, imported_rdf):
         self.rdf = Graph()
         self.id = id
-        self.uri = URIRef(base_url + '/oslc/resource/' + str(element.id))
+        self.uri = URIRef(base_url)
 
         if isinstance(service_provider.module, FilesystemService):
             self.uri = URIRef(
@@ -218,6 +275,13 @@ class OSLCResource:
                 base_url + '/service/serviceProviders/' + str(service_provider.module.id) + '/instance/'
                 + str(element.id))
             self.rdf.add((self.uri, RDF.type, OSLC_CloudProvider.Instance))
+            self.rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
+
+        if isinstance(service_provider.module, ContainerService):
+            self.uri = URIRef(
+                base_url + '/service/serviceProviders/' + str(service_provider.module.id) + '/cluster/'
+                + str(element['name']))
+            self.rdf.add((self.uri, RDF.type, OSLC_CloudProvider.Cluster))
             self.rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
 
         imported_rdf += self.rdf.triples((None, None, None))

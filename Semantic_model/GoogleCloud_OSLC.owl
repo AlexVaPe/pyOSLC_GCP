@@ -10,10 +10,12 @@
      xmlns:oslc="http://open-services.net/ns/core#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:terms="http://purl.org/dc/terms/">
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:GCP_OSLC="http://localhost:5001/GCP_OSLC/">
     <owl:Ontology rdf:about="http://localhost:5001/GCP_OSLC">
         <owl:versionIRI rdf:resource="http://localhost:5001/GCP_OSLC/01"/>
         <owl:imports rdf:resource="http://open-services.net/ns/core#"/>
+        <owl:imports rdf:resource="http://purl.org/dc/terms/"/>
     </owl:Ontology>
     
 
@@ -26,6 +28,87 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/clusterMasterVersion -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/clusterMasterVersion">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Cluster"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/containerServiceDescription -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/containerServiceDescription">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/ContainerService"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/containerServiceTitle -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/containerServiceTitle">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/ContainerService"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/filesystemServiceDescription -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/filesystemServiceDescription">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/FilesystemService"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/filesystemServiceTitle -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/filesystemServiceTitle">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/FilesystemService"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/instanceCreationTimestamp -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/instanceCreationTimestamp">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Instance"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/timeCreated -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/timeCreated">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Directory"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/virtualMachineServiceDescription -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/virtualMachineServiceDescription">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/VirtualMachineService"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/virtualMachineServiceTitle -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/virtualMachineServiceTitle">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/VirtualMachineService"/>
+    </owl:AnnotationProperty>
     
 
 
@@ -164,11 +247,120 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/clusterName -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/clusterName">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Cluster"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/clusterStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/clusterStatus">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Cluster"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/containerServiceId -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/containerServiceId">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/ContainerService"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/directoryId -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/directoryId">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Directory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/directoryLocation -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/directoryLocation">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Directory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/directoryName -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/directoryName">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Directory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/filesystemServiceId -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/filesystemServiceId">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/FilesystemService"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/instanceName -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/instanceName">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Instance"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/instanceZone -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/instanceZone">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Instance"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/virtualMachineServiceId -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/virtualMachineServiceId">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/VirtualMachineService"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/Cluster -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/Cluster">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/ContainerService"/>
+    </owl:Class>
     
 
 
