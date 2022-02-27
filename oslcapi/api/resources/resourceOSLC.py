@@ -35,7 +35,7 @@ class Directory_OSLCResource(Resource):
 
     @returns_rdf
     def delete(self, service_provider_id, oslc_resource_id):
-        return delete_resource(request.url)
+        return delete_resource(request.url, service_provider_id, oslc_resource_id)
 
 
 class Directory_OSLCResourceList(Resource):

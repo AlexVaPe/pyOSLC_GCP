@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+	xmlns:gcp="http://localhost:5001/GCP_OSLC/"
+>
+	<rdf:Description>
+		<gcp:directoryId>test2_tfm_oslc_post</gcp:directoryId>
+		<gcp:directoryName>test2_tfm_oslc_post</gcp:directoryName>
+		<gcp:directoryStorageClass>STANDARD</gcp:directoryStorageClass>
+		<gcp:directoryLocation>US</gcp:directoryLocation>
+	</rdf:Description>
+</rdf:RDF>

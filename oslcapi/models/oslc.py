@@ -22,7 +22,8 @@ PROJECT_ID = "weighty-time-341718"
 
 class OSLCStore:
     def __init__(self, trs):
-        self.catalog = ServiceProviderCatalog(my_rdf)
+        self.rdf = my_rdf
+        self.catalog = ServiceProviderCatalog(self.rdf)
         self.initialize_oslc()
 
         self.trs = trs

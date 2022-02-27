@@ -15,7 +15,6 @@
     <owl:Ontology rdf:about="http://localhost:5001/GCP_OSLC">
         <owl:versionIRI rdf:resource="http://localhost:5001/GCP_OSLC/01"/>
         <owl:imports rdf:resource="http://open-services.net/ns/core#"/>
-        <owl:imports rdf:resource="http://purl.org/dc/terms/"/>
     </owl:Ontology>
     
 
@@ -303,6 +302,15 @@
     <!-- http://localhost:5001/GCP_OSLC/directoryName -->
 
     <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/directoryName">
+        <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Directory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/directoryStorageClass -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/directoryStorageClass">
         <rdfs:domain rdf:resource="http://localhost:5001/GCP_OSLC/Directory"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>

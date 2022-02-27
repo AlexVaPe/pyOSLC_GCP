@@ -1,32 +1,37 @@
-import os
-
-from google.cloud import storage
 from rdflib import Graph, URIRef, Literal, Namespace, RDF
+from oslcapi.api.helpers.service_api import *
+
+PROJECT_ID = 'weighty-time-341718'
 
 OSLC = Namespace('http://open-services.net/ns/core#')
-
-base_url = 'http://localhost:5001'
+base_url = 'http://localhost:5001/GCP_OSLC/'
 
 
 def create_resource(service_provider, graph, store):
     query_bucket = """
 
-        PREFIX dcterms: <http://purl.org/dc/terms/>
+        PREFIX gcp: <http://localhost:5001/GCP_OSLC/>
 
         SELECT ?name ?location ?storage_class
 
         WHERE {
-            ?s dcterms:title ?name .
-            ?s dcterms:spatial ?location .
-            ?s dcterms:source ?storage_class .
+            ?s gcp:directoryName ?name .
+            ?s gcp:directoryLocation ?location .
+            ?s gcp:directoryStorageClass ?storage_class .
         }
     """
 
-    '''
-    
-        CLOUD STORAGE RESOURCE CREATION
-    
-    '''
+    query_instance = """
+
+            PREFIX gcp: <http://localhost:5001/GCP_OSLC/>
+
+            SELECT ?name ?zone
+
+            WHERE {
+                ?s gcp:instanceName ?name .
+                ?s gcp:instanceZone ?zone .
+            }
+        """
 
     match service_provider.module.description:
         case 'FilesystemService':
@@ -35,16 +40,24 @@ def create_resource(service_provider, graph, store):
                 storage_client = storage.Client()
 
                 bucket = storage_client.bucket(name)
-                bucket.storage_class = storage_class
+                bucket.storage_class = str(storage_class)
                 new_bucket = storage_client.create_bucket(bucket, location=location)
 
+                # Add resource to the store
                 resource = store.add_resource(service_provider, new_bucket)
 
             for p, o in graph.predicate_objects(None):
                 resource.rdf.add((resource.uri, p, o))
 
-    return new_bucket
-
+        case 'VirtualMachineService':
+            for instance_name, zone in graph.query(query_instance):
+                instance = create_instance(PROJECT_ID, zone, instance_name)
+                new_instance = get_instance(PROJECT_ID, instance.name, zone)
+                # Add resource to the store
+                resource = store.add_resource(service_provider, new_instance)
+            for p, o in graph.predicate_objects(None):
+                resource.rdf.add((resource.uri, p, o))
+    return resource.rdf
 
 
 def update_resource(service_provider, resource, graph, store):
@@ -80,11 +93,19 @@ def update_resource(service_provider, resource, graph, store):
         print('Cloud Storage bucket cannot be modified!')
 
 
-
-def delete_resource(uri):
+def delete_resource(uri, service_provider_id, oslc_resource_id):
     g = Graph()
     g.add((URIRef(uri), RDF.type, OSLC.serviceProvider))
     g.add((URIRef(uri), RDF.comment, Literal("Deleted")))
+
+    if str(uri) is not None and 'directory' in str(uri):
+        '''# bucket_name = "your-bucket-name"
+
+        storage_client = storage.Client()
+
+        bucket = storage_client.get_bucket(bucket_name)
+        bucket.delete()'''
+        print('TBC')
 
     # Call service api to delete a resource
     # store.generate_change_event(URIRef(uri), 'Deletion')
