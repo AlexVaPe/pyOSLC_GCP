@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+	xmlns:ns1="http://open-services.net/ns/core#"
+	xmlns:ns2="http://localhost:5001/GCP_OSLC/"
+	xmlns:action="http://open-services.net/ns/actions#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+	<rdf:Description>
+		<rdf:type rdf:resource="http://open-services.net/ns/actions#Action"/>
+		<rdf:type rdf:resource="http://localhost:5001/GCP_OSLC/CreateInstanceAction"/>
+		<ns2:instanceName>test-instance-oslc-post</ns2:instanceName>
+		<ns2:instanceZone>us-central1-c</ns2:instanceZone>
+	</rdf:Description>
+</rdf:RDF>
