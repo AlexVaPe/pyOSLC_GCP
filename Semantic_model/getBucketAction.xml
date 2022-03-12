@@ -4,5 +4,8 @@
 	xmlns:action="http://open-services.net/ns/actions#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
-	<rdf:type rdf:resource="http://localhost:5001/GCP_OSLC/GetDirectoryAction"/>
+	<rdf:Description>
+		<rdf:type rdf:resource="http://open-services.net/ns/actions#Action"/>
+		<rdf:type rdf:resource="http://localhost:5001/GCP_OSLC/GetDirectoryAction"/>
+	</rdf:Description>
 </rdf:RDF>
