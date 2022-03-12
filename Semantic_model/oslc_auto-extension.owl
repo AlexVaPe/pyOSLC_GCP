@@ -1,0 +1,729 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="urn:webprotege:ontology:f6f0882c-e4eb-4eba-b7ef-cec518168623#"
+     xml:base="urn:webprotege:ontology:f6f0882c-e4eb-4eba-b7ef-cec518168623"
+     xmlns:ewe="http://gsi.dit.upm.es/ontologies/ewe/ns/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:trs="http://open-services.net/ns/core/trs#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:http="http://www.w3.org/2011/http#"
+     xmlns:oslc="http://open-services.net/ns/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:oslc_cm="http://open-services.net/ns/cm#"
+     xmlns:oslc_auto="http://open-services.net/ns/auto#"
+     xmlns:oslc_events="http://open-services.net/ns/events#"
+     xmlns:oslc_actions="http://open-services.net/ns/actions#">
+    <owl:Ontology rdf:about="urn:webprotege:ontology:f6f0882c-e4eb-4eba-b7ef-cec518168623"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/executes -->
+
+    <owl:ObjectProperty rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/executes">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Rule"/>
+        <rdfs:range rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Action"/>
+        <rdfs:label xml:lang="en">ewe:executes</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/generatesEvent -->
+
+    <owl:ObjectProperty rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/generatesEvent">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Channel"/>
+        <rdfs:range rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Event"/>
+        <rdfs:label xml:lang="en">ewe:generatesEvent</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/hasAction -->
+
+    <owl:ObjectProperty rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/hasAction">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Channel"/>
+        <rdfs:range rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Action"/>
+        <rdfs:label xml:lang="en">ewe:hasAction</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/hasParameter -->
+
+    <owl:ObjectProperty rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/hasParameter">
+        <rdfs:label xml:lang="en">ewe:hasParameter</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/triggeredBy -->
+
+    <owl:ObjectProperty rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/triggeredBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Rule"/>
+        <rdfs:range rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Event"/>
+        <rdfs:label xml:lang="en">ewe:triggeredBy</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/actions#action -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/actions#action">
+        <rdfs:label xml:lang="en">oslc_actions:action</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/actions#actionProvider -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/actions#actionProvider">
+        <rdfs:label xml:lang="en">oslc_actions:actionProvider</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/actions#binding -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/actions#binding">
+        <rdfs:label xml:lang="en">oslc_actions:binding</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/actions#executes -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/actions#executes">
+        <rdfs:label xml:lang="en">oslc_actions:executes</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/actions#futureAction -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/actions#futureAction">
+        <rdfs:label xml:lang="en">oslc_actions:futureAction</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/actions#supportedAction -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/actions#supportedAction">
+        <rdfs:label xml:lang="en">oslc_actions:supportedAction</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/auto#executes -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/auto#executes">
+        <rdfs:label xml:lang="en">oslc_auto:executes</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/auto#producedBy -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/auto#producedBy">
+        <rdfs:label xml:lang="en">oslc_auto:producedBy</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/auto#reportsOn -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/auto#reportsOn">
+        <rdfs:label xml:lang="en">oslc_auto:reportsOn</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core#creationFactory -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core#creationFactory">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://open-services.net/ns/core#Service"/>
+        <rdfs:range rdf:resource="http://open-services.net/ns/core#CreationFactory"/>
+        <rdfs:label xml:lang="en">oslc:creationFactory</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core#queryCapability -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core#queryCapability">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://open-services.net/ns/core#Service"/>
+        <rdfs:range rdf:resource="http://open-services.net/ns/core#QueryCapability"/>
+        <rdfs:label xml:lang="en">oslc:queryCapability</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core#resourceShape -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core#resourceShape">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://open-services.net/ns/core#CreationFactory"/>
+        <rdfs:domain rdf:resource="http://open-services.net/ns/core#QueryCapability"/>
+        <rdfs:range rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+        <rdfs:label xml:lang="en">oslc:resourceShape</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core#service -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core#service">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://open-services.net/ns/core#ServiceProvider"/>
+        <rdfs:range rdf:resource="http://open-services.net/ns/core#Service"/>
+        <rdfs:label xml:lang="en">oslc:service</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core#serviceProvider -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core#serviceProvider">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://open-services.net/ns/core#ServiceProviderCatalog"/>
+        <rdfs:range rdf:resource="http://open-services.net/ns/core#ServiceProvider"/>
+        <rdfs:label xml:lang="en">oslc:serviceProvider</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#base -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core/trs#base">
+        <rdfs:label xml:lang="en">trs:base</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#change -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core/trs#change">
+        <rdfs:label xml:lang="en">trs:change</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#changeLog -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core/trs#changeLog">
+        <rdfs:label xml:lang="en">trs:changeLog</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#cutoffEvent -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/core/trs#cutoffEvent">
+        <rdfs:label xml:lang="en">trs:cutoffEvent</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/events#generatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/events#generatedBy">
+        <rdfs:label xml:lang="en">oslc_events:generatedBy</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://open-services.net/ns/events#source -->
+
+    <owl:ObjectProperty rdf:about="http://open-services.net/ns/events#source">
+        <rdfs:label xml:lang="en">oslc_events:source</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#order -->
+
+    <owl:DatatypeProperty rdf:about="http://open-services.net/ns/core/trs#order"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/Action -->
+
+    <owl:Class rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/Action">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/hasParameter"/>
+                <owl:someValuesFrom rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Parameter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ewe:Action</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/Channel -->
+
+    <owl:Class rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/Channel">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/generatesEvent"/>
+                <owl:someValuesFrom rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Event"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/hasAction"/>
+                <owl:someValuesFrom rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Action"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">ewe:Channel</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/Event -->
+
+    <owl:Class rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/Event">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/hasParameter"/>
+                <owl:someValuesFrom rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Parameter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">ewe:Event</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/Parameter -->
+
+    <owl:Class rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/Parameter">
+        <rdfs:label xml:lang="en">ewe:Parameter</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://gsi.dit.upm.es/ontologies/ewe/ns/Rule -->
+
+    <owl:Class rdf:about="http://gsi.dit.upm.es/ontologies/ewe/ns/Rule">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/executes"/>
+                <owl:someValuesFrom rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Action"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/triggeredBy"/>
+                <owl:someValuesFrom rdf:resource="http://gsi.dit.upm.es/ontologies/ewe/ns/Event"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">ewe:Rule</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/actions#Action -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/actions#Action">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/actions#binding"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2011/http#Request"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/actions#executes"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/actions#PotentialAction"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc_actions:Action</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/actions#ActionDispatcher -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/actions#ActionDispatcher">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/actions#actionProvider"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core#ServiceProvider"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/actions#supportedAction"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/actions#PotentialAction"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc_actions:ActionDispatcher</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/actions#PotentialAction -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/actions#PotentialAction">
+        <rdfs:label xml:lang="en">oslc_actions:PotentialAction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/auto#AutomationPlan -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/auto#AutomationPlan">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/actions#futureAction"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/actions#PotentialAction"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc_auto:AutomationPlan</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/auto#AutomationRequest -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/auto#AutomationRequest">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/events#Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/auto#executes"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/auto#AutomationPlan"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc_auto:AutomationRequest</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/auto#AutomationResult -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/auto#AutomationResult">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/actions#action"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/actions#Action"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/auto#producedBy"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/auto#AutomationRequest"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/auto#reportsOn"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/auto#AutomationPlan"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc_auto:AutomationResult</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/cm#ChangeRequest -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/cm#ChangeRequest">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/actions#action"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/actions#Action"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core#resourceShape"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc_cm:ChangeRequest</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core#CreationFactory -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core#CreationFactory">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core#resourceShape"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc:CreationFactory</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core#QueryCapability -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core#QueryCapability">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core#resourceShape"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc:QueryCapability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core#ResourceShape -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core#ResourceShape">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/actions#futureAction"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/actions#PotentialAction"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc:ResourceShape</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core#Service -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core#Service">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core#creationFactory"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core#CreationFactory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core#queryCapability"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core#QueryCapability"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc:Service</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core#ServiceProvider -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core#ServiceProvider">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core#service"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core#Service"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc:ServiceProvider</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core#ServiceProviderCatalog -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core#ServiceProviderCatalog">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core#serviceProvider"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core#ServiceProvider"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc:ServiceProviderCatalog</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#Base -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core/trs#Base">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#cutoffEvent"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#Creation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#cutoffEvent"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#Deletion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#cutoffEvent"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#Modification"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">trs:Base</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#ChangeLog -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core/trs#ChangeLog">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#change"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#Creation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#change"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#Deletion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#change"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#Modification"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">trs:ChangeLog</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#Creation -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core/trs#Creation">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#order"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">trs:Creation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#Deletion -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core/trs#Deletion">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#order"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">trs:Deletion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#Modification -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core/trs#Modification">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#order"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">trs:Modification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/core/trs#TrackedResourceSet -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/core/trs#TrackedResourceSet">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#base"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#Base"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/core/trs#changeLog"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#ChangeLog"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">trs:TrackedResourceSet</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/events#Event -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/events#Event">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/events#generatedBy"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/events#EventListener"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc_events:Event</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://open-services.net/ns/events#EventListener -->
+
+    <owl:Class rdf:about="http://open-services.net/ns/events#EventListener">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://open-services.net/ns/events#source"/>
+                <owl:someValuesFrom rdf:resource="http://open-services.net/ns/core/trs#TrackedResourceSet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">oslc_events:EventListener</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2011/http#Request -->
+
+    <owl:Class rdf:about="http://www.w3.org/2011/http#Request">
+        <rdfs:label xml:lang="en">http:Request</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.13) https://github.com/owlcs/owlapi -->
+

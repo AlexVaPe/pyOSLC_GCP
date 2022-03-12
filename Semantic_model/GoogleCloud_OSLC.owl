@@ -15,6 +15,7 @@
     <owl:Ontology rdf:about="http://localhost:5001/GCP_OSLC">
         <owl:versionIRI rdf:resource="http://localhost:5001/GCP_OSLC/01"/>
         <owl:imports rdf:resource="http://open-services.net/ns/core#"/>
+        <owl:imports rdf:resource="urn:webprotege:ontology:f6f0882c-e4eb-4eba-b7ef-cec518168623"/>
     </owl:Ontology>
     
 
@@ -372,6 +373,14 @@
     
 
 
+    <!-- http://localhost:5001/GCP_OSLC/ClusterAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/ClusterAction">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/actions#Action"/>
+    </owl:Class>
+    
+
+
     <!-- http://localhost:5001/GCP_OSLC/ComputationService -->
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/ComputationService">
@@ -384,6 +393,30 @@
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/ContainerService">
         <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/ComputationService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/CreateClusterAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/CreateClusterAction">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/ClusterAction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/CreateDirectoryAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/CreateDirectoryAction">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/DirectoryAction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/CreateInstanceAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/CreateInstanceAction">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/InstanceAction"/>
     </owl:Class>
     
 
@@ -412,6 +445,14 @@
     
 
 
+    <!-- http://localhost:5001/GCP_OSLC/DirectoryAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/DirectoryAction">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/actions#Action"/>
+    </owl:Class>
+    
+
+
     <!-- http://localhost:5001/GCP_OSLC/FilesystemService -->
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/FilesystemService">
@@ -420,10 +461,42 @@
     
 
 
+    <!-- http://localhost:5001/GCP_OSLC/GetClusterAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/GetClusterAction">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/ClusterAction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/GetDirectoryAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/GetDirectoryAction">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/DirectoryAction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/GetInstanceAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/GetInstanceAction">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/InstanceAction"/>
+    </owl:Class>
+    
+
+
     <!-- http://localhost:5001/GCP_OSLC/Instance -->
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/Instance">
         <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/VirtualMachineService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/InstanceAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/InstanceAction">
+        <rdfs:subClassOf rdf:resource="http://open-services.net/ns/actions#Action"/>
     </owl:Class>
     
 
