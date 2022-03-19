@@ -31,6 +31,12 @@
     
 
 
+    <!-- http://localhost:5001/GCP_OSLC/actionResult -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/actionResult"/>
+    
+
+
     <!-- http://localhost:5001/GCP_OSLC/clusterMasterVersion -->
 
     <owl:AnnotationProperty rdf:about="http://localhost:5001/GCP_OSLC/clusterMasterVersion">
@@ -457,30 +463,6 @@
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/FilesystemService">
         <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/DataStorageService"/>
-    </owl:Class>
-    
-
-
-    <!-- http://localhost:5001/GCP_OSLC/GetClusterAction -->
-
-    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/GetClusterAction">
-        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/ClusterAction"/>
-    </owl:Class>
-    
-
-
-    <!-- http://localhost:5001/GCP_OSLC/GetDirectoryAction -->
-
-    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/GetDirectoryAction">
-        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/DirectoryAction"/>
-    </owl:Class>
-    
-
-
-    <!-- http://localhost:5001/GCP_OSLC/GetInstanceAction -->
-
-    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/GetInstanceAction">
-        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/InstanceAction"/>
     </owl:Class>
     
 
