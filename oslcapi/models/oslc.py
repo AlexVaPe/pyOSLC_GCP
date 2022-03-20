@@ -1,6 +1,8 @@
 import logging
 from rdflib import Graph, Namespace, URIRef, Literal, BNode
-from rdflib.namespace import DCTERMS, RDF
+from rdflib.namespace import DCTERMS, RDF, RDFS
+import threading
+import time
 
 from oslcapi.api.helpers import module_to_service_provider, directory_to_oslc_resource, list_buckets, list_instances,\
     list_clusters
@@ -9,13 +11,14 @@ log = logging.getLogger('tester.sub')
 
 OSLC = Namespace('http://open-services.net/ns/core#')
 OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
+OSLC_ACTION = Namespace('http://open-services.net/ns/actions#')
 
 # Import GCP Semantic Model
 my_rdf = Graph()
 my_rdf.parse("https://raw.githubusercontent.com/AlexVaPe/pyOSLC_GCP/main/Semantic_model/GoogleCloud_OSLC.owl",
              format='xml')
 
-base_url = 'http://localhost:5001'
+base_url = 'http://localhost:5001/GCP_OSLC'
 
 # Google Cloud Project ID
 PROJECT_ID = "weighty-time-341718"
@@ -53,7 +56,6 @@ class OSLCStore:
         computeEngine = VirtualMachineService('ComputeEngine', 'Google Compute Engine', 'VirtualMachineService')
         vm_service_provider = ServiceProvider(computeEngine, len(self.catalog.service_providers) + 1, my_rdf)
         self.catalog.add(vm_service_provider)
-
         # We obtain all VM instances
         all_instances = list_instances(PROJECT_ID)
 
@@ -81,6 +83,53 @@ class OSLCStore:
 
         log.warning('OSLC store loaded')
 
+        # We initialize the thread for updating the resources
+        x = threading.Thread\
+            (target=self.update_resources_thread,
+             args=(filesystem_service_provider,vm_service_provider, computation_service_provider),
+             daemon=True)
+        x.start()
+
+
+    def update_resources_thread(self, filesystem_service_provider, vm_service_provider, computation_service_provider):
+        while True:
+            log.warning('Starting thread...')
+            cloud_directory_list = []
+            cloud_instance_list = []
+            cloud_cluster_list = []
+            # Directory update
+            for directory in list_buckets():
+                cloud_directory_list.append(directory.id)
+                self.add_resource(filesystem_service_provider, directory)
+            # Check if there is any resource deleted
+            for oslc_resource in filesystem_service_provider.oslc_resources:
+                if oslc_resource.element.id not in cloud_directory_list:
+                    oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+            # Instance update
+            # We obtain all VM instances
+            all_instances = list_instances(PROJECT_ID)
+            for zone in list_instances(PROJECT_ID):
+                for instance in all_instances[zone]:
+                    cloud_instance_list.append(instance.id)
+                    self.add_resource(vm_service_provider, instance)
+            # Check if there is any resource deleted
+            for oslc_resource in vm_service_provider.oslc_resources:
+                if oslc_resource.element.id not in cloud_instance_list:
+                    oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+            # Cluster update
+            # We obtain all clusters
+            clusters_response = list_clusters(PROJECT_ID)
+            for cluster in clusters_response.get('clusters', []):
+                cloud_cluster_list.append(cluster['name'])
+                self.add_resource(computation_service_provider, cluster)
+            # Check if there is any resource deleted
+            for oslc_resource in computation_service_provider.oslc_resources:
+                if oslc_resource.element['name'] not in cloud_cluster_list:
+                    oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+
+            log.warning('Thread finished. Start sleeping...')
+            time.sleep(10)
+
     def add_resource(self, service_provider, element):
         resource = OSLCResource(service_provider, element, len(service_provider.oslc_resources) + 1, my_rdf)
         service_provider.oslc_resources.append(resource)
@@ -105,6 +154,7 @@ class ServiceProviderCatalog:
     def __init__(self, my_rdf):
         self.uri = URIRef(base_url + '/service/serviceProviders/catalog')
         self.service_providers = []
+        self.oslc_actions = []
         self.rdf = Graph()
 
         # Google Cloud Platform Catalog
@@ -118,6 +168,11 @@ class ServiceProviderCatalog:
     def add(self, service_provider):
         self.rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
         self.service_providers.append(service_provider)
+
+    def create_action(self, id, service_provider, action_type):
+        action = Action(id, service_provider, action_type)
+        self.oslc_actions.append(action)
+        return action
 
 
 '''
@@ -263,6 +318,7 @@ class OSLCResource:
         self.rdf = Graph()
         self.id = id
         self.uri = URIRef(base_url)
+        self.element = element
 
         if isinstance(service_provider.module, FilesystemService):
             self.uri = URIRef(
@@ -287,3 +343,24 @@ class OSLCResource:
 
         imported_rdf += self.rdf.triples((None, None, None))
         directory_to_oslc_resource(element, self)
+
+'''
+
+    DEFINITION OF OSLC ACTIONS
+
+'''
+
+class Action:
+    def __init__(self, id, service_provider, action_type):
+        self.rdf = Graph()
+        self.id = id
+        self.service_provider = service_provider
+        self.action_type = action_type
+        self.uri = URIRef(base_url + '/action/' + str(self.id))
+
+        self.rdf.add((self.uri, RDF.type, OSLC_ACTION.Action))
+        self.rdf.add((self.uri, RDF.type, Literal(self.action_type)))
+        self.rdf.add((self.uri, OSLC_ACTION.actionProvider, Literal(self.service_provider)))
+
+    def add_result(self, result):
+        self.rdf.add((self.uri, OSLC_ACTION.actionResult, Literal(result)))

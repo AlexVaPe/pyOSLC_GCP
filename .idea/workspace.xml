@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d06527f-be4f-4064-a4d7-8607a3e223fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Semantic_model/bucket_OSLC_Resource.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semantic_model/instance_OSLC_Resource.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semantic_model/GCP_OSLC.owl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semantic_model/GoogleCloud_OSLC.owl" beforeDir="false" afterPath="$PROJECT_DIR$/Semantic_model/GoogleCloud_OSLC.owl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semantic_model/GoogleCloud_OSLC_backup.owl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semantic_model/catalog-v001.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oslcapi/api/helpers/service_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/api/helpers/service_actions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oslcapi/api/helpers/service_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/api/helpers/service_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oslcapi/api/resources/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/api/resources/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oslcapi/api/resources/resourceOSLC.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/api/resources/resourceOSLC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oslcapi/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oslcapi/models/oslc.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/models/oslc.py" afterDir="false" />
@@ -86,7 +79,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -252,7 +245,13 @@
       <workItem from="1645290972332" duration="12563000" />
       <workItem from="1645473345490" duration="7839000" />
       <workItem from="1645642137170" duration="5814000" />
-      <workItem from="1645728176285" duration="18912000" />
+      <workItem from="1645728176285" duration="30967000" />
+      <workItem from="1646765758026" duration="17042000" />
+      <workItem from="1646935129720" duration="15864000" />
+      <workItem from="1647105717067" duration="3250000" />
+      <workItem from="1647282310496" duration="3419000" />
+      <workItem from="1647707199755" duration="3273000" />
+      <workItem from="1647768781489" duration="9554000" />
     </task>
     <servers />
   </component>
