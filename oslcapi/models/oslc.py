@@ -84,11 +84,11 @@ class OSLCStore:
         log.warning('OSLC store loaded')
 
         # We initialize the thread for updating the resources
-        x = threading.Thread\
+        '''x = threading.Thread\
             (target=self.update_resources_thread,
              args=(filesystem_service_provider,vm_service_provider, computation_service_provider),
              daemon=True)
-        x.start()
+        x.start()'''
 
 
     def update_resources_thread(self, filesystem_service_provider, vm_service_provider, computation_service_provider):

@@ -178,10 +178,12 @@ def directory_to_oslc_resource(element, resource):
         resource.rdf.add((resource.uri, OSLC_CloudProvider.instanceZone, Literal(element.zone)))
         resource.rdf.add((resource.uri, OSLC_CloudProvider.instanceCreationTimestamp,
                           Literal(element.creation_timestamp)))
+        # Create property for status
         resource.rdf.add((resource.uri, OSLC.details, Literal(element.status)))
     if isinstance(element, dict):
         resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterName, Literal(element['name'])))
         resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterStatus, Literal(element['status'])))
         resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterMasterVersion,
                           Literal(element['currentMasterVersion'])))
+        # Create property for status
         resource.rdf.add((resource.uri, OSLC.details, Literal(element['status'])))

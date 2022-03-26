@@ -213,4 +213,13 @@ class OSLCAction(Resource):
                 else:
                     action.add_result('OK')
                 return g
+            elif str(t).__contains__("Delete"):
+                return delete_resource(actionProvider, graph, my_store)
+
         return Graph()
+
+class GCPLogs(Resource):
+    def post(self):
+        log.warning('####################################'
+                    '###       Message received      ###'
+                    '###################################')

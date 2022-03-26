@@ -288,6 +288,14 @@
     
 
 
+    <!-- http://localhost:5001/GCP_OSLC/directoryDeleted -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/directoryDeleted">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://localhost:5001/GCP_OSLC/directoryId -->
 
     <owl:DatatypeProperty rdf:about="http://localhost:5001/GCP_OSLC/directoryId">
@@ -439,6 +447,14 @@
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/DatabaseService">
         <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/DataStorageService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC/DeleteDirectoryAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/DeleteDirectoryAction">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/DirectoryAction"/>
     </owl:Class>
     
 

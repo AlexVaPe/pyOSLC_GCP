@@ -17,3 +17,4 @@ requests
 google-cloud-storage
 google-cloud-compute
 google-api-python-client
+pyopenssl

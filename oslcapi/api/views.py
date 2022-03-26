@@ -1,6 +1,7 @@
 from flask import Blueprint, current_app, jsonify
 from flask_restful import Api
 from marshmallow import ValidationError
+
 from oslcapi.extensions import apispec
 from oslcapi.api.resources import *
 from oslcapi.api.schemas import UserSchema
@@ -38,6 +39,9 @@ api.add_resource(Cluster_OSLCResourceList, "/serviceProviders/<int:service_provi
 
 # OSLC Actions
 api.add_resource(OSLCAction, "/action", endpoint="oslc_action")
+
+# Log endpoint
+api.add_resource(GCPLogs, "/logs", endpoint="logs_endpoint")
 
 # TRS Endpoints
 api.add_resource(TrackedResourceSet, "/trackedResourceSet")

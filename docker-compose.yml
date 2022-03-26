@@ -5,7 +5,7 @@ services:
   web:
     image: oslcapi
     build: .
-    command: flask run -h 0.0.0.0
+    command: flask run -h 0.0.0.0 --cert=adhoc
     env_file:
       - ./.flaskenv
     environment:

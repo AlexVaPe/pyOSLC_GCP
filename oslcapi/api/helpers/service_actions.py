@@ -1,10 +1,14 @@
-from rdflib import Graph, URIRef, Literal, Namespace, RDF
+import logging
+
+from rdflib import Graph, URIRef, Literal, Namespace, RDF, RDFS
 from oslcapi.api.helpers.service_api import *
 
 PROJECT_ID = 'weighty-time-341718'
 
 OSLC = Namespace('http://open-services.net/ns/core#')
 base_url = 'http://localhost:5001/GCP_OSLC/'
+
+log = logging.getLogger('tester.sub')
 
 
 def create_resource(service_provider, graph, store):
@@ -93,21 +97,33 @@ def update_resource(service_provider, resource, graph, store):
         print('Cloud Storage bucket cannot be modified!')
 
 
-def delete_resource(uri, service_provider_id, oslc_resource_id):
+def delete_resource(service_provider, graph, store):
+    query_bucket = """
+
+            PREFIX gcp: <http://localhost:5001/GCP_OSLC/>
+
+            SELECT ?name
+
+            WHERE {
+                ?s gcp:directoryName ?name .
+            }
+        """
     g = Graph()
-    g.add((URIRef(uri), RDF.type, OSLC.serviceProvider))
-    g.add((URIRef(uri), RDF.comment, Literal("Deleted")))
 
-    if str(uri) is not None and 'directory' in str(uri):
-        '''# bucket_name = "your-bucket-name"
+    match service_provider.module.description:
+        case 'FilesystemService':
+            for name in graph.query(query_bucket):
+                bucket_name = str(name.asdict()['name'].toPython())
 
-        storage_client = storage.Client()
+                storage_client = storage.Client()
 
-        bucket = storage_client.get_bucket(bucket_name)
-        bucket.delete()'''
-        print('TBC')
+                bucket = storage_client.get_bucket(bucket_name)
+                bucket.delete()
+                log.warning('Bucket {} deleted succesfully!'.format(bucket.id))
 
-    # Call service api to delete a resource
-    # store.generate_change_event(URIRef(uri), 'Deletion')
-
-    return g
+                for oslc_resource in service_provider.oslc_resources:
+                    if oslc_resource.element.id == str(bucket.id):
+                        oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+                        #store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
+                        g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+                        return g
