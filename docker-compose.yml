@@ -5,7 +5,7 @@ services:
   web:
     image: oslcapi
     build: .
-    command: flask run -h 0.0.0.0
+    command: flask run -h 0.0.0.0 --cert=/home/oslc_tfm_gcp/dehydrated/certs/tfm-google.duckdns.org/cert.pem --key=/home/oslc_tfm_gcp/dehydrated/certs/tfm-google.duckdns.org/privkey.pem
     env_file:
       - ./.flaskenv
     environment:
