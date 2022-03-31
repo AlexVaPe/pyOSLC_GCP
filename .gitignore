@@ -1,1 +1,3 @@
 gcp_credentials.json
+cert.pem
+privkey.pem

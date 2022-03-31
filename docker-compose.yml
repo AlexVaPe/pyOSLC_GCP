@@ -5,7 +5,7 @@ services:
   web:
     image: oslcapi
     build: .
-    command: flask run -h 0.0.0.0 --cert=/home/oslc_tfm_gcp/dehydrated/certs/tfm-google.duckdns.org/cert.pem --key=/home/oslc_tfm_gcp/dehydrated/certs/tfm-google.duckdns.org/privkey.pem
+    command: flask run -h 0.0.0.0 --cert=/code/certs/cert.pem --key=/code/certs/privkey.pem
     env_file:
       - ./.flaskenv
     environment:
@@ -15,5 +15,7 @@ services:
       - ./oslcapi:/code/oslcapi
       - ./db/:/db/
       - ./gcp_credentials.json:/code/gcp/gcp_credentials.json
+      - ./cert.pem:/code/certs/cert.pem
+      - ./privkey.pem:/code/certs/privkey.pem
     ports:
       - "5001:5000"
