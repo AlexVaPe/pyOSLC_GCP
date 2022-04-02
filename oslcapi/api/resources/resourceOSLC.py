@@ -4,7 +4,7 @@ import logging
 from flask import request
 from flask_rdf.flask import returns_rdf
 from flask_restful import Resource
-from rdflib import Graph, URIRef, Literal, Namespace, RDF
+from rdflib import Graph, URIRef, Literal, Namespace, RDFS
 
 from oslcapi.api.helpers.service_actions import create_resource, update_resource, delete_resource
 from oslcapi.store import my_store
@@ -14,6 +14,8 @@ log = logging.getLogger('tester.sub')
 base_url = 'http://localhost:5001/GCP_OSLC/'
 OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
 
+# Google Cloud Project ID
+PROJECT_ID = "weighty-time-341718"
 
 class Directory_OSLCResource(Resource):
     @returns_rdf
@@ -225,7 +227,16 @@ class GCPLogs(Resource):
         envelope = json.loads(request.data.decode('utf-8'))
         payload = base64.b64decode(envelope['message']['data'])
 
-        print(payload)
+        try:
+            json_msg = json.loads(payload)['protoPayload']['methodName']
+
+            if ("create" or "delete") and "buckets" in json_msg:
+                my_store.update_resources(my_store.catalog.service_providers[0], None, None)
+            if ("insert" or "delete") and "instances" in json_msg:
+                my_store.update_resources(None, my_store.catalog.service_providers[1], None)
+            # Clusters TBD
+        except:
+            print("Useless message")
 
         # Returning any 2xx status indicates successful receipt of the message.
         return 'OK', 200

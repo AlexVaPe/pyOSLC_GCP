@@ -4,7 +4,7 @@ from rdflib.namespace import DCTERMS, RDF, RDFS
 import threading
 import time
 
-from oslcapi.api.helpers import module_to_service_provider, directory_to_oslc_resource, list_buckets, list_instances,\
+from oslcapi.api.helpers import module_to_service_provider, directory_to_oslc_resource, list_buckets, list_instances, \
     list_clusters
 
 log = logging.getLogger('tester.sub')
@@ -22,6 +22,7 @@ base_url = 'http://localhost:5001/GCP_OSLC'
 
 # Google Cloud Project ID
 PROJECT_ID = "weighty-time-341718"
+
 
 class OSLCStore:
     def __init__(self, trs):
@@ -71,7 +72,8 @@ class OSLCStore:
 
         kubernetesEngine = ContainerService('GoogleCloudKubernetesEngine', 'Google Cloud Kubernetes Engine',
                                             'ContainerService')
-        computation_service_provider = ServiceProvider(kubernetesEngine, len(self.catalog.service_providers) + 1, my_rdf)
+        computation_service_provider = ServiceProvider(kubernetesEngine, len(self.catalog.service_providers) + 1,
+                                                       my_rdf)
         self.catalog.add(computation_service_provider)
 
         # We obtain all clusters
@@ -79,7 +81,6 @@ class OSLCStore:
 
         for cluster in clusters_response.get('clusters', []):
             self.add_resource(computation_service_provider, cluster)
-
 
         log.warning('OSLC store loaded')
 
@@ -90,14 +91,10 @@ class OSLCStore:
              daemon=True)
         x.start()'''
 
-
-    def update_resources_thread(self, filesystem_service_provider, vm_service_provider, computation_service_provider):
-        while True:
-            log.warning('Starting thread...')
-            cloud_directory_list = []
-            cloud_instance_list = []
-            cloud_cluster_list = []
+    def update_resources(self, filesystem_service_provider, vm_service_provider, computation_service_provider):
+        if filesystem_service_provider is not None:
             # Directory update
+            cloud_directory_list = []
             for directory in list_buckets():
                 cloud_directory_list.append(directory.id)
                 self.add_resource(filesystem_service_provider, directory)
@@ -105,8 +102,10 @@ class OSLCStore:
             for oslc_resource in filesystem_service_provider.oslc_resources:
                 if oslc_resource.element.id not in cloud_directory_list:
                     oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+        if vm_service_provider is not None:
             # Instance update
             # We obtain all VM instances
+            cloud_instance_list = []
             all_instances = list_instances(PROJECT_ID)
             for zone in list_instances(PROJECT_ID):
                 for instance in all_instances[zone]:
@@ -116,8 +115,10 @@ class OSLCStore:
             for oslc_resource in vm_service_provider.oslc_resources:
                 if oslc_resource.element.id not in cloud_instance_list:
                     oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+        if computation_service_provider is not None:
             # Cluster update
             # We obtain all clusters
+            cloud_cluster_list = []
             clusters_response = list_clusters(PROJECT_ID)
             for cluster in clusters_response.get('clusters', []):
                 cloud_cluster_list.append(cluster['name'])
@@ -127,8 +128,7 @@ class OSLCStore:
                 if oslc_resource.element['name'] not in cloud_cluster_list:
                     oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
 
-            log.warning('Thread finished. Start sleeping...')
-            time.sleep(10)
+        log.warning('Resources updated!')
 
     def add_resource(self, service_provider, element):
         resource = OSLCResource(service_provider, element, len(service_provider.oslc_resources) + 1, my_rdf)
@@ -300,11 +300,13 @@ class VirtualMachineService:
         self.title = title
         self.description = description
 
+
 class ContainerService:
     def __init__(self, id, title, description):
         self.id = id
         self.title = title
         self.description = description
+
 
 '''
 
@@ -344,11 +346,13 @@ class OSLCResource:
         imported_rdf += self.rdf.triples((None, None, None))
         directory_to_oslc_resource(element, self)
 
+
 '''
 
     DEFINITION OF OSLC ACTIONS
 
 '''
+
 
 class Action:
     def __init__(self, id, service_provider, action_type):
