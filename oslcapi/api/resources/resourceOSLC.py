@@ -1,3 +1,5 @@
+import base64
+import json
 import logging
 from flask import request
 from flask_rdf.flask import returns_rdf
@@ -220,6 +222,10 @@ class OSLCAction(Resource):
 
 class GCPLogs(Resource):
     def post(self):
-        log.warning('####################################'
-                    '###       Message received      ###'
-                    '###################################')
+        envelope = json.loads(request.data.decode('utf-8'))
+        payload = base64.b64decode(envelope['message']['data'])
+
+        print(payload)
+
+        # Returning any 2xx status indicates successful receipt of the message.
+        return 'OK', 200

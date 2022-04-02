@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/gcp-oslc_adapter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gcp-oslc_adapter.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oslcapi/api/resources/resourceOSLC.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/api/resources/resourceOSLC.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +44,14 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ed395197-e227-4e85-9347-7844e208ba3c" />
+        <option name="url" value="https://tokenaso@github.com/AlexVaPe/pyOSLC_GCP" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/.virtualenvs/gcp-oslc_adapter/lib/python3.8/site-packages/github/Requester.py" root0="SKIP_INSPECTION" />
   </component>
@@ -78,7 +86,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -270,7 +278,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="running_on_gce" />
+                        <option value="origin/running_on_gce" />
                       </list>
                     </value>
                   </entry>
