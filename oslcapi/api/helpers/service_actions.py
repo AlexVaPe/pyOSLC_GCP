@@ -136,7 +136,7 @@ def delete_resource(service_provider, graph, store):
                 for oslc_resource in service_provider.oslc_resources:
                     if oslc_resource.element.id == str(bucket.id):
                         oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
-                        #store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
+                        # store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
                         g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
                         return g
 
@@ -165,8 +165,11 @@ def delete_resource(service_provider, graph, store):
                 print(f"Instance {name} deleted.")
 
                 for oslc_resource in service_provider.oslc_resources:
-                    if oslc_resource.element.id == str(deleted_instance.name):
-                        oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
-                        #store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
-                        g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
-                        return g
+                    try:
+                        if oslc_resource.element.id == str(deleted_instance.name):
+                            oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+                            # store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
+                            g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+                            return g
+                    except:
+                        return null
