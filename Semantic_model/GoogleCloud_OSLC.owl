@@ -459,6 +459,14 @@
     
 
 
+    <!-- http://localhost:5001/GCP_OSLC/DeleteInstanceAction -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/DeleteInstanceAction">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC/InstanceAction"/>
+    </owl:Class>
+    
+
+
     <!-- http://localhost:5001/GCP_OSLC/Directory -->
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC/Directory">

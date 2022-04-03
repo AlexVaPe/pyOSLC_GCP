@@ -1,4 +1,4 @@
-import logging
+import logging, time
 
 from rdflib import Graph, URIRef, Literal, Namespace, RDF, RDFS
 from oslcapi.api.helpers.service_api import *
@@ -108,6 +108,18 @@ def delete_resource(service_provider, graph, store):
                 ?s gcp:directoryName ?name .
             }
         """
+    query_instance = """
+
+                PREFIX gcp: <http://localhost:5001/GCP_OSLC/>
+
+                SELECT ?name ?zone
+
+                WHERE {
+                    ?s gcp:instanceName ?name .
+                    ?s gcp:instanceZone ?zone .
+                }
+            """
+
     g = Graph()
 
     match service_provider.module.description:
@@ -127,3 +139,26 @@ def delete_resource(service_provider, graph, store):
                         #store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
                         g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
                         return g
+
+        case 'VirtualMachineService':
+            for name, zone in graph.query(query_instance):
+                instance_client = compute_v1.InstancesClient()
+                operation_client = compute_v1.ZoneOperationsClient()
+
+                print(f"Deleting {name} from {zone}...")
+                operation = instance_client.delete_unary(
+                    project=PROJECT_ID, zone=zone, instance=name
+                )
+                start = time.time()
+                while operation.status != compute_v1.Operation.Status.DONE:
+                    operation = operation_client.wait(
+                        operation=operation.name, zone=zone, project=PROJECT_ID
+                    )
+                    if time.time() - start >= 300:  # 5 minutes
+                        raise TimeoutError()
+                if operation.error:
+                    print("Error during deletion:", operation.error, file=sys.stderr)
+                    return
+                if operation.warnings:
+                    print("Warning during deletion:", operation.warnings, file=sys.stderr)
+                print(f"Instance {name} deleted.")

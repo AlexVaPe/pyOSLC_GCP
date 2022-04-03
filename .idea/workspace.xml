@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d06527f-be4f-4064-a4d7-8607a3e223fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oslcapi/api/resources/resourceOSLC.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/api/resources/resourceOSLC.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oslcapi/models/oslc.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/models/oslc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semantic_model/GoogleCloud_OSLC.owl" beforeDir="false" afterPath="$PROJECT_DIR$/Semantic_model/GoogleCloud_OSLC.owl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semantic_model/catalog-v001.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Semantic_model/catalog-v001.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oslcapi/api/helpers/service_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/oslcapi/api/helpers/service_actions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,6 +262,7 @@
       <workItem from="1647768781489" duration="27718000" />
       <workItem from="1648486937810" duration="1238000" />
       <workItem from="1648490859869" duration="4674000" />
+      <workItem from="1648971800821" duration="2061000" />
     </task>
     <servers />
   </component>
