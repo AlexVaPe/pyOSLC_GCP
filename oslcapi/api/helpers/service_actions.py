@@ -172,4 +172,4 @@ def delete_resource(service_provider, graph, store):
                             g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
                             return g
                     except:
-                        return null
+                        return None
