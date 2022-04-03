@@ -144,6 +144,7 @@ def delete_resource(service_provider, graph, store):
             for name, zone in graph.query(query_instance):
                 instance_client = compute_v1.InstancesClient()
                 operation_client = compute_v1.ZoneOperationsClient()
+                deleted_instance = get_instance(PROJECT_ID, name, zone)
 
                 print(f"Deleting {name} from {zone}...")
                 operation = instance_client.delete_unary(
@@ -162,3 +163,10 @@ def delete_resource(service_provider, graph, store):
                 if operation.warnings:
                     print("Warning during deletion:", operation.warnings, file=sys.stderr)
                 print(f"Instance {name} deleted.")
+
+                for oslc_resource in service_provider.oslc_resources:
+                    if oslc_resource.element.id == str(deleted_instance.name):
+                        oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+                        #store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
+                        g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
+                        return g
