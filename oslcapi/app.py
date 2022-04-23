@@ -7,9 +7,9 @@ from oslcapi.extensions import migrate
 from oslcapi.extensions import apispec
 
 
-def create_app(testing=False):
+def create_app2(testing=False):
     """Application factory, used to create application"""
-    app = Flask("oslcapi")
+    app = Flask("oslcapi2")
     app.config.from_object("oslcapi.config")
 
     if testing is True:
