@@ -1,3 +1,3 @@
-from oslcapi.app import create_app2
+from oslcapi.app import create_app
 
-app = create_app2()
+app = create_app()

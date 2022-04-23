@@ -3,7 +3,7 @@ import pytest
 from dotenv import load_dotenv
 from pytest_factoryboy import register
 
-from oslcapi.app import create_app2
+from oslcapi.app import create_app
 from oslcapi.extensions import db as _db
 from oslcapi.models import User
 from tests.factories import UserFactory
