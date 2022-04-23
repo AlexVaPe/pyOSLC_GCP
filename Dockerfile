@@ -19,4 +19,4 @@ RUN pip install -e .
 COPY oslcapi oslcapi/
 COPY migrations migrations/
 
-EXPOSE 5000
+EXPOSE 5001

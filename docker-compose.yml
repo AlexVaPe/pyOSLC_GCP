@@ -5,7 +5,7 @@ services:
   web:
     image: oslcapi-1
     build: .
-    command: flask run -h 0.0.0.0 --cert=/code/certs/cert.pem --key=/code/certs/privkey.pem
+    command: flask run -h 0.0.0.0 --port 5001 --cert=/code/certs/cert.pem --key=/code/certs/privkey.pem
     env_file:
       - ./.flaskenv
     environment:
@@ -18,4 +18,4 @@ services:
       - ./cert.pem:/code/certs/cert.pem
       - ./privkey.pem:/code/certs/privkey.pem
     ports:
-      - "5001:5000"
+      - "5001:5001"
