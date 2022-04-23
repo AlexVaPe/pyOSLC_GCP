@@ -1,6 +1,6 @@
 import base64
 import json
-import logging
+import logging, requests
 from flask import request
 from flask_rdf.flask import returns_rdf
 from flask_restful import Resource
@@ -13,6 +13,7 @@ log = logging.getLogger('tester.sub')
 
 base_url = 'http://localhost:5001/GCP_OSLC/'
 OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
+event_endpoint = 'https://tfm-google.duckdns.org:5001/event/payload'
 
 # Google Cloud Project ID
 PROJECT_ID = "weighty-time-341718"
@@ -216,9 +217,14 @@ class OSLCAction(Resource):
                     action.add_result('KO')
                 else:
                     action.add_result('OK')
+                    # Generate creation Event
+                    r = requests.post(event_endpoint, data=g+action)
                 return g
             elif str(t).__contains__("Delete"):
-                return delete_resource(actionProvider, graph, my_store)
+                g = delete_resource(actionProvider, graph, my_store)
+                # Generate deletion Event
+                r = requests.post(event_endpoint, data=g+action)
+                return g
 
         return Graph()
 

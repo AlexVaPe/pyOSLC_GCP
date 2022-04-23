@@ -1,28 +1,53 @@
 import logging
-import os
-from rdflib import Namespace, Literal
-from rdflib.namespace import DCTERMS
 
-from oslcapi.api.helpers.service_api import get_bucket
+from oslcapi.api.helpers.service_api import *
 
 log = logging.getLogger('tester.sub')
 
 OSLC = Namespace('http://open-services.net/ns/core#')
+PROJECT_ID = 'weighty-time-341718'
 
-# Get GCP Credentials
-#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/code/oslcapi/rock-sentinel-333408-7a09dab643b4.json'
 
-def generate_creation_event(payload, store):
+def generate_creation_event(graph, store, service_provider):
     log.warning('Creation event generated')
 
-    bucket = get_bucket(payload['bucket'])
+    query_bucket = """
 
-    service_provider = next(service_provider for service_provider in store.catalog.service_providers if
-                            Literal(bucket.id) in service_provider.rdf.objects(None, DCTERMS.identifier))
+        PREFIX gcp: <http://localhost:5001/GCP_OSLC/>
 
-    resource = store.add_resource(service_provider, bucket)
-    store.trs.generate_change_event(resource, 'Creation')
+        SELECT ?name
 
+        WHERE {
+            ?s gcp:directoryName ?name .
+        }
+    """
+
+    query_instance = """
+
+            PREFIX gcp: <http://localhost:5001/GCP_OSLC/>
+
+            SELECT ?name ?zone
+
+            WHERE {
+                ?s gcp:instanceName ?name .
+                ?s gcp:instanceZone ?zone .
+            }
+        """
+
+    match service_provider.module.description:
+        case 'FilesystemService':
+            for name in graph.query(query_bucket):
+                bucket = get_bucket(name)
+                service_provider = next(service_provider for service_provider in store.catalog.service_providers if
+                                        Literal(bucket.id) in service_provider.rdf.objects(None, DCTERMS.identifier))
+                resource = store.add_resource(service_provider, bucket)
+                store.trs.generate_change_event(resource, 'Creation')
+
+        case 'VirtualMachineService':
+            for instance_name, zone in graph.query(query_instance):
+                instance = get_instance(PROJECT_ID, instance_name, zone)
+                resource = store.add_resource(service_provider, instance)
+                store.trs.generate_change_event(resource, 'Creation')
     return
 
 

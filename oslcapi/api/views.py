@@ -15,7 +15,7 @@ api.add_resource(UserResource, "/users/<int:user_id>", endpoint="user_by_id")
 api.add_resource(UserList, "/users", endpoint="users")
 
 
-api.add_resource(ServiceProvider, "/serviceProviders/<int:service_provider_id>", endpoint="service_provider_by_id")
+'''api.add_resource(ServiceProvider, "/serviceProviders/<int:service_provider_id>", endpoint="service_provider_by_id")
 api.add_resource(ServiceProviderCatalog, "/serviceProviders/catalog")
 
 # Directory Endpoints
@@ -41,7 +41,7 @@ api.add_resource(Cluster_OSLCResourceList, "/serviceProviders/<int:service_provi
 api.add_resource(OSLCAction, "/action", endpoint="oslc_action")
 
 # Log endpoint
-api.add_resource(GCPLogs, "/logs", endpoint="logs_endpoint")
+api.add_resource(GCPLogs, "/logs", endpoint="logs_endpoint")'''
 
 # TRS Endpoints
 api.add_resource(TrackedResourceSet, "/trackedResourceSet")
