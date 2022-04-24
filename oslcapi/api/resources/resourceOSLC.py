@@ -11,7 +11,7 @@ log = logging.getLogger('tester.sub')
 
 base_url = 'http://localhost:5001/GCP_OSLC/'
 OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
-event_endpoint = 'http://tfm-google.duckdns.org:5002/event/payload'
+event_endpoint = 'http://localhost:5002/event/payload'
 
 # Google Cloud Project ID
 PROJECT_ID = "weighty-time-341718"
@@ -224,21 +224,16 @@ class OSLCAction(Resource):
                 else:
                     action.add_result('OK')
                     # Generate creation Event
-                    event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
-                    conn = http.client.HTTPConnection('www.tfm-google.duckdns.org/event/payload', port=5002)
-
-                    headers = {'Content-type': 'application/rdf+xml'}
-
-                    conn.request('POST', '/post', event_graph, headers)
-
-                    #r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml'), headers={'Content-type': 'application/rdf+xml'})
+                    r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml'),
+                                      headers={'Content-type': 'application/rdf+xml'})
                 return g
             elif str(t).__contains__("Delete"):
                 g = delete_resource(actionProvider, graph, my_store)
                 event_graph = g
                 # Generate deletion Event
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
-                r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml'), headers={'Content-type': 'application/rdf+xml'})
+                r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml'),
+                                  headers={'Content-type': 'application/rdf+xml'})
                 return g
 
         return Graph()
