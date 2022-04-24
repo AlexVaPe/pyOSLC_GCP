@@ -17,6 +17,7 @@ event_endpoint = 'https://tfm-google.duckdns.org:5002/event/payload'
 # Google Cloud Project ID
 PROJECT_ID = "weighty-time-341718"
 
+
 class Directory_OSLCResource(Resource):
     @returns_rdf
     def get(self, service_provider_id, oslc_resource_id):
@@ -65,6 +66,7 @@ class Directory_OSLCResourceList(Resource):
                 return create_resource(service_provider, graph, my_store)
 
         return Graph()
+
 
 class VM_OSLCResource(Resource):
     @returns_rdf
@@ -115,6 +117,7 @@ class VM_OSLCResourceList(Resource):
 
         return Graph()
 
+
 class Cluster_OSLCResource(Resource):
     @returns_rdf
     def get(self, service_provider_id, oslc_resource_id):
@@ -142,6 +145,7 @@ class Cluster_OSLCResource(Resource):
     def delete(self, service_provider_id, oslc_resource_id):
         return delete_resource(request.url)
 
+
 class Cluster_OSLCResourceList(Resource):
     @returns_rdf
     def get(self, service_provider_id):
@@ -163,6 +167,7 @@ class Cluster_OSLCResourceList(Resource):
 
         return Graph()
 
+
 class OSLCAction(Resource):
     @returns_rdf
     def get(self):
@@ -173,6 +178,8 @@ class OSLCAction(Resource):
 
     @returns_rdf
     def post(self):
+        action = None
+        actionProvider = None
         query_action = """
 
                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -212,7 +219,7 @@ class OSLCAction(Resource):
 
             if str(t).__contains__("Create"):
                 g = create_resource(actionProvider, graph, my_store)
-                if (g == None):
+                if g is None:
                     action.add_result('KO')
                 else:
                     action.add_result('OK')
@@ -226,6 +233,7 @@ class OSLCAction(Resource):
                 return g
 
         return Graph()
+
 
 class GCPLogs(Resource):
     def post(self):
