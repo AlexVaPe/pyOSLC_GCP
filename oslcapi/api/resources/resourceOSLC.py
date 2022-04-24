@@ -2,7 +2,7 @@ import base64, json, logging, requests
 from flask import request
 from flask_rdf.flask import returns_rdf
 from flask_restful import Resource
-from rdflib import Graph, URIRef, Literal, Namespace, RDFS
+from rdflib import Graph, URIRef, Literal, Namespace, RDFS, RDF
 
 from oslcapi.api.helpers.service_actions import create_resource, update_resource, delete_resource
 from oslcapi.store import my_store
@@ -218,17 +218,21 @@ class OSLCAction(Resource):
 
             if str(t).__contains__("Create"):
                 g = create_resource(actionProvider, graph, my_store)
+                event_graph = g
                 if g is None:
                     action.add_result('KO')
                 else:
                     action.add_result('OK')
                     # Generate creation Event
-                    r = requests.post(event_endpoint, data=g.parse(action.rdf))
+                    event_graph.rdf.add((event_graph.uri, RDF.type, Literal(action.action_type)))
+                    r = requests.post(event_endpoint, data=event_graph)
                 return g
             elif str(t).__contains__("Delete"):
                 g = delete_resource(actionProvider, graph, my_store)
+                event_graph = g
                 # Generate deletion Event
-                r = requests.post(event_endpoint, data=g.parse(action.rdf))
+                event_graph.rdf.add((event_graph.uri, RDF.type, Literal(action.action_type)))
+                r = requests.post(event_endpoint, data=event_graph)
                 return g
 
         return Graph()
