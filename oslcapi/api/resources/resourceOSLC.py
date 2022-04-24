@@ -223,12 +223,12 @@ class OSLCAction(Resource):
                 else:
                     action.add_result('OK')
                     # Generate creation Event
-                    r = requests.post(event_endpoint, data=g + action.rdf)
+                    r = requests.post(event_endpoint, data=g.parse(action.rdf))
                 return g
             elif str(t).__contains__("Delete"):
                 g = delete_resource(actionProvider, graph, my_store)
                 # Generate deletion Event
-                r = requests.post(event_endpoint, data=g + action.rdf)
+                r = requests.post(event_endpoint, data=g.parse(action.rdf))
                 return g
 
         return Graph()
