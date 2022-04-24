@@ -11,8 +11,7 @@ log = logging.getLogger('tester.sub')
 
 base_url = 'http://localhost:5001/GCP_OSLC/'
 OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
-OSLC_ACTION = Namespace('http://open-services.net/ns/actions#')
-event_endpoint = 'https://tfm-google.duckdns.org:5002/event/payload'
+event_endpoint = 'http://tfm-google.duckdns.org:5002/event/payload'
 
 # Google Cloud Project ID
 PROJECT_ID = "weighty-time-341718"
