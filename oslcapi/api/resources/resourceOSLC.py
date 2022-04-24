@@ -225,7 +225,7 @@ class OSLCAction(Resource):
                     action.add_result('OK')
                     # Generate creation Event
                     event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
-                    conn = http.client.HTTPSConnection('www.tfm-google.duckdns.org/event/payload', 5002)
+                    conn = http.client.HTTPSConnection('www.tfm-google.duckdns.org:5002/event/payload')
 
                     headers = {'Content-type': 'application/rdf+xml'}
 
