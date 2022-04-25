@@ -224,16 +224,16 @@ class OSLCAction(Resource):
                 else:
                     action.add_result('OK')
                     # Generate creation Event
-                    r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml'),
-                                      headers={'Content-type': 'application/rdf+xml'})
+                    r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml').encode('utf-8'),
+                                      headers={'Content-type': 'application/rdf+xml;charset=utf-8'})
                 return g
             elif str(t).__contains__("Delete"):
                 g = delete_resource(actionProvider, graph, my_store)
                 event_graph = g
                 # Generate deletion Event
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
-                r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml'),
-                                  headers={'Content-type': 'application/rdf+xml'})
+                r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml').encode('utf-8'),
+                                  headers={'Content-type': 'application/rdf+xml;charset=utf-8'})
                 return g
 
         return Graph()
