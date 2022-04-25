@@ -48,7 +48,7 @@ api.add_resource(TrackedResourceSet, "/trackedResourceSet")
 api.add_resource(TRSBase, "/baseResources")
 api.add_resource(TRSChangeLog, "/changeLog/<int:change_log_id>", endpoint="change_log_by_id")
 
-api.add_resource(EventReceived, "/event/payload")
+api.add_resource(EventReceived, "/event-payload")
 
 @blueprint.before_app_first_request
 def register_views():
