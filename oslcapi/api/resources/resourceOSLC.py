@@ -11,7 +11,7 @@ log = logging.getLogger('tester.sub')
 
 base_url = 'http://localhost:5001/GCP_OSLC/'
 OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')
-event_endpoint = 'http://tfm-google.duckdns.org:5002/event-payload'
+event_endpoint = 'http://tfm-google.duckdns.org:5002/service/event/payload'
 
 # Google Cloud Project ID
 PROJECT_ID = "weighty-time-341718"
@@ -224,6 +224,7 @@ class OSLCAction(Resource):
                 else:
                     action.add_result('OK')
                     # Generate creation Event
+                    # generate_creation_event(payload, store)
                     r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml').encode('utf-8'),
                                       headers={'Content-type': 'application/rdf+xml;charset=utf-8'})
                 return g
@@ -231,6 +232,7 @@ class OSLCAction(Resource):
                 g = delete_resource(actionProvider, graph, my_store)
                 event_graph = g
                 # Generate deletion Event
+                # generate_deletion_event(payload, store)
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
                 r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml').encode('utf-8'),
                                   headers={'Content-type': 'application/rdf+xml;charset=utf-8'})

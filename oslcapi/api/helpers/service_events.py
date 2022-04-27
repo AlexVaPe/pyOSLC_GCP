@@ -15,13 +15,21 @@ OSLC = Namespace('http://open-services.net/ns/core#')
 def generate_creation_event(payload, store):
     log.warning('Creation event generated')
 
+    # Not necessary
     bucket = get_bucket(payload['bucket'])
 
     service_provider = next(service_provider for service_provider in store.catalog.service_providers if
                             Literal(bucket.id) in service_provider.rdf.objects(None, DCTERMS.identifier))
+    # Until here
 
     resource = store.add_resource(service_provider, bucket)
     store.trs.generate_change_event(resource, 'Creation')
+    # Generate OSLC Event -> Graph tipo oslc.event + description
+    # POST TO event server
+
+
+    # TRS -> adaptador OSLC
+    # OSLC Event -> servidor eventos
 
     return
 
@@ -40,6 +48,7 @@ def generate_modification_event(payload, store):
 
     resource = store.add_resource(service_provider, bucket)
     store.trs.generate_change_event(resource, 'Modification')
+    # Generate OSLC Event -> Graph tipo oslc.event + description
 
     return
 
@@ -47,5 +56,6 @@ def generate_modification_event(payload, store):
 def generate_deletion_event(payload, store):
     log.warning('Deletion event generated')
     log.warning(payload)
+    # Generate OSLC Event -> Graph tipo oslc.event + description
 
     return
