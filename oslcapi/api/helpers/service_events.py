@@ -1,37 +1,39 @@
 import logging
 import os
-from rdflib import Namespace, Literal
-from rdflib.namespace import DCTERMS
+from rdflib import Namespace, Literal, Graph
+from rdflib.namespace import DCTERMS, RDF, RDFS
 
 from oslcapi.api.helpers.service_api import get_bucket
 
 log = logging.getLogger('tester.sub')
 
 OSLC = Namespace('http://open-services.net/ns/core#')
+OSLC_EVENT = Namespace('http://open-services.net/ns/events#')
 
 # Get GCP Credentials
-#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/code/oslcapi/rock-sentinel-333408-7a09dab643b4.json'
+# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/code/oslcapi/rock-sentinel-333408-7a09dab643b4.json'
 
-def generate_creation_event(payload, store):
+def generate_creation_event(resource, store):
     log.warning('Creation event generated')
 
     # Not necessary
-    bucket = get_bucket(payload['bucket'])
+    '''bucket = get_bucket(payload['bucket'])
 
     service_provider = next(service_provider for service_provider in store.catalog.service_providers if
-                            Literal(bucket.id) in service_provider.rdf.objects(None, DCTERMS.identifier))
+                            Literal(bucket.id) in service_provider.rdf.objects(None, DCTERMS.identifier))'''
     # Until here
 
-    resource = store.add_resource(service_provider, bucket)
     store.trs.generate_change_event(resource, 'Creation')
     # Generate OSLC Event -> Graph tipo oslc.event + description
+    g = Graph()
+    g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
+    g.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
     # POST TO event server
-
 
     # TRS -> adaptador OSLC
     # OSLC Event -> servidor eventos
 
-    return
+    return g
 
 
 def generate_modification_event(payload, store):
