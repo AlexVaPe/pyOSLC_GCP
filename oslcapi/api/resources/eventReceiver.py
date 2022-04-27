@@ -30,7 +30,7 @@ class EventReceived(Resource):
         graph.parse(data=request.data, format=request.headers['Content-type'])
 
         for t in graph.query(query_action):
-            service_provider = None
+            '''service_provider = None
             # We retrieve the service provider
             if str(t).__contains__("Directory"):
                 service_provider = next(service_provider for service_provider in my_store.catalog.service_providers if
@@ -53,4 +53,5 @@ class EventReceived(Resource):
                 log.warning('##### DELETION EVENT #####')
                 return generate_deletion_event(graph, my_store, service_provider)
             else:
-                return
+                return'''
+            log.warning("{} Received".format_map(str(t)))
