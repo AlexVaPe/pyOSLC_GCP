@@ -61,7 +61,7 @@ def create_resource(service_provider, graph, store):
                 resource = store.add_resource(service_provider, new_instance)
             for p, o in graph.predicate_objects(None):
                 resource.rdf.add((resource.uri, p, o))
-    return resource.rdf
+    return resource
 
 
 def update_resource(service_provider, resource, graph, store):
