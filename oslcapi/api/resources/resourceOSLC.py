@@ -218,7 +218,7 @@ class OSLCAction(Resource):
                                                         t.asdict()['type'].toPython())
 
             if str(t).__contains__("Create"):
-                resource = create_resource(actionProvider, graph, my_store).rdf
+                resource = create_resource(actionProvider, graph, my_store)
                 g = resource.rdf
                 event_graph = g
                 if g is None:
