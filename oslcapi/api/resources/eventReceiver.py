@@ -30,5 +30,5 @@ class EventReceived(Resource):
         graph.parse(data=request.data, format=request.headers['Content-type'])
 
         for t, id in graph.query(query_action):
-            log.warning("{} Received".format(str(t)))
-            log.warning(" * Description: {}".format(str(id)))
+            print("{} Received".format(str(t)))
+            print(" * Description: {}".format(str(id)))
