@@ -61,7 +61,7 @@ def create_resource(service_provider, graph, store):
                 resource = store.add_resource(service_provider, new_instance)
             for p, o in graph.predicate_objects(None):
                 resource.rdf.add((resource.uri, p, o))
-    return resource
+    return resource, resource.rdf
 
 
 def update_resource(service_provider, resource, graph, store):
@@ -138,7 +138,7 @@ def delete_resource(service_provider, graph, store):
                         oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
                         # store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
                         g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
-                        return g
+                        return g, oslc_resource
 
         case 'VirtualMachineService':
             for name, zone in graph.query(query_instance):
@@ -170,6 +170,6 @@ def delete_resource(service_provider, graph, store):
                             oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
                             # store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
                             g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
-                            return g
+                            return g, oslc_resource
                     except:
                         return None

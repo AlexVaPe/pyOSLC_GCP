@@ -55,9 +55,13 @@ def generate_modification_event(payload, store):
     return
 
 
-def generate_deletion_event(payload, store):
+def generate_deletion_event(resource, store):
     log.warning('Deletion event generated')
-    log.warning(payload)
+    log.warning(resource)
+    store.trs.generate_change_event(resource, 'Deletion')
     # Generate OSLC Event -> Graph tipo oslc.event + description
+    g = Graph()
+    g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
+    g.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
 
-    return
+    return g

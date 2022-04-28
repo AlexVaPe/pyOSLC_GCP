@@ -63,7 +63,7 @@ class Directory_OSLCResourceList(Resource):
 
         for service_provider in my_store.catalog.service_providers:
             if service_provider_id == service_provider.id:
-                return create_resource(service_provider, graph, my_store).rdf
+                return create_resource(service_provider, graph, my_store)[1]
 
         return Graph()
 
@@ -113,7 +113,7 @@ class VM_OSLCResourceList(Resource):
 
         for service_provider in my_store.catalog.service_providers:
             if service_provider_id == service_provider.id:
-                return create_resource(service_provider, graph, my_store).rdf
+                return create_resource(service_provider, graph, my_store)[1]
 
         return Graph()
 
@@ -163,7 +163,7 @@ class Cluster_OSLCResourceList(Resource):
 
         for service_provider in my_store.catalog.service_providers:
             if service_provider_id == service_provider.id:
-                return create_resource(service_provider, graph, my_store).rdf
+                return create_resource(service_provider, graph, my_store)[1]
 
         return Graph()
 
@@ -218,8 +218,7 @@ class OSLCAction(Resource):
                                                         t.asdict()['type'].toPython())
 
             if str(t).__contains__("Create"):
-                resource = create_resource(actionProvider, graph, my_store)
-                g = resource.rdf
+                resource, g = create_resource(actionProvider, graph, my_store)
                 event_graph = g
                 if g is None:
                     action.add_result('KO')
@@ -228,17 +227,17 @@ class OSLCAction(Resource):
                     # Generate creation Event
                     oslcEvent = generate_creation_event(resource, my_store)
                     # Send post to event endpoint server
-                    r = requests.post(event_endpoint, data=oslcEvent, headers={'Content-type': 'application/rdf+xml'
-                                                                                               ';charset=utf-8'})
+                    r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
+                                      headers={'Content-type': 'application/rdf+xml; charset=utf-8'})
                 return g
             elif str(t).__contains__("Delete"):
-                g = delete_resource(actionProvider, graph, my_store)
+                g, resource = delete_resource(actionProvider, graph, my_store)
                 event_graph = g
                 # Generate deletion Event
-                # generate_deletion_event(payload, store)
+                oslcEvent = generate_deletion_event(resource, my_store)
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
-                r = requests.post(event_endpoint, data=Graph.serialize(event_graph, format='application/rdf+xml').encode('utf-8'),
-                                  headers={'Content-type': 'application/rdf+xml;charset=utf-8'})
+                r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
+                                  headers={'Content-type': 'application/rdf+xml; charset=utf-8'})
                 return g
 
         return Graph()
