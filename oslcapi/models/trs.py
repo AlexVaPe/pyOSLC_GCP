@@ -4,7 +4,7 @@ from datetime import datetime
 from rdflib import Graph, Namespace, URIRef, Literal, BNode
 from rdflib.namespace import RDF
 
-log = logging.getLogger('tester.sub')
+log = logging.getLogger('tester.event')
 
 TRS = Namespace('http://open-services.net/ns/core/trs#')
 LDP = Namespace('http://www.w3.org/ns/ldp#')

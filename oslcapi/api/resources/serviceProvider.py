@@ -5,7 +5,7 @@ from rdflib import Graph
 
 from oslcapi.store import my_store
 
-log = logging.getLogger('tester.sub')
+log = logging.getLogger('tester.event')
 
 
 class ServiceProvider(Resource):
