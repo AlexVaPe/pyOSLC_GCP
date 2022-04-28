@@ -9,7 +9,7 @@ from rdflib import Graph, URIRef, Literal, Namespace, RDFS
 from oslcapi.api.helpers.service_actions import create_resource, update_resource, delete_resource
 from oslcapi.store import my_store
 
-log = logging.getLogger('tester.event')
+log = logging.getLogger('tester.sub')
 
 base_url = 'http://localhost:5001/GCP_OSLC/'
 OSLC_CloudProvider = Namespace('http://localhost:5001/GCP_OSLC/')

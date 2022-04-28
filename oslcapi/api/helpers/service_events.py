@@ -2,7 +2,7 @@ import logging
 
 from oslcapi.api.helpers.service_api import *
 
-log = logging.getLogger('tester.event')
+log = logging.getLogger('tester.sub')
 
 OSLC = Namespace('http://open-services.net/ns/core#')
 PROJECT_ID = 'weighty-time-341718'

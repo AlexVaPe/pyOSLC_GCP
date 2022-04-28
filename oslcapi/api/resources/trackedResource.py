@@ -4,7 +4,7 @@ from flask_restful import Resource
 
 from oslcapi.store import my_store
 
-log = logging.getLogger('tester.event')
+log = logging.getLogger('tester.sub')
 
 class TrackedResourceSet(Resource):
     @returns_rdf

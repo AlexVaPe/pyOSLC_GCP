@@ -8,7 +8,7 @@ PROJECT_ID = 'weighty-time-341718'
 OSLC = Namespace('http://open-services.net/ns/core#')
 base_url = 'http://localhost:5001/GCP_OSLC/'
 
-log = logging.getLogger('tester.event')
+log = logging.getLogger('tester.sub')
 
 
 def create_resource(service_provider, graph, store):
