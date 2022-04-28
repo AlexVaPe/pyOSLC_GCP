@@ -13,6 +13,7 @@ log = logging.getLogger('tester.event')
 
 class EventReceived(Resource):
     def post(self):
+        log.warning("###   EVENT RECEIVED   ###")
         query_action = """
 
                         PREFIX oslc_events: <http://open-services.net/ns/events#>
