@@ -228,7 +228,7 @@ class OSLCAction(Resource):
                     oslcEvent = generate_creation_event(resource, my_store)
                     # Send post to event endpoint server
                     r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
-                                      headers={'Content-type': 'application/rdf+xml; charset=utf-8'})
+                                      headers={'Content-type': 'application/rdf+xml'})
                 return g
             elif str(t).__contains__("Delete"):
                 g, resource = delete_resource(actionProvider, graph, my_store)
@@ -237,7 +237,7 @@ class OSLCAction(Resource):
                 oslcEvent = generate_deletion_event(resource, my_store)
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
                 r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
-                                  headers={'Content-type': 'application/rdf+xml; charset=utf-8'})
+                                  headers={'Content-type': 'application/rdf+xml'})
                 return g
 
         return Graph()
