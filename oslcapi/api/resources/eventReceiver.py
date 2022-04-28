@@ -54,4 +54,4 @@ class EventReceived(Resource):
                 return generate_deletion_event(graph, my_store, service_provider)
             else:
                 return'''
-            log.warning("{} Received".format_map(str(t)))
+            log.warning("{} Received".format(str(t)))
