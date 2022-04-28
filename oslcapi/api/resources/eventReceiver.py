@@ -7,7 +7,7 @@ from rdflib import Graph
 from oslcapi.api.helpers import generate_creation_event, generate_modification_event, generate_deletion_event
 from oslcapi.store import my_store
 
-log = logging.getLogger('tester.sub')
+log = logging.getLogger('tester.event')
 
 
 
