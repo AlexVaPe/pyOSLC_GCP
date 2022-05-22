@@ -40,7 +40,6 @@ def create_resource(service_provider, graph, store):
     match service_provider.module.description:
         case 'FilesystemService':
             for name, location, storage_class in graph.query(query_bucket):
-                # It would be better if we check the bucket properties defined on BucketResourceShape
                 storage_client = storage.Client()
 
                 bucket = storage_client.bucket(name)
@@ -136,7 +135,6 @@ def delete_resource(service_provider, graph, store):
                 for oslc_resource in service_provider.oslc_resources:
                     if oslc_resource.element.id == str(bucket.id):
                         oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
-                        # store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
                         g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
                         return g, oslc_resource
 
@@ -168,7 +166,6 @@ def delete_resource(service_provider, graph, store):
                     try:
                         if oslc_resource.element.id == str(deleted_instance.name):
                             oslc_resource.rdf.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
-                            # store.generate_change_event(URIRef(oslc_resource.uri), 'Deletion')
                             g.add((oslc_resource.uri, RDFS.comment, Literal('Deleted')))
                             return g, oslc_resource
                     except:

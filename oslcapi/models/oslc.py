@@ -4,7 +4,7 @@ from rdflib.namespace import DCTERMS, RDF, RDFS
 import threading
 import time
 
-from oslcapi.api.helpers import module_to_service_provider, directory_to_oslc_resource, list_buckets, list_instances, \
+from oslcapi.api.helpers import module_to_service_provider, element_to_oslc_resource, list_buckets, list_instances, \
     list_clusters
 
 log = logging.getLogger('tester.sub')
@@ -84,12 +84,6 @@ class OSLCStore:
 
         log.warning('OSLC store loaded')
 
-        # We initialize the thread for updating the resources
-        '''x = threading.Thread\
-            (target=self.update_resources_thread,
-             args=(filesystem_service_provider,vm_service_provider, computation_service_provider),
-             daemon=True)
-        x.start()'''
 
     def update_resources(self, filesystem_service_provider, vm_service_provider, computation_service_provider):
         if filesystem_service_provider is not None:
@@ -163,7 +157,6 @@ class ServiceProviderCatalog:
         self.rdf.add((self.uri, RDF.type, OSLC.ServiceProviderCatalog))
         my_rdf += self.rdf.triples((None, None, None))
 
-        # self.rdf = rdf.triples((None, RDF.type, OSLC.ServiceProviderCatalog))
 
     def add(self, service_provider):
         self.rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
@@ -344,7 +337,7 @@ class OSLCResource:
             self.rdf.add((self.uri, OSLC.serviceProvider, service_provider.uri))
 
         imported_rdf += self.rdf.triples((None, None, None))
-        directory_to_oslc_resource(element, self)
+        element_to_oslc_resource(element, self)
 
 
 '''

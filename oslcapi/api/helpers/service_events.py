@@ -10,28 +10,15 @@ log = logging.getLogger('tester.sub')
 OSLC = Namespace('http://open-services.net/ns/core#')
 OSLC_EVENT = Namespace('http://open-services.net/ns/events#')
 
-# Get GCP Credentials
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/code/oslcapi/rock-sentinel-333408-7a09dab643b4.json'
 
 def generate_creation_event(resource, store):
     log.warning('Creation event generated')
 
-    # Not necessary
-    '''bucket = get_bucket(payload['bucket'])
-
-    service_provider = next(service_provider for service_provider in store.catalog.service_providers if
-                            Literal(bucket.id) in service_provider.rdf.objects(None, DCTERMS.identifier))'''
-    # Until here
-
     store.trs.generate_change_event(resource, 'Creation')
-    # Generate OSLC Event -> Graph tipo oslc.event + description
+    # Generate OSLC Event Resource
     g = Graph()
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
-    # POST TO event server
-
-    # TRS -> adaptador OSLC
-    # OSLC Event -> servidor eventos
 
     return g
 
@@ -50,7 +37,6 @@ def generate_modification_event(payload, store):
 
     resource = store.add_resource(service_provider, bucket)
     store.trs.generate_change_event(resource, 'Modification')
-    # Generate OSLC Event -> Graph tipo oslc.event + description
 
     return
 
@@ -59,7 +45,7 @@ def generate_deletion_event(resource, store):
     log.warning('Deletion event generated')
     log.warning(resource)
     store.trs.generate_change_event(resource, 'Deletion')
-    # Generate OSLC Event -> Graph tipo oslc.event + description
+    # Generate OSLC Event Resource
     g = Graph()
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))

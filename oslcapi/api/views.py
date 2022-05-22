@@ -21,7 +21,6 @@ api.add_resource(ServiceProviderCatalog, "/serviceProviders/catalog")
 # Directory Endpoints
 api.add_resource(Directory_OSLCResource, "/serviceProviders/<int:service_provider_id>/directory/<int:oslc_resource_id>"
                  , endpoint="directory_oslc_resource_by_service_provider_and_id")
-# Aquí van a mandarse los post para crear los recursos
 api.add_resource(Directory_OSLCResourceList, "/serviceProviders/<int:service_provider_id>/directory"
                  , endpoint="directory_oslc_resource_by_service_provider")
 

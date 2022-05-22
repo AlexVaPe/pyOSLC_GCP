@@ -42,7 +42,6 @@ def list_instances(
     project_id: str,
 ) -> typing.Dict[str, typing.Iterable[compute_v1.Instance]]:
     instance_client = compute_v1.InstancesClient()
-    # Use the `max_results` parameter to limit the number of results that the API returns per response page.
     request = compute_v1.AggregatedListInstancesRequest(
         project=project_id, max_results=5
     )
@@ -64,7 +63,6 @@ def create_instance(
     instance_client = compute_v1.InstancesClient()
     operation_client = compute_v1.ZoneOperationsClient()
 
-    # Describe the size and source image of the boot disk to attach to the instance.
     disk = compute_v1.AttachedDisk()
     initialize_params = compute_v1.AttachedDiskInitializeParams()
     initialize_params.source_image = (
@@ -165,7 +163,7 @@ def module_to_service_provider(module, service_provider):
                                       Literal(module.description)))
 
 # Resource -> OSLC Resource
-def directory_to_oslc_resource(element, resource):
+def element_to_oslc_resource(element, resource):
     if isinstance(element, Bucket):
         resource.rdf.add((resource.uri, OSLC_CloudProvider.directoryId, Literal(element.id)))
         resource.rdf.add((resource.uri, OSLC_CloudProvider.directoryName, Literal(element.name)))
@@ -178,12 +176,10 @@ def directory_to_oslc_resource(element, resource):
         resource.rdf.add((resource.uri, OSLC_CloudProvider.instanceZone, Literal(element.zone)))
         resource.rdf.add((resource.uri, OSLC_CloudProvider.instanceCreationTimestamp,
                           Literal(element.creation_timestamp)))
-        # Create property for status
         resource.rdf.add((resource.uri, OSLC.details, Literal(element.status)))
     if isinstance(element, dict):
         resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterName, Literal(element['name'])))
         resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterStatus, Literal(element['status'])))
         resource.rdf.add((resource.uri, OSLC_CloudProvider.clusterMasterVersion,
                           Literal(element['currentMasterVersion'])))
-        # Create property for status
         resource.rdf.add((resource.uri, OSLC.details, Literal(element['status'])))

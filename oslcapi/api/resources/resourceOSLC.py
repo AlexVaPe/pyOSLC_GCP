@@ -1,4 +1,4 @@
-import base64, json, logging, requests, http.client
+import base64, json, logging, requests
 from flask import request
 from flask_rdf.flask import returns_rdf
 from flask_restful import Resource
@@ -226,7 +226,7 @@ class OSLCAction(Resource):
                     action.add_result('OK')
                     # Generate creation Event
                     oslcEvent = generate_creation_event(resource, my_store)
-                    # Send post to event endpoint server
+                    # Send post to event server
                     r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
                                       headers={'Content-type': 'application/rdf+xml'})
                 return g
@@ -236,6 +236,7 @@ class OSLCAction(Resource):
                 # Generate deletion Event
                 oslcEvent = generate_deletion_event(resource, my_store)
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
+                # Send post to event server
                 r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
                                   headers={'Content-type': 'application/rdf+xml'})
                 return g
@@ -255,7 +256,6 @@ class GCPLogs(Resource):
                 my_store.update_resources(my_store.catalog.service_providers[0], None, None)
             if ("insert" or "delete") and "instances" in json_msg:
                 my_store.update_resources(None, my_store.catalog.service_providers[1], None)
-            # Clusters TBD
         except:
             print("Useless message")
 
