@@ -21,6 +21,7 @@ PROJECT_ID = "weighty-time-341718"
 # Initialize Kafka producer
 my_producer = KafkaProducer(
     bootstrap_servers = ['localhost:29092'],
+    api_version=(0,11,5),
     value_serializer = lambda x: json.dumps(x).encode('utf-8')
     )
 
