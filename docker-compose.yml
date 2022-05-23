@@ -4,6 +4,8 @@ version: '3'
 services:
   web:
     image: oslcapi
+    depends_on:
+      - kafka
     build: .
     command: flask run -h 0.0.0.0 --cert=/code/certs/cert.pem --key=/code/certs/privkey.pem
     env_file:
