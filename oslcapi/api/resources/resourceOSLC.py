@@ -3,6 +3,7 @@ from flask import request
 from flask_rdf.flask import returns_rdf
 from flask_restful import Resource
 from rdflib import Graph, URIRef, Literal, Namespace, RDFS, RDF
+from kafka import KafkaProducer
 
 from oslcapi.api.helpers.service_actions import create_resource, update_resource, delete_resource
 from oslcapi.api.helpers import *
@@ -17,6 +18,11 @@ event_endpoint = 'http://tfm-google.duckdns.org:5002/service/event/payload'
 # Google Cloud Project ID
 PROJECT_ID = "weighty-time-341718"
 
+# Initialize Kafka producer
+my_producer = KafkaProducer(
+    bootstrap_servers = ['localhost:29092'],
+    value_serializer = lambda x: json.dumps(x).encode('utf-8')
+    )
 
 class Directory_OSLCResource(Resource):
     @returns_rdf
@@ -227,8 +233,9 @@ class OSLCAction(Resource):
                     # Generate creation Event
                     oslcEvent = generate_creation_event(resource, my_store)
                     # Send post to event server
-                    r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
-                                      headers={'Content-type': 'application/rdf+xml'})
+                    my_producer.send('eventmessage', value=Graph.serialize(g, format='application/rdf+xml'))
+                    #r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
+                                      #headers={'Content-type': 'application/rdf+xml'})
                 return g
             elif str(t).__contains__("Delete"):
                 g, resource = delete_resource(actionProvider, graph, my_store)
@@ -237,8 +244,9 @@ class OSLCAction(Resource):
                 oslcEvent = generate_deletion_event(resource, my_store)
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
                 # Send post to event server
-                r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
-                                  headers={'Content-type': 'application/rdf+xml'})
+                my_producer.send('eventmessage', value=Graph.serialize(g, format='application/rdf+xml'))
+                #r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
+                                  #headers={'Content-type': 'application/rdf+xml'})
                 return g
 
         return Graph()
