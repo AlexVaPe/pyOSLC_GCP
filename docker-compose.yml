@@ -2,25 +2,6 @@
 version: '3'
 
 services:
-  web:
-    image: oslcapi
-    depends_on:
-      - kafka
-    build: .
-    command: flask run -h 0.0.0.0 --cert=/code/certs/cert.pem --key=/code/certs/privkey.pem
-    env_file:
-      - ./.flaskenv
-    environment:
-      - DATABASE_URI=sqlite:////db/oslcapi.db
-      - GOOGLE_APPLICATION_CREDENTIALS=/code/gcp/gcp_credentials.json
-    volumes:
-      - ./oslcapi:/code/oslcapi
-      - ./db/:/db/
-      - ./gcp_credentials.json:/code/gcp/gcp_credentials.json
-      - ./cert.pem:/code/certs/cert.pem
-      - ./privkey.pem:/code/certs/privkey.pem
-    ports:
-      - "5001:5000"
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     environment:
@@ -42,3 +23,23 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  web:
+    image: oslcapi
+    depends_on:
+      - kafka
+    build: .
+    command: flask run -h 0.0.0.0 --cert=/code/certs/cert.pem --key=/code/certs/privkey.pem
+    env_file:
+      - ./.flaskenv
+    environment:
+      - DATABASE_URI=sqlite:////db/oslcapi.db
+      - GOOGLE_APPLICATION_CREDENTIALS=/code/gcp/gcp_credentials.json
+    volumes:
+      - ./oslcapi:/code/oslcapi
+      - ./db/:/db/
+      - ./gcp_credentials.json:/code/gcp/gcp_credentials.json
+      - ./cert.pem:/code/certs/cert.pem
+      - ./privkey.pem:/code/certs/privkey.pem
+    ports:
+      - "5001:5000"

@@ -234,7 +234,7 @@ class OSLCAction(Resource):
                     # Generate creation Event
                     oslcEvent = generate_creation_event(resource, my_store)
                     # Send post to event server
-                    my_producer.send('eventmessage', value=Graph.serialize(g, format='application/rdf+xml'))
+                    my_producer.send('eventmessage', value=Graph.serialize(oslcEvent, format='application/rdf+xml'))
                     #r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
                                       #headers={'Content-type': 'application/rdf+xml'})
                 return g
@@ -245,7 +245,7 @@ class OSLCAction(Resource):
                 oslcEvent = generate_deletion_event(resource, my_store)
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
                 # Send post to event server
-                my_producer.send('eventmessage', value=Graph.serialize(g, format='application/rdf+xml'))
+                my_producer.send('eventmessage', value=Graph.serialize(oslcEvent, format='application/rdf+xml'))
                 #r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
                                   #headers={'Content-type': 'application/rdf+xml'})
                 return g
