@@ -21,4 +21,3 @@ pyopenssl
 kafka-python
 click~=8.1.2
 setuptools~=60.10.0
-xmltodict
