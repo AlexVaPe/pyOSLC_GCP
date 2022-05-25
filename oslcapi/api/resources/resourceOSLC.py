@@ -233,10 +233,10 @@ class OSLCAction(Resource):
                     action.add_result('OK')
                     # Generate creation Event
                     oslcEvent = generate_creation_event(resource, my_store)
-                    oslcEvent_json = xmltodict.parse(oslcEvent)
+                    oslcEvent_json = graph.serialize(oslcEvent, format='json-ld')
                     # Send post to event server
-                    my_producer.send('event-message', value=oslcEvent_json)
-                    #r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
+                    #my_producer.send('event-message', value=oslcEvent_json)
+                    r = requests.post(event_endpoint, data=oslcEvent_json)
                                       #headers={'Content-type': 'application/rdf+xml'})
                 return g
             elif str(t).__contains__("Delete"):
@@ -244,11 +244,11 @@ class OSLCAction(Resource):
                 event_graph = g
                 # Generate deletion Event
                 oslcEvent = generate_deletion_event(resource, my_store)
-                oslcEvent_json = xmltodict.parse(oslcEvent)
+                oslcEvent_json = graph.serialize(oslcEvent, format='json-ld')
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
                 # Send post to event server
-                my_producer.send('event-message', value=oslcEvent_json)
-                #r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
+                #my_producer.send('event-message', value=oslcEvent_json)
+                r = requests.post(event_endpoint, data=oslcEvent_json)
                                   #headers={'Content-type': 'application/rdf+xml'})
                 return g
 
