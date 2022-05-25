@@ -1,4 +1,4 @@
-import base64, json, logging, requests
+import base64, json, logging, requests, xmltodict
 from flask import request
 from flask_rdf.flask import returns_rdf
 from flask_restful import Resource
@@ -22,7 +22,7 @@ PROJECT_ID = "weighty-time-341718"
 my_producer = KafkaProducer(
     bootstrap_servers = ['kafka:29092'],
     api_version=(0,11,5),
-    value_serializer = lambda x: Graph.serialize(x, format='application/rdf+xml')
+    value_serializer = lambda x: json.dumps(x).encode('utf-8')
     )
 
 class Directory_OSLCResource(Resource):
@@ -233,8 +233,9 @@ class OSLCAction(Resource):
                     action.add_result('OK')
                     # Generate creation Event
                     oslcEvent = generate_creation_event(resource, my_store)
+                    oslcEvent_json = xmltodict.parse(oslcEvent)
                     # Send post to event server
-                    my_producer.send('event-message', value=oslcEvent)
+                    my_producer.send('event-message', value=oslcEvent_json)
                     #r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
                                       #headers={'Content-type': 'application/rdf+xml'})
                 return g
@@ -243,9 +244,10 @@ class OSLCAction(Resource):
                 event_graph = g
                 # Generate deletion Event
                 oslcEvent = generate_deletion_event(resource, my_store)
+                oslcEvent_json = xmltodict.parse(oslcEvent)
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
                 # Send post to event server
-                my_producer.send('event-message', value=oslcEvent)
+                my_producer.send('event-message', value=oslcEvent_json)
                 #r = requests.post(event_endpoint, data=Graph.serialize(oslcEvent, format='application/rdf+xml'),
                                   #headers={'Content-type': 'application/rdf+xml'})
                 return g
