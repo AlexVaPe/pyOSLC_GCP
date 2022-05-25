@@ -244,7 +244,7 @@ class OSLCAction(Resource):
                 event_graph = g
                 # Generate deletion Event
                 oslcEvent = generate_deletion_event(resource, my_store)
-                oslcEvent_json = graph.serialize(oslcEvent, format='json-ld')
+                oslcEvent_json = graph.parse(oslcEvent, format='json-ld')
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
                 # Send post to event server
                 #my_producer.send('event-message', value=oslcEvent_json)
