@@ -13,7 +13,7 @@ log = logging.getLogger('tester.event')
 
 class EventReceived(Resource):
     def post(self):
-        log.info("###   EVENT RECEIVED   ###")
+        log.warning("###   EVENT RECEIVED   ###")
         '''query_action = """
 
                         PREFIX oslc_events: <http://open-services.net/ns/events#>
@@ -34,5 +34,5 @@ class EventReceived(Resource):
             print("{} Received".format(str(t)))
             print(" * Description: {}".format(str(id)))'''
         payload = json.loads(request.data.decode('utf-8'))
-        log.info("Payload: {}".format(json.dumps(payload, indent=4, sort_keys=True)))
+        log.warning("Payload: {}".format(json.dumps(payload, indent=4, sort_keys=True)))
         return 'OK', 200
