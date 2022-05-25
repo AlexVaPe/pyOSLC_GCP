@@ -2,7 +2,8 @@ import base64, json, logging, requests, xmltodict
 from flask import request
 from flask_rdf.flask import returns_rdf
 from flask_restful import Resource
-from rdflib import Graph, URIRef, Literal, Namespace, RDFS, RDF
+from rdflib import Graph, URIRef, Literal, Namespace, RDFS, RDF, plugin
+from rdflib.serializer import Serializer
 from kafka import KafkaProducer
 
 from oslcapi.api.helpers.service_actions import create_resource, update_resource, delete_resource
@@ -233,7 +234,7 @@ class OSLCAction(Resource):
                     action.add_result('OK')
                     # Generate creation Event
                     oslcEvent = generate_creation_event(resource, my_store)
-                    oslcEvent_json = graph.serialize(oslcEvent, format='json-ld')
+                    oslcEvent_json = oslcEvent.serialize(format='json-ld')
                     # Send post to event server
                     #my_producer.send('event-message', value=oslcEvent_json)
                     r = requests.post(event_endpoint, data=oslcEvent_json)
@@ -244,7 +245,7 @@ class OSLCAction(Resource):
                 event_graph = g
                 # Generate deletion Event
                 oslcEvent = generate_deletion_event(resource, my_store)
-                oslcEvent_json = graph.parse(oslcEvent, format='json-ld')
+                oslcEvent_json = oslcEvent.serialize(format='json-ld')
                 event_graph.add((action.uri, RDF.type, Literal(action.action_type)))
                 # Send post to event server
                 #my_producer.send('event-message', value=oslcEvent_json)
