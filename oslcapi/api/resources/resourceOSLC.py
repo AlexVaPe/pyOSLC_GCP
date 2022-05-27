@@ -23,7 +23,7 @@ PROJECT_ID = "weighty-time-341718"
 my_producer = KafkaProducer(
     bootstrap_servers = ['kafka:9092'],
     api_version=(0,11,5),
-    value_serializer = lambda x: json.dumps(x, indent=4, sort_keys=True).encode('utf-8')
+    value_serializer = lambda x: json.dumps(x).encode('utf-8')
     )
 
 class Directory_OSLCResource(Resource):
