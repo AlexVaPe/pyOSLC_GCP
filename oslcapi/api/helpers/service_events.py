@@ -15,8 +15,8 @@ OSLC_EVENT = Namespace('http://open-services.net/ns/events#')
 fuseki_store = SPARQLUpdateStore()
 fuseki_endpoint = "fuseki.demos.gsi.upm.es"
 fuseki_dataset = "oslc-gc"
-query_endpoint = 'http://fuseki.demos.gsi.upm.es:80/oslc-gc/query'
-update_endpoint = 'http://fuseki.demos.gsi.upm.es:80/oslc-gc/update'
+query_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/query'
+update_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/update'
 fuseki_store.open((query_endpoint, update_endpoint))
 
 def sendDataToFuseki(data, host, port ,dataset):
