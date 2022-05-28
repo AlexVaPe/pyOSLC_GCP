@@ -43,12 +43,3 @@ services:
       - ./privkey.pem:/code/certs/privkey.pem
     ports:
       - "5001:5000"
-
-  fuseki:
-    image: stain/jena-fuseki:latest
-    depends_on:
-      - web
-    volumes:
-      - ./db/:/db/
-    ports:
-      - "3030:3030"
