@@ -13,10 +13,10 @@ OSLC = Namespace('http://open-services.net/ns/core#')
 OSLC_EVENT = Namespace('http://open-services.net/ns/events#')
 
 # Connect to fuseki triplestore.
-store = SPARQLUpdateStore()
+fuseki_store = SPARQLUpdateStore()
 query_endpoint = 'https://fuseki.demos.gsi.upm.es/oslc-gc/query'
 update_endpoint = 'http://localhost:3030/oslc-gc/update'
-store.open((query_endpoint, update_endpoint))
+fuseki_store.open((query_endpoint, update_endpoint))
 
 
 def generate_creation_event(resource, store):
@@ -24,7 +24,7 @@ def generate_creation_event(resource, store):
 
     store.trs.generate_change_event(resource, 'Creation')
     # Generate OSLC Event Resource
-    g = Graph(store, identifier=default)
+    g = Graph(fuseki_store, identifier=default)
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
 
@@ -54,7 +54,7 @@ def generate_deletion_event(resource, store):
     log.warning(resource)
     store.trs.generate_change_event(resource, 'Deletion')
     # Generate OSLC Event Resource
-    g = Graph(store, identifier=default)
+    g = Graph(fuseki_store, identifier=default)
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
 
