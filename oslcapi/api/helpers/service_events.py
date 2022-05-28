@@ -15,9 +15,9 @@ OSLC_EVENT = Namespace('http://open-services.net/ns/events#')
 fuseki_store = SPARQLUpdateStore()
 fuseki_endpoint = "fuseki.demos.gsi.upm.es"
 fuseki_dataset = "oslc-gc"
-query_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/query'
-update_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/update'
-fuseki_data_endpoint = "http://fuseki.demos.gsi.upm.es/oslc-gc/data"
+query_endpoint = 'http://' + fuseki_endpoint + '/' + fuseki_dataset + '/query'
+update_endpoint = 'http://' + fuseki_endpoint + '/' + fuseki_dataset + '/update'
+fuseki_data_endpoint = 'http://' + fuseki_endpoint + '/' + fuseki_dataset + '/data'
 fuseki_store.open((query_endpoint, update_endpoint))
 
 def sendDataToFuseki(data, host, port ,dataset):
@@ -45,7 +45,7 @@ def generate_creation_event(resource, store):
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
 
-    #sendDataToFuseki(g, fuseki_endpoint, 80, fuseki_dataset)
+    sendDataToFuseki(g, "fuseki", 3030, fuseki_dataset)
 
     return g
 
@@ -78,6 +78,6 @@ def generate_deletion_event(resource, store):
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
 
-    #sendDataToFuseki(g, fuseki_endpoint, 80, fuseki_dataset)
+    sendDataToFuseki(g, "fuseki", 3030, fuseki_dataset)
 
     return g
