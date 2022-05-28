@@ -17,6 +17,7 @@ fuseki_endpoint = "fuseki.demos.gsi.upm.es"
 fuseki_dataset = "oslc-gc"
 query_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/query'
 update_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/update'
+fuseki_data_endpoint = "http://fuseki.demos.gsi.upm.es/oslc-gc/data"
 fuseki_store.open((query_endpoint, update_endpoint))
 
 def sendDataToFuseki(data, host, port ,dataset):
@@ -39,8 +40,8 @@ def generate_creation_event(resource, store):
 
     store.trs.generate_change_event(resource, 'Creation')
     # Generate OSLC Event Resource
-    g = Graph(fuseki_store, identifier=default)
-    #g = Graph()
+    #g = Graph(fuseki_store, identifier=default)
+    g = Graph()
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
 
@@ -72,7 +73,8 @@ def generate_deletion_event(resource, store):
     log.warning(resource)
     store.trs.generate_change_event(resource, 'Deletion')
     # Generate OSLC Event Resource
-    g = Graph(fuseki_store, identifier=default)
+    #g = Graph(fuseki_store, identifier=default)
+    g = Graph()
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
 

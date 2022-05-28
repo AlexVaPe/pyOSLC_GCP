@@ -43,3 +43,18 @@ services:
       - ./privkey.pem:/code/certs/privkey.pem
     ports:
       - "5001:5000"
+
+  fuseki:
+    image: stain/jena-fuseki
+    ports:
+      - "3030:3030"
+    volumes:
+      - ./fuseki:/fuseki
+    environment:
+      - ADMIN_PASSWORD=fusekiparticipation
+    networks:
+      - participation
+
+networks:
+  participation:
+    driver: bridge
