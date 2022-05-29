@@ -20,20 +20,6 @@ update_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/update'
 fuseki_data_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/data'
 fuseki_store.open((query_endpoint, update_endpoint))
 
-def sendDataToFuseki(data, host, port ,dataset):
-    url = 'http://{fuseki}:{port}/{dataset}/data'.format(
-        fuseki = host,
-        port = port,
-        dataset = dataset
-    )
-
-    response = requests.put(
-        url,
-        headers = {'Content-Type':'application/ld+json'},
-        data = data
-    )
-
-    return response
 
 def generate_creation_event(resource, store):
     log.warning('Creation event generated')
@@ -45,10 +31,13 @@ def generate_creation_event(resource, store):
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
 
-    #fuseki_store.add_graph(g)
-    #sendDataToFuseki(g, fuseki_endpoint, 80, fuseki_dataset)
+    g2 = Graph()
+    g2.add((resource.uri, RDF.type, OSLC_EVENT.Event))
+    g2.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
 
-    return g
+    #fuseki_store.add_graph(g)
+
+    return g2
 
 
 def generate_modification_event(payload, store):
@@ -80,6 +69,9 @@ def generate_deletion_event(resource, store):
     g.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
 
     #fuseki_store.add_graph(g)
-    #sendDataToFuseki(g, fuseki_endpoint, 80, fuseki_dataset)
 
-    return g
+    g2 = Graph()
+    g2.add((resource.uri, RDF.type, OSLC_EVENT.Event))
+    g2.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
+
+    return g2
