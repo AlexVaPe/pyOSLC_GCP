@@ -13,8 +13,6 @@ OSLC_EVENT = Namespace('http://open-services.net/ns/events#')
 
 # Connect to fuseki triplestore.
 fuseki_store = SPARQLUpdateStore(auth=('admin','gsipassword2022'))
-fuseki_endpoint = "fuseki.demos.gsi.upm.es"
-fuseki_dataset = "oslc-gc"
 query_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/query'
 update_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/update'
 fuseki_data_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc/data'
@@ -25,17 +23,16 @@ def generate_creation_event(resource, store):
     log.warning('Creation event generated')
 
     store.trs.generate_change_event(resource, 'Creation')
-    # Generate OSLC Event Resource
+
+    # Generate OSLC Event Resource for Fuseki Endpoint
     g = Graph(fuseki_store, identifier=default)
-    #g = Graph()
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
 
+    # Generate OSLC Event Resource for Kafka Topic
     g2 = Graph()
     g2.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g2.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
-
-    #fuseki_store.add_graph(g)
 
     return g2
 
@@ -61,15 +58,15 @@ def generate_modification_event(payload, store):
 def generate_deletion_event(resource, store):
     log.warning('Deletion event generated')
     log.warning(resource)
+
     store.trs.generate_change_event(resource, 'Deletion')
-    # Generate OSLC Event Resource
+
+    # Generate OSLC Event Resource for Fuseki Endpoint
     g = Graph(fuseki_store, identifier=default)
-    #g = Graph()
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
 
-    #fuseki_store.add_graph(g)
-
+    # Generate OSLC Event Resource for Kafka Topic
     g2 = Graph()
     g2.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g2.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
