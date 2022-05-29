@@ -40,7 +40,7 @@ def generate_creation_event(resource, store):
 
     store.trs.generate_change_event(resource, 'Creation')
     # Generate OSLC Event Resource
-    g = Graph(fuseki_store, identifier=default)
+    g = Graph(identifier=default)
     #g = Graph()
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Creation Event')))
@@ -74,7 +74,7 @@ def generate_deletion_event(resource, store):
     log.warning(resource)
     store.trs.generate_change_event(resource, 'Deletion')
     # Generate OSLC Event Resource
-    g = Graph(fuseki_store, identifier=default)
+    g = Graph(identifier=default)
     #g = Graph()
     g.add((resource.uri, RDF.type, OSLC_EVENT.Event))
     g.add((resource.uri, DCTERMS.description, Literal('Deletion Event')))
