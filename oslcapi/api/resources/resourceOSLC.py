@@ -296,7 +296,7 @@ class OSLCAction(Resource):
                                                          str(actionProvider.id),
                                                          t.asdict()['type'].toPython())
                 gr = Graph()
-                gr.add((action5.uri, OSLC_CloudProvider.directoryName, Literal('bucket1-scenario1')))
+                gr.add((action5.uri, OSLC_CloudProvider.directoryName, Literal('bucket2-scenario1')))
                 gr.add((action5.uri, OSLC_CloudProvider.directoryLocation, Literal('US')))
                 gr.add((action5.uri, OSLC_CloudProvider.directoryStorageClass, Literal('STANDARD')))
                 resource, g = create_resource(actionProvider, gr, my_store)
@@ -311,7 +311,7 @@ class OSLCAction(Resource):
                                                          str(actionProvider.id),
                                                          t.asdict()['type'].toPython())
                 gr = Graph()
-                gr.add((action6.uri, OSLC_CloudProvider.directoryName, Literal('bucket1-scenario1')))
+                gr.add((action6.uri, OSLC_CloudProvider.directoryName, Literal('bucket3-scenario1')))
                 gr.add((action6.uri, OSLC_CloudProvider.directoryLocation, Literal('US')))
                 gr.add((action6.uri, OSLC_CloudProvider.directoryStorageClass, Literal('STANDARD')))
                 resource, g = create_resource(actionProvider, gr, my_store)
