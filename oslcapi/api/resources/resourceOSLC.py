@@ -238,9 +238,9 @@ class OSLCAction(Resource):
                 gr = Graph()
                 gr.add((action1.uri, OSLC_CloudProvider.instanceName, Literal('vm1-scenario1')))
                 gr.add((action1.uri, OSLC_CloudProvider.instanceZone, Literal('us-central1-c')))
-                resource1, g = create_resource(actionProvider, gr, my_store)
+                resource, g = create_resource(actionProvider, gr, my_store)
                 # Generate creation Event
-                oslcEvent = generate_creation_event(resource1, my_store)
+                oslcEvent = generate_creation_event(resource, my_store)
                 oslcEvent_json = oslcEvent.serialize(format='json-ld')
                 # Send post to event server
                 my_producer.send('event-message', value=oslcEvent_json)
@@ -251,9 +251,9 @@ class OSLCAction(Resource):
                 gr = Graph()
                 gr.add((action2.uri, OSLC_CloudProvider.instanceName, Literal('vm2-scenario1')))
                 gr.add((action2.uri, OSLC_CloudProvider.instanceZone, Literal('us-central1-c')))
-                resource2, g = create_resource(actionProvider, graph, my_store)
+                resource, g = create_resource(actionProvider, gr, my_store)
                 # Generate creation Event
-                oslcEvent = generate_creation_event(resource2, my_store)
+                oslcEvent = generate_creation_event(resource, my_store)
                 oslcEvent_json = oslcEvent.serialize(format='json-ld')
                 # Send post to event server
                 my_producer.send('event-message', value=oslcEvent_json)
@@ -264,9 +264,9 @@ class OSLCAction(Resource):
                 gr = Graph()
                 gr.add((action3.uri, OSLC_CloudProvider.instanceName, Literal('vm3-scenario1')))
                 gr.add((action3.uri, OSLC_CloudProvider.instanceZone, Literal('us-central1-c')))
-                resource3, g = create_resource(actionProvider, graph, my_store)
+                resource, g = create_resource(actionProvider, gr, my_store)
                 # Generate creation Event
-                oslcEvent = generate_creation_event(resource3, my_store)
+                oslcEvent = generate_creation_event(resource, my_store)
                 oslcEvent_json = oslcEvent.serialize(format='json-ld')
                 # Send post to event server
                 my_producer.send('event-message', value=oslcEvent_json)
@@ -284,9 +284,9 @@ class OSLCAction(Resource):
                 gr.add((action4.uri, OSLC_CloudProvider.directoryName, Literal('bucket1-scenario1')))
                 gr.add((action4.uri, OSLC_CloudProvider.directoryLocation, Literal('US')))
                 gr.add((action4.uri, OSLC_CloudProvider.directoryStorageClass, Literal('STANDARD')))
-                resource4, g = create_resource(actionProvider, gr, my_store)
+                resource, g = create_resource(actionProvider, gr, my_store)
                 # Generate creation Event
-                oslcEvent = generate_creation_event(resource4, my_store)
+                oslcEvent = generate_creation_event(resource, my_store)
                 oslcEvent_json = oslcEvent.serialize(format='json-ld')
                 # Send post to event server
                 my_producer.send('event-message', value=oslcEvent_json)
@@ -299,9 +299,9 @@ class OSLCAction(Resource):
                 gr.add((action5.uri, OSLC_CloudProvider.directoryName, Literal('bucket1-scenario1')))
                 gr.add((action5.uri, OSLC_CloudProvider.directoryLocation, Literal('US')))
                 gr.add((action5.uri, OSLC_CloudProvider.directoryStorageClass, Literal('STANDARD')))
-                resource5, g = create_resource(actionProvider, gr, my_store)
+                resource, g = create_resource(actionProvider, gr, my_store)
                 # Generate creation Event
-                oslcEvent = generate_creation_event(resource5, my_store)
+                oslcEvent = generate_creation_event(resource, my_store)
                 oslcEvent_json = oslcEvent.serialize(format='json-ld')
                 # Send post to event server
                 my_producer.send('event-message', value=oslcEvent_json)
@@ -314,9 +314,9 @@ class OSLCAction(Resource):
                 gr.add((action6.uri, OSLC_CloudProvider.directoryName, Literal('bucket1-scenario1')))
                 gr.add((action6.uri, OSLC_CloudProvider.directoryLocation, Literal('US')))
                 gr.add((action6.uri, OSLC_CloudProvider.directoryStorageClass, Literal('STANDARD')))
-                resource6, g = create_resource(actionProvider, gr, my_store)
+                resource, g = create_resource(actionProvider, gr, my_store)
                 # Generate creation Event
-                oslcEvent = generate_creation_event(resource6, my_store)
+                oslcEvent = generate_creation_event(resource, my_store)
                 oslcEvent_json = oslcEvent.serialize(format='json-ld')
                 # Send post to event server
                 my_producer.send('event-message', value=oslcEvent_json)
