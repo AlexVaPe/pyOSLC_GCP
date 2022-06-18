@@ -135,7 +135,7 @@ def list_clusters(project_id):
 
 '''
 
-    RESOURCE -> OLSC MAPPING
+    RESOURCE -> OSLC MAPPING
 
 '''
 

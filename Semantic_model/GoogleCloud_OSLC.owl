@@ -11,7 +11,8 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
-     xmlns:GCP_OSLC="http://localhost:5001/GCP_OSLC/">
+     xmlns:GCP_OSLC="http://localhost:5001/GCP_OSLC/"
+     xmlns:gcp_oslc="http://localhost:5001/GCP_OSLC#">
     <owl:Ontology rdf:about="http://localhost:5001/GCP_OSLC">
         <owl:versionIRI rdf:resource="http://localhost:5001/GCP_OSLC/01"/>
         <owl:imports rdf:resource="http://open-services.net/ns/core#"/>

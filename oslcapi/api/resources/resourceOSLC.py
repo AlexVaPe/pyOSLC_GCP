@@ -225,7 +225,103 @@ class OSLCAction(Resource):
                 action = my_store.catalog.create_action(len(my_store.catalog.oslc_actions) + 1, str(actionProvider.id),
                                                         t.asdict()['type'].toPython())
 
-            if str(t).__contains__("Create"):
+            # DEMO SCENARIO 1
+            if str(t).__contains__("Scenario1"):
+                # VM creation
+                for service_provider in my_store.catalog.service_providers:
+                    if service_provider.module.description == 'VirtualMachineService':
+                        actionProvider = service_provider
+
+                ## ACTION 1
+                action1 = my_store.catalog.create_action(len(my_store.catalog.oslc_actions) + 1, str(actionProvider.id),
+                                                        t.asdict()['type'].toPython())
+                gr = Graph()
+                gr.add((action1.uri, OSLC_CloudProvider.instanceName, Literal('vm1-scenario1')))
+                gr.add((action1.uri, OSLC_CloudProvider.instanceZone, Literal('us-central1-c')))
+                resource, g = create_resource(actionProvider, gr, my_store)
+                # Generate creation Event
+                oslcEvent = generate_creation_event(resource, my_store)
+                oslcEvent_json = oslcEvent.serialize(format='json-ld')
+                # Send post to event server
+                my_producer.send('event-message', value=oslcEvent_json)
+
+                ## ACTION 2
+                action2 = my_store.catalog.create_action(len(my_store.catalog.oslc_actions) + 1, str(actionProvider.id),
+                                                         t.asdict()['type'].toPython())
+                gr = Graph()
+                gr.add((action2.uri, OSLC_CloudProvider.instanceName, Literal('vm2-scenario1')))
+                gr.add((action2.uri, OSLC_CloudProvider.instanceZone, Literal('us-central1-c')))
+                resource, g = create_resource(actionProvider, graph, my_store)
+                # Generate creation Event
+                oslcEvent = generate_creation_event(resource, my_store)
+                oslcEvent_json = oslcEvent.serialize(format='json-ld')
+                # Send post to event server
+                my_producer.send('event-message', value=oslcEvent_json)
+
+                ## ACTION 3
+                action3 = my_store.catalog.create_action(len(my_store.catalog.oslc_actions) + 1, str(actionProvider.id),
+                                                         t.asdict()['type'].toPython())
+                gr = Graph()
+                gr.add((action3.uri, OSLC_CloudProvider.instanceName, Literal('vm3-scenario1')))
+                gr.add((action3.uri, OSLC_CloudProvider.instanceZone, Literal('us-central1-c')))
+                resource, g = create_resource(actionProvider, graph, my_store)
+                # Generate creation Event
+                oslcEvent = generate_creation_event(resource, my_store)
+                oslcEvent_json = oslcEvent.serialize(format='json-ld')
+                # Send post to event server
+                my_producer.send('event-message', value=oslcEvent_json)
+
+                # Buckets creation
+                for service_provider in my_store.catalog.service_providers:
+                    if service_provider.module.description == 'FilesystemService':
+                        actionProvider = service_provider
+
+                ## ACTION 4
+                action4 = my_store.catalog.create_action(len(my_store.catalog.oslc_actions) + 1,
+                                                        str(actionProvider.id),
+                                                        t.asdict()['type'].toPython())
+                gr = Graph()
+                gr.add((action4.uri, OSLC_CloudProvider.directoryName, Literal('bucket1-scenario1')))
+                gr.add((action4.uri, OSLC_CloudProvider.directoryLocation, Literal('US')))
+                gr.add((action4.uri, OSLC_CloudProvider.directoryStorageClass, Literal('STANDARD')))
+                resource, g = create_resource(actionProvider, gr, my_store)
+                # Generate creation Event
+                oslcEvent = generate_creation_event(resource, my_store)
+                oslcEvent_json = oslcEvent.serialize(format='json-ld')
+                # Send post to event server
+                my_producer.send('event-message', value=oslcEvent_json)
+
+                ## ACTION 5
+                action5 = my_store.catalog.create_action(len(my_store.catalog.oslc_actions) + 1,
+                                                         str(actionProvider.id),
+                                                         t.asdict()['type'].toPython())
+                gr = Graph()
+                gr.add((action5.uri, OSLC_CloudProvider.directoryName, Literal('bucket1-scenario1')))
+                gr.add((action5.uri, OSLC_CloudProvider.directoryLocation, Literal('US')))
+                gr.add((action5.uri, OSLC_CloudProvider.directoryStorageClass, Literal('STANDARD')))
+                resource, g = create_resource(actionProvider, gr, my_store)
+                # Generate creation Event
+                oslcEvent = generate_creation_event(resource, my_store)
+                oslcEvent_json = oslcEvent.serialize(format='json-ld')
+                # Send post to event server
+                my_producer.send('event-message', value=oslcEvent_json)
+
+                ## ACTION 6
+                action6 = my_store.catalog.create_action(len(my_store.catalog.oslc_actions) + 1,
+                                                         str(actionProvider.id),
+                                                         t.asdict()['type'].toPython())
+                gr = Graph()
+                gr.add((action6.uri, OSLC_CloudProvider.directoryName, Literal('bucket1-scenario1')))
+                gr.add((action6.uri, OSLC_CloudProvider.directoryLocation, Literal('US')))
+                gr.add((action6.uri, OSLC_CloudProvider.directoryStorageClass, Literal('STANDARD')))
+                resource, g = create_resource(actionProvider, gr, my_store)
+                # Generate creation Event
+                oslcEvent = generate_creation_event(resource, my_store)
+                oslcEvent_json = oslcEvent.serialize(format='json-ld')
+                # Send post to event server
+                my_producer.send('event-message', value=oslcEvent_json)
+
+            elif str(t).__contains__("Create"):
                 resource, g = create_resource(actionProvider, graph, my_store)
                 event_graph = g
                 if g is None:
