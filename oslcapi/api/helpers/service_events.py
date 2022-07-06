@@ -1,3 +1,5 @@
+import os
+
 import logging, requests
 from rdflib import Namespace, Literal, Graph
 from rdflib.namespace import DCTERMS, RDF, RDFS
@@ -12,7 +14,9 @@ OSLC = Namespace('http://open-services.net/ns/core#')
 OSLC_EVENT = Namespace('http://open-services.net/ns/events#')
 
 # Connect to fuseki triplestore.
-fuseki_store = SPARQLUpdateStore(auth=('admin','gsipassword2022'))
+FUSEKI_USER = os.getenv("FUSEKI_USER")
+FUSEKI_PWD = os.getenv("gsipassword2022")
+fuseki_store = SPARQLUpdateStore(auth=(FUSEKI_USER,FUSEKI_PWD))
 query_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc2/query'
 update_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc2/update'
 fuseki_data_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc2/data'

@@ -380,6 +380,54 @@
     
 
 
+    <!-- http://localhost:5001/GCP_OSLC#CreateDemoScenario1 -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#CreateDemoScenario1">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#DemoScenario1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#CreateDemoScenario2 -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#CreateDemoScenario2">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#DemoScenario2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#CreateDemoScenario3 -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#CreateDemoScenario3">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#DemoScenario3"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#DeleteDemoScenario1 -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#DeleteDemoScenario1">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#DemoScenario1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#DeleteDemoScenario2 -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#DeleteDemoScenario2">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#DemoScenario2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost:5001/GCP_OSLC#DeleteDemoScenario3 -->
+
+    <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#DeleteDemoScenario3">
+        <rdfs:subClassOf rdf:resource="http://localhost:5001/GCP_OSLC#DemoScenario3"/>
+    </owl:Class>
+    
+
+
     <!-- http://localhost:5001/GCP_OSLC#DemoScenario1 -->
 
     <owl:Class rdf:about="http://localhost:5001/GCP_OSLC#DemoScenario1">
