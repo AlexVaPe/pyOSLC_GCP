@@ -15,7 +15,7 @@ OSLC_EVENT = Namespace('http://open-services.net/ns/events#')
 
 # Connect to fuseki triplestore.
 FUSEKI_USER = os.getenv("FUSEKI_USER")
-FUSEKI_PWD = os.getenv("gsipassword2022")
+FUSEKI_PWD = os.getenv("FUSEKI_PWD")
 fuseki_store = SPARQLUpdateStore(auth=(FUSEKI_USER,FUSEKI_PWD))
 query_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc2/query'
 update_endpoint = 'http://fuseki.demos.gsi.upm.es/oslc-gc2/update'
